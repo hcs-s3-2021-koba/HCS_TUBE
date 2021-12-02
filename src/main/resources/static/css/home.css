@@ -1,0 +1,170 @@
+/*
+ 共通のCSS設定を記載.
+ 1ページにしか使わない設定は、各html内で直接styleタグで指定する.
+ */
+
+body {
+	text-align: center;
+}
+
+h1 {
+	font-family: 'cursive';
+}
+h2{
+	font-family: 'cursive';
+}
+.container {
+	margin-top: 10px;
+}
+
+.content-box {
+	min-width :250px;
+	margin: 5px;
+	padding: 10px;
+	border-radius: 3px;
+	background-color: #FFFF99;
+}
+
+.kensaku-box {
+	min-width :600px;
+	margin: 5px;
+	padding: 10px;
+	border-radius: 3px;
+	background-color: #FFFFCC;
+}
+
+.kensaku2-box {
+	min-width :1070px;
+	margin: 5px;
+	padding: 10px;
+	border-radius: 3px;
+	background-color: #FFFFCC;
+}
+.nitizi-box {
+	min-width :60px;
+	margin: 5px;
+	padding: 10px;
+	border-radius: 3px;
+	background-color: #FFFFFF;
+}
+.scroller {
+  width: 300px;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+}
+.content-box ul {
+	list-style: none;
+}
+
+.title-font {
+	font-size: 2rem;
+}
+
+.config-img {
+	margin: 0 10px;
+	width: 25px;
+}
+
+.back-red {
+	background-color: red;
+}
+
+.button-logout {
+	position: fixed;
+	font-size: 1rem;
+	right: -15px;
+	top: 0px;
+}
+
+.input-form {
+	margin: 20px auto;
+	max-width: 600px;
+}
+
+.input-box {
+	margin-bottom: 30px;
+}
+.inputt-box {
+	margin-bottom: 10px;
+}
+
+.mode-dark {
+	color: black;
+	background-color: black;
+}
+
+.thead-lim {
+	color: #D5E8D4;
+	background-color: #D5E8D4;
+}
+.tr-green {
+	color: #82B366;
+}
+
+.btnLeft{
+	    text-align: left;
+	    float: left;
+	}
+
+.btnRight{
+    text-align: right;
+}
+
+.inner {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.shiny-btn8 {
+  display: block;
+  position: relative;
+  width: 80%;/*ボタンの幅*/
+  padding: 10px 0;
+  margin: 30px auto;
+  background-color: #ed4545;/*ボタンの色*/
+  box-shadow: 0 3px 0 0 rgba(198, 39, 39, 1);/*影の色(rgbaの値を変更)*/
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  overflow: hidden;
+  transition: 0.2s;
+}
+.shiny-btn8:hover {
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.7;
+  box-shadow: none;
+  -webkit-transform: translateY(3px);
+}
+.shiny-btn8::before {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  animation: shiny-btn8 3s ease-in-out infinite;
+}
+.shiny-btn8::after {
+  content: "\f054";
+  font-family: 'Font Awesome 5 Free';
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 0.5em;
+}
+.test:empty {
+display: none;
+}
+@-webkit-keyframes shiny-btn8 {
+  0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
+  80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
+  81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
+  100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+}
