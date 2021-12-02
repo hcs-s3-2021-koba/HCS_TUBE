@@ -44,7 +44,7 @@
 	<!-- 共通ヘッダ -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<h1>
-			<a class="navbar-brand title-font" th:href="@{/}">就活Portal.com</a>
+			<a class="navbar-brand title-font" th:href="@{/}">HCSTube</a>
 		</h1>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarToggler" aria-controls="navbarToggler"
@@ -58,8 +58,8 @@
 						th:src="@{/img/config.png}" src="../static/img/config.png">
 				</a></li>
 				<li>
-					<form class="my-2 my-lg-0" method="post" th:action="@{/logout}">
-						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout</button>
+					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
 					</form>
 				</li>
 			</ul>
@@ -70,7 +70,19 @@
 	<div class="container">
 
 		<div class="row">
-
+					<form method="post" th:action="@{/search}">
+						<div class="form-group input-box">
+							<div class="row">
+								<div class="col">
+									<label for="company_name">動画を検索</label><input type="text"
+										class="form-control" id="company_name" name="company_name"
+										th:value="${company_name}">
+								</div>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-primary">検索</button>
+					</form>
+					<hr>
 			<div class="col-sm-6" role="presentation"
 				sec:authorize="hasAuthority('TEACHER')">
 				<!-- 管理者のみのコンテンツ -->
@@ -84,16 +96,16 @@
 
 			<div class="col-sm-6">
 				<div class="content-box">
-					<h2>受験報告</h2>
+					<h2>NEW MOVIE</h2>
 					<form method="get" th:action="@{/report/reportlist}" id="form">
 						<button type="submit" class="btn btn-primary">受験報告一覧へ</button>
 					</form>
 				</div>
 			</div>
 
-				<div class="col-sm-6" >
+<hr>
 					<div class="content-box">
-						<h2>就活申請・報告</h2>
+						<h2>LIVE</h2>
 						<form method="get" th:action="@{/apply/applyIndex}">
 							<button type="submit" class="btn btn-primary">申請メニューへ</button>
 						</form>
@@ -101,7 +113,6 @@
 				</div>
 
 			</div>
-		</div>
 
 		<!-- 共通スクリプト -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
