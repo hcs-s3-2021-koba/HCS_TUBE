@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class LoginController {
+public class StartUpController {
 
 	/**
 	 * ログイン画面を表示する
@@ -14,7 +14,6 @@ public class LoginController {
 	 */
 	@GetMapping("/login")
 	public String getLogin(Model model) {
-		System.out.println("koba");
-		return "kobayashi";
+		return "top";
 	}
 }
