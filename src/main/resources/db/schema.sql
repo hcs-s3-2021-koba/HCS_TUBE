@@ -27,11 +27,9 @@ CREATE TABLE IF NOT EXISTS comments (
 	user_id VARCHAR(254),
 	movie_id INT(254),
 	comment VARCHAR(254) NOT NULL,
-	PRIMARY KEY (post_time),
-	PRIMARY KEY (user_id),
-	PRIMARY KEY (movie_id),
+	PRIMARY KEY (post_time,user_id,movie_id),
 	FOREIGN KEY (user_id) REFERENCES users(user_id),
-	FOREIGN KEY (movie_id) REFERENCES users(movie_id)
+	FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
 );
 
 /* ライブマスタ */
