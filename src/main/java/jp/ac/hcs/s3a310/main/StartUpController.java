@@ -12,8 +12,8 @@ public class StartUpController {
 	 * @param model モデル
 	 * @return ログイン画面
 	 */
-	@GetMapping("/start")
+	@GetMapping("/top")
 	public String getLogin(Model model) {
-		return "index";
+		return "top";
 	}
 }
