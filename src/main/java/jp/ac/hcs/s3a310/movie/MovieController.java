@@ -1,4 +1,4 @@
-package movie;
+package jp.ac.hcs.s3a310.movie;
 
 public class MovieController {
 
