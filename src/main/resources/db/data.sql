@@ -6,11 +6,11 @@ DELETE FROM lives;
 
 /* 管理者ユーザ */
 INSERT INTO users (user_id, encrypted_password,	user_name,	user_authority,  user_status, registration_time)
-VALUES('saito-san@hcs.ac.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa','MONSTER_SAITO', 'admin', 'valid', CURRENT_DATE);
+VALUES('saito-san@hcs.ac.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', 'MONSTER_SAITO', 'admin', 'valid', CURRENT_DATE);
 
 /* 一般ユーザ */
 INSERT INTO users (user_id, encrypted_password,	user_name,	user_authority,  user_status, registration_time)
-VALUES('hashimoto@hcs.ac.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa','まさるるる', 'general', 'valid', CURRENT_DATE);
+VALUES('hashimoto@hcs.ac.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', 'まさるるる', 'general', 'valid', CURRENT_DATE);
 
 
 /* 動画データ */
