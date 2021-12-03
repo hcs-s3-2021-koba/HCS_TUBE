@@ -1,18 +1,20 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
 <meta charset="UTF-8">
-<title>HCStube Login</title>
+<title>HCStube Main</title>
 
 <!-- モバイル設定 -->
 <meta id="viewport" name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="manifest" th:href="@{/css/manifest.json}"
 	crossorigin="use-credentials">
-<meta name="application-name" content="HCStube Login">
+<meta name="application-name" content="HCStube Main">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="HCStube Loginl">
+<meta name="apple-mobile-web-app-title" content="HCStube Main">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -40,10 +42,10 @@
 
 </head>
 
-<body>
+<body th:classappend="${session.isDarkmode} ? 'mode-dark'">
 
 	<!-- 共通ヘッダ -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+	<nav class="navbar navbar-expand-lg navbar- bg-dark">
 		<h1>
 			<a class="navbar-brand title-font" th:href="@{/}">HCStube.com</a>
 		</h1>
@@ -62,32 +64,44 @@
 		</div>
 	</nav>
 
-	<!-- ログイン -->
+	<!-- コンテンツ -->
 	<div class="container" style="text-align: center">
-		<h1>
-			<a class="navbar-brand title-font" th:href="@{/}">ログイン</a>
-		</h1>
+		<div class="content-box">
+			<h2>新規登録</h2>
 
-		<hr>
-		<div class="input-form">
-			<form method="post" th:action="@{/login}">
-				<input type="text" class="form-control input-box" name="user_id">
-				<br> <input type="password" class="form-control input-box"
-					name="password">
-				<div>
-					<button type="submit" class="btn btn-primary">ログイン</button>
-				</div>
-				<br>
-				<div>
-					<button type="submit" class="btn btn-primary">新規登録</button>
-				</div>
-			</form>
+
+			<div class="input-form">
+				<form method="post" th:action="@{/user/insert}"
+					th:object="${userForm}">
+
+					<label for="mail" class="required">メールアドレス</label>
+					<div class="form-group input-box"
+						th:classappend="${#fields.hasErrors('user_id')} ? 'has-error'">
+						<input type="text" class="form-control" name="user_id"
+							th:field="*{user_id}"> <span class="text-danger">メールアドレスを入力してください。</span>
+					</div>
+
+					<label for="user_name" class="required">ニックネーム</label>
+					<div class="form-group input-box"
+						th:classappend="${#fields.hasErrors('user_name')} ? 'has-error'">
+						<input type="text" class="form-control" name="user_name"
+							th:field="*{user_name}"> <span class="text-danger">作成後変更が可能です</span>
+					</div>
+
+					<label for="encrypted_password" class="required">パスワード</label>
+					<div class="form-group input-box">
+						<input type="password" class="form-control"
+							name="encrypted_password"> <span class="text-danger">８～１６文字以上</span><br><span
+							class="text-danger">半角英数字記号の２つ以上</span><br>
+							<span
+							class="text-danger">全角、英字のみ、数字のみ、記号のみのパスワードは利用できません</span>
+					</div>
+
+					<button type="submit" class="btn btn-warning">作成</button>
+				</form>
+			</div>
 		</div>
 	</div>
-
-	<hr>
-
-
 
 	<!-- 共通スクリプト -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
