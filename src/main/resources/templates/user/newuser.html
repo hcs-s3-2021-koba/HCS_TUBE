@@ -74,28 +74,55 @@
 				<form method="post" th:action="@{/user/insert}"
 					th:object="${userForm}">
 
-					<label for="mail" class="required">メールアドレス</label>
-					<div class="form-group input-box"
-						th:classappend="${#fields.hasErrors('user_id')} ? 'has-error'">
-						<input type="text" class="form-control" name="user_id"
-							th:field="*{user_id}"> <span class="text-danger">メールアドレスを入力してください。</span>
-					</div>
+					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
 
-					<label for="user_name" class="required">ニックネーム</label>
-					<div class="form-group input-box"
-						th:classappend="${#fields.hasErrors('user_name')} ? 'has-error'">
-						<input type="text" class="form-control" name="user_name"
-							th:field="*{user_name}"> <span class="text-danger">作成後変更が可能です</span>
-					</div>
 
-					<label for="encrypted_password" class="required">パスワード</label>
-					<div class="form-group input-box">
-						<input type="password" class="form-control"
-							name="encrypted_password"> <span class="text-danger">８～１６文字以上</span><br><span
-							class="text-danger">半角英数字記号の２つ以上</span><br>
-							<span
-							class="text-danger">全角、英字のみ、数字のみ、記号のみのパスワードは利用できません</span>
-					</div>
+
+
+
+
+								<div class="col-md-5">
+
+									<div class="row g-3">
+										<div
+											class="form-check col-sm-2 pt-md-3 original-input-group justify-content-center justify-content-md-start">
+											 <label for="way2"
+												class="fw-bold text-center"> ユーザID </label>
+										</div>
+
+										<div class="col pt-md-2">
+											<input type="text" class="form-control input-box" name="user_id">
+										</div>
+									</div>
+									<hr>
+
+									<div class="row g-3">
+										<div
+											class="form-check col-sm-2 pt-md-3 original-input-group justify-content-center justify-content-md-start">
+											 <label for="way2"
+												class="form-check-label"> ニックネーム </label>
+										</div>
+
+										<div class="col pt-md-2">
+											<input type="text" class="form-control input-box" name="user_id">
+										</div>
+									</div>
+									<hr>
+
+									<div class="row g-3">
+										<div
+											class="form-check col-sm-2 pt-md-3 original-input-group justify-content-center justify-content-md-start">
+											 <label for="way2"
+												class="form-check-label"> パスワード </label>
+										</div>
+
+										<div class="col pt-md-2">
+											<input type="password" class="form-control input-box" name="user_id">
+										</div>
+									</div>
+
+									</div>
+									</div>
 
 					<button type="submit" class="btn btn-warning">作成</button>
 				</form>

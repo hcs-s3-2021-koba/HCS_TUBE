@@ -22,10 +22,8 @@
 	href="../static/img/P.ico">
 <link rel="shortcut icon" th:href="@{/img/P.ico}">
 <link rel="apple-touch-icon" th:href="@{/img/P.ico}">
-<link rel="apple-touch-icon" th:href="@{/img/P.ico}"
-	sizes="192x192">
-<link rel="apple-touch-icon" th:href="@{/img/P.ico}"
-	sizes="58x58">
+<link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="192x192">
+<link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="58x58">
 
 <!-- スタイル設定 -->
 <link rel="stylesheet"
@@ -37,15 +35,20 @@
 <link rel="stylesheet" th:href="@{/css/home.css}"
 	href="../static/css/home.css">
 
+<style>
+
+    body {
+       background-color: #DDDDDD;
+    }
+</style>
+
 </head>
 
 <body th:classappend="${session.isDarkmode} ? 'mode-dark'">
 
 	<!-- 共通ヘッダ -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<h1>
-			<a class="navbar-brand title-font" th:href="@{/}">HCSTube</a>
-		</h1>
+	<nav class="navbar navbar-dark bg-dark">
+
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarToggler" aria-controls="navbarToggler"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -53,6 +56,26 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarToggler">
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+			<li>
+					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">LIVE</button>
+					</form>
+				</li>
+				<li>
+					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Upload</button>
+					</form>
+				</li>
+				<li>
+					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Message</button>
+					</form>
+				</li>
+				<li>
+					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
+					</form>
+				</li>
 				<li class="nav-item active"><a class="nav-link"
 					th:href="@{/change}"> <img class="config-img"
 						th:src="@{/img/config.png}" src="../static/img/config.png">
@@ -64,35 +87,318 @@
 				</li>
 			</ul>
 		</div>
+		<h1>
+			<a class="navbar-brand title-font" th:href="@{/}"><font color="white">HCSTube</font></a>
+		</h1>
 	</nav>
 
 	<!-- コンテンツ -->
+<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
+
+								<div class="col-md-5 mb-1">
+									<h5 class="fw-bold text-center">申請種別</h5>
+
+									<small class="text-danger text-center">※必須</small>
+								</div>
+								<div class="col-md-5 mb-1 mt-md-3">
+									<div class="input-group justify-content-around">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio"
+												name="apply_type" id="applyType1" value="0" required>
+											<label class="form-check-label" for="applyType1">外部</label>
+											<div class="invalid-feedback">
+												<small
+													class="form-text input-group justify-content-md-start justify-content-center text-danger">
+													選択してください</small>
+											</div>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio"
+												name="apply_type" id="applyType2" value="1" required>
+											<label class="form-check-label" for="applyType2">とりまとめ</label>
+										</div>
+
+										<small
+											class="input-group justify-content-md-start justify-content-center text-danger mt-1"
+											th:if="${#fields.hasErrors('apply_type')}"
+											th:errors="*{apply_type}"> エラーメッセージ</small>
+
+
+									</div>
+								</div>
+
+
+								<div class="col-md-5 mb-1 mt-md-4">
+									<h5 class="fw-bold text-center">企業名</h5>
+									<small class="text-danger text-center">※必須</small>
+								</div>
+								<div class="col-md-5 mb-1">
+									<input type="text" class="form-control" name="company_name"
+										required id="company_name" value=""> <small
+										class="form-text input-group justify-content-md-start justify-content-center text-danger"
+										th:if="${#fields.hasErrors('company_name')}"
+										th:errors="*{company_name}"> エラーメッセージ </small>
+
+
+									<div class="invalid-feedback">
+										<small
+											class="form-text input-group justify-content-md-start justify-content-center text-danger">
+											企業名を入力してください</small>
+									</div>
+								</div>
+
+
+								<div class="col-md-5 mb-1">
+									<h5 class="fw-bold mt-md-1 text-center">内容</h5>
+									<small class="text-danger text-center">※必須</small>
+								</div>
+								<div class="col-md-5 mb-1">
+									<div class="input-group justify-content-around">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" id="content1"
+												name="content" value="1" required> <label
+												class="form-check-label" for="content1">合企</label>
+											<div class="invalid-feedback">
+												<small
+													class="form-text input-group justify-content-md-start justify-content-center text-danger">
+													選択してください</small>
+											</div>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" id="content2"
+												name="content" value="2" required> <label
+												class="form-check-label" for="content2">単独</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" id="content3"
+												name="content" value="3" required> <label
+												class="form-check-label" for="content3">試験</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" id="content99"
+												name="content" value="99" required> <label
+												class="form-check-label" for="content99">その他</label>
+										</div>
+
+										<small
+											class="form-text input-group justify-content-md-start justify-content-center text-danger"
+											th:if="${#fields.hasErrors('content')}"
+											th:errors="*{content}"> エラーメッセージ</small>
+
+									</div>
+								</div>
+
+
+								<div class="col-md-5 mb-2">
+									<h5 class="fw-bold mt-md-4 text-center">開始日時・終了日時</h5>
+									<small class="text-danger text-center">※必須</small>
+								</div>
+								<div class="col-md-5 mb-2">
+									<div class="row g-3">
+										<div class="col-md-6">
+											<label for="date_activity_from"
+												class="form-label input-group justify-content-center">開始</label>
+											<input type="datetime-local" class="form-control dateValid"
+												name="date_activity_from" id="date_activity_from" required>
+											<small
+												class="form-text input-group justify-content-md-start justify-content-center text-danger"
+												th:if="${#fields.hasErrors('date_activity_from')}"
+												th:errors="*{date_activity_from}"> エラーメッセージ</small>
+
+											<div class="invalid-feedback">
+												<small
+													class="form-text input-group justify-content-md-start justify-content-center text-danger">
+													選択してください</small>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label for="date_activity_to"
+												class="form-label input-group justify-content-around">終了</label>
+											<input type="datetime-local" class="form-control dateValid"
+												name="date_activity_to" id="date_activity_to" required>
+											<small
+												class="form-text input-group justify-content-md-start justify-content-center text-danger"
+												th:if="${#fields.hasErrors('date_activity_to')}"
+												th:errors="*{date_activity_to}"> エラーメッセージ</small>
+
+											<div class="invalid-feedback">
+												<small
+													class="form-text input-group justify-content-md-start justify-content-center text-danger">
+													選択してください</small>
+											</div>
+										</div>
+									</div>
+
+									<div class="invalid-feedback">
+										<small
+											class="form-text input-group justify-content-md-start justify-content-center text-danger">
+											必須項目です。</small>
+									</div>
+								</div>
+
+
+								<div class="col-md-5 mb-4">
+									<h5 class="fw-bold mt-md-1 text-center">郵便番号</h5>
+								</div>
+								<div class="col-md-5 mb-4">
+									<div class="input-group w-75 margin-md-0-auto">
+										<input type="text" class="form-control" id="zipcode">
+										<button type="button" id="zip-btn" class="btn"
+											th:classappend="${role == 'ROLE_TEACHER'} ? btn-danger : btn-primary">検索</button>
+									</div>
+
+									<div class="invalid-feedback">
+										<small
+											class="form-text input-group justify-content-md-start justify-content-center text-danger">
+											必須項目です。</small>
+									</div>
+								</div>
+
+
+								<div class="col-md-5 mb-1">
+									<h5 class="fw-bold mt-md-1 text-center">場所</h5>
+									<small class="text-danger text-center">※必須</small>
+								</div>
+								<div class="col-md-5 mb-1">
+									<input type="text" class="form-control" name="loc" id="loc"
+										required value=""> <small
+										class="form-text input-group justify-content-md-start justify-content-center text-danger"
+										th:if="${#fields.hasErrors('loc')}" th:errors="*{loc}">エラーメッセージ
+									</small>
+
+									<div class="invalid-feedback">
+										<small
+											class="form-text input-group justify-content-md-start justify-content-center text-danger">
+											場所を入力してください</small>
+									</div>
+								</div>
+
+
+								<div class="col-md-5 media-margin-top-6rem">
+									<h5 class="fw-bold mt-md-1 text-center">手段</h5>
+									<small class="text-danger text-center">※必須</small>
+								</div>
+								<div class="col-md-5">
+
+									<div class="row g-3">
+										<div
+											class="form-check col-sm-2 pt-md-5 original-input-group justify-content-center justify-content-md-start">
+											<input type="checkbox" class="form-check-input" name="way"
+												value="1" id="way1"> <label for="way1"
+												class="form-check-label"> 欠席 </label>
+										</div>
+
+										<div class="col-sm-5 pt-md-2">
+											<label for="date_absence_from"
+												class="form-label input-group justify-content-center">開始</label>
+											<input type="datetime-local" class="form-control dateValid"
+												name="date_absence_from" id="date_absence_from"> <small
+												class="form-text input-group justify-content-md-start justify-content-center text-danger"
+												th:if="${#fields.hasErrors('date_absence_from')}"
+												th:errors="*{date_absence_from}"> エラーメッセージ </small>
+											<div class="invalid-feedback">
+												<small
+													class="form-text input-group justify-content-md-start justify-content-center text-danger">
+													選択してください</small>
+											</div>
+										</div>
+
+										<div class="col-sm-5 pt-md-2">
+											<label for="date_absence_to"
+												class="form-label input-group justify-content-center">終了</label>
+											<input type="datetime-local" class="form-control dateValid"
+												name="date_absence_to" id="date_absence_to"> <small
+												class="form-text input-group justify-content-md-start justify-content-center text-danger"
+												th:if="${#fields.hasErrors('date_absence_to')}"
+												th:errors="*{date_absence_to}"> エラーメッセージ </small>
+
+											<div class="invalid-feedback">
+												<small
+													class="form-text input-group justify-content-md-start justify-content-center text-danger">
+													選択してください</small>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="row g-3">
+										<div
+											class="form-check col-sm-2 pt-md-3 original-input-group justify-content-center justify-content-md-start">
+											<input type="checkbox" class="form-check-input" name="way"
+												value="2" id="way2"> <label for="way2"
+												class="form-check-label"> 早退 </label>
+										</div>
+
+										<div class="col pt-md-2">
+											<input type="datetime-local" class="form-control dateValid"
+												name="leave_early_date" id="leave_early_date"> <small
+												class="form-text input-group justify-content-md-start justify-content-center text-danger"
+												th:if="${#fields.hasErrors('leave_early_date')}"
+												th:errors="*{leave_early_date}"> エラーメッセージ </small>
+
+											<div class="invalid-feedback">
+												<small
+													class="form-text input-group justify-content-md-start justify-content-center text-danger">
+													早退日時を選択してください</small>
+											</div>
+										</div>
+									</div>
+
+									<div class="row g-3">
+										<div
+											class="form-check col-sm-2 pt-md-3 original-input-group justify-content-center justify-content-md-start">
+											<input type="checkbox" class="form-check-input" name="way"
+												value="3" id="way3"> <label for="way3"
+												class="form-check-label"> 遅刻 </label>
+										</div>
+
+										<div class="col pt-md-2">
+											<input type="datetime-local" class="form-control dateValid"
+												name="attendance_date" id="attendance_date"> <small
+												class="form-text input-group justify-content-md-start justify-content-center text-danger"
+												th:if="${#fields.hasErrors('attendance_date')}"
+												th:errors="*{attendance_date}"> エラーメッセージ </small>
+											<div class="invalid-feedback">
+												<small
+													class="form-text input-group justify-content-md-start justify-content-center text-danger">
+													遅刻日時を選択してください</small>
+											</div>
+										</div>
+									</div>
+
+									<small
+										class="form-text input-group justify-content-md-start justify-content-center text-danger"
+										th:if="${#fields.hasErrors('way')}" th:errors="*{way}">エラーメッセージ
+									</small>
+									<div class="err_text" id="err_checkbox"></div>
+
+								</div>
+
+
+								<div class="col-md-5 media-margin-top-35rem">
+									<h5 class="fw-bold mt-md-1 text-center">メモ</h5>
+								</div>
+								<div class="col-md-5">
+									<textarea class="form-control" id="remark" name="remark"
+										rows="5" cols="50"></textarea>
+									<small
+										class="form-text input-group justify-content-md-start justify-content-center text-danger"
+										th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">エラーメッセージ
+									</small>
+								</div>
+
+							</div>
 	<div class="container">
 
+	<div class="row">
+	<form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+	</div>
 		<div class="row">
-					<form method="post" th:action="@{/search}">
-						<div class="form-group input-box">
-							<div class="row">
-								<div class="col">
-									<label for="company_name">動画を検索</label><input type="text"
-										class="form-control" id="company_name" name="company_name"
-										th:value="${company_name}">
-								</div>
-							</div>
-						</div>
-						<button type="submit" class="btn btn-primary">検索</button>
-					</form>
-					<hr>
-			<div class="col-sm-6" role="presentation"
-				sec:authorize="hasAuthority('TEACHER')">
-				<!-- 管理者のみのコンテンツ -->
-				<div class="content-box">
-					<h2>ユーザ管理</h2>
-					<form method="get" th:action="@{/user/userList}">
-						<button type="submit" class="btn btn-danger">ユーザ管理へ</button>
-					</form>
-				</div>
-			</div>
+
+			<hr>
 
 			<div class="col-sm-6">
 				<div class="content-box">
@@ -103,28 +409,28 @@
 				</div>
 			</div>
 
-<hr>
-					<div class="content-box">
-						<h2>LIVE</h2>
-						<form method="get" th:action="@{/apply/applyIndex}">
-							<button type="submit" class="btn btn-primary">申請メニューへ</button>
-						</form>
-					</div>
-				</div>
-
+			<hr>
+			<div class="content-box">
+				<h2>LIVE</h2>
+				<form method="get" th:action="@{/apply/applyIndex}">
+					<button type="submit" class="btn btn-primary">申請メニューへ</button>
+				</form>
 			</div>
+		</div>
 
-		<!-- 共通スクリプト -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-			crossorigin="anonymous"></script>
+	</div>
+
+	<!-- 共通スクリプト -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 </body>
 </html>
