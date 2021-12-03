@@ -35,6 +35,25 @@ public class LoginService {
 		return userData;
 	}
 
+	/**
+	 * 入力されたユーザIDとパスワードをもとにログイン処理を行う
+	 * @param user_id
+	 * @param password
+	 * @return
+	 */
+	public boolean checkLogin(String user_id, String password) {
+
+		return false;
+	}
+
+	/**
+	 * パスワードの暗号化
+	 */
+	public String encryptionPassword(String password) {
+		String enPass = null;
+		return enPass;
+	}
+
 //	/**
 //	 * ユーザ状態を確認し、ログイン可能か判定する
 //	 * @param userData ユーザ情報
