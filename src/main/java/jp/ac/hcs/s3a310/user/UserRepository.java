@@ -17,22 +17,22 @@ import org.springframework.stereotype.Repository;
 public class UserRepository {
 
 	/** SQL 全件取得（ユーザID昇順） */
-	private static final String SQL_SELECT_ALL = "SELECT * FROM m_user order by user_id";
+	private static final String SQL_SELECT_ALL = "SELECT * FROM users order by user_id";
 
 	/** SQL 1件取得 */
-	private static final String SQL_SELECT_ONE = "SELECT * FROM m_user WHERE user_id = ?";
+	private static final String SQL_SELECT_ONE = "SELECT * FROM users WHERE user_id = ?";
 
 	/** SQL 1件追加 */
-	private static final String SQL_INSERT_ONE = "INSERT INTO m_user(user_id, encrypted_password, class_number, user_name, darkmode, role) VALUES(?, ?, ?, ?, ?, ?)";
+	private static final String SQL_INSERT_ONE = "INSERT INTO users(user_id, encrypted_password, user_name, user_authority) VALUES(?, ?, ?, ?)";
 
 	/** SQL 1件更新 管理者 パスワード更新有 */
-	private static final String SQL_UPDATE_ONE_WITH_PASSWORD = "UPDATE m_user SET encrypted_password = ?, class_number = ?, user_name = ?, role = ?, user_status = ?, password_error_count = ? WHERE user_id = ?";
+	private static final String SQL_UPDATE_ONE_WITH_PASSWORD = "UPDATE users SET encrypted_password = ?,  user_name = ?, user_authority = ?, user_status = ? WHERE user_id = ?";
 
 	/** SQL 1件更新 管理者 パスワード更新無 */
-	private static final String SQL_UPDATE_ONE = "UPDATE m_user SET class_number = ?, user_name = ?, role = ?, user_status = ?, password_error_count = ? WHERE user_id = ?";
+	private static final String SQL_UPDATE_ONE = "UPDATE users SET  user_name = ?, user_authority = ?, user_status = ? WHERE user_id = ?";
 
 	/** SQL 1件削除 */
-	private static final String SQL_DELETE_ONE = "DELETE FROM m_user WHERE user_id = ?";
+	private static final String SQL_DELETE_ONE = "DELETE FROM users WHERE user_id = ?";
 
 	@Autowired
 	private JdbcTemplate jdbc;
