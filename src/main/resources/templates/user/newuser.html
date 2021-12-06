@@ -36,19 +36,17 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <link rel="stylesheet" th:href="@{/css/ress.css}"
-	href="../static/css/ress.css">
+	href="../../static/css/ress.css">
 <link rel="stylesheet" th:href="@{/css/home.css}"
-	href="../static/css/home.css">
+	href="../../static/css/home.css">
 
 </head>
 
 <body th:classappend="${session.isDarkmode} ? 'mode-dark'">
 
 	<!-- 共通ヘッダ -->
-	<nav class="navbar navbar-expand-lg navbar- bg-dark">
-		<h1>
-			<a class="navbar-brand title-font" th:href="@{/}">HCStube.com</a>
-		</h1>
+	<nav class="navbar navbar-dark bg-dark">
+
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarToggler" aria-controls="navbarToggler"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -56,17 +54,44 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarToggler">
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+			<li>
+					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">LIVE</button>
+					</form>
+				</li>
+				<li>
+					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Upload</button>
+					</form>
+				</li>
+				<li>
+					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Message</button>
+					</form>
+				</li>
+				<li>
+					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
+					</form>
+				</li>
 				<li class="nav-item active"><a class="nav-link"
 					th:href="@{/change}"> <img class="config-img"
-						th:src="@{/img/config.png}" src="../static/img/config.png">
+						th:src="@{/img/config.png}" src="../../static/img/config.png">
 				</a></li>
+				<li>
+					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
+					</form>
+				</li>
 			</ul>
 		</div>
+		<h1>
+			<a class="navbar-brand title-font" th:href="@{/}"><font color="white">HCSTube</font></a>
+		</h1>
 	</nav>
 
 	<!-- コンテンツ -->
-	<div class="container" style="text-align: center">
-		<div class="content-box">
+		<div class="container">
 			<h2>新規登録</h2>
 
 
@@ -76,59 +101,57 @@
 
 					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
 
+					<div class="col-md-5 mb-4">
+									<h5 class="fw-bold text-center">ユーザID</h5>
+									<small class="text-danger text-center">※必須</small>
+								</div>
+						<div class="col-md-5 mb-1">
+							<input type="text" class="form-control" name="company_name"
+								required id="company_name" value="">
+								<small>メールアドレスを入力してください</small>
+								 <small
+								class="form-text input-group justify-content-md-start justify-content-center text-danger"
+								th:if="${#fields.hasErrors('company_name')}"
+								th:errors="*{company_name}"> エラーメッセージ </small>
+						</div>
 
+						<div class="col-md-5 mb-1">
+									<h5 class="fw-bold text-center">ニックネーム</h5>
+									<small class="text-danger text-center">※必須</small>
+								</div>
+						<div class="col-md-5 mb-1">
+							<input type="text" class="form-control" name="company_name"
+								required id="company_name" value="">
+								<small>作成後変更が可能です</small>
+								 <small
+								class="form-text input-group justify-content-md-start justify-content-center text-danger"
+								th:if="${#fields.hasErrors('company_name')}"
+								th:errors="*{company_name}"> エラーメッセージ </small>
+						</div>
 
-
-
-
-								<div class="col-md-5">
-
-									<div class="row g-3">
-										<div
-											class="form-check col-sm-2 pt-md-3 original-input-group justify-content-center justify-content-md-start">
-											 <label for="way2"
-												class="fw-bold text-center"> ユーザID </label>
-										</div>
-
-										<div class="col pt-md-2">
-											<input type="text" class="form-control input-box" name="user_id">
-										</div>
-									</div>
-									<hr>
-
-									<div class="row g-3">
-										<div
-											class="form-check col-sm-2 pt-md-3 original-input-group justify-content-center justify-content-md-start">
-											 <label for="way2"
-												class="form-check-label"> ニックネーム </label>
-										</div>
-
-										<div class="col pt-md-2">
-											<input type="text" class="form-control input-box" name="user_id">
-										</div>
-									</div>
-									<hr>
-
-									<div class="row g-3">
-										<div
-											class="form-check col-sm-2 pt-md-3 original-input-group justify-content-center justify-content-md-start">
-											 <label for="way2"
-												class="form-check-label"> パスワード </label>
-										</div>
-
-										<div class="col pt-md-2">
-											<input type="password" class="form-control input-box" name="user_id">
-										</div>
-									</div>
-
-									</div>
-									</div>
+						<div class="col-md-5 mb-1">
+									<h5 class="fw-bold text-center">パスワード</h5>
+									<small class="text-danger text-center">※必須</small>
+								</div>
+						<div class="col-md-5 mb-1">
+							<input type="password" class="form-control" name="company_name"
+								required id="company_name" value="">
+								<small>下記の条件でパスワード設定をお願いします。<br>
+								 ・半角英文字記号の２つ以上の組み合わせ<br>
+								  (使用可能記号  ./:;()&?![]{}#%*+_|-<>$)<br>
+								 ・8～16文字以内
+								 ・数字のみ、英字のみ、記号のみのパスワード)</small>
+								 <small
+								class="form-text input-group justify-content-md-start justify-content-center text-danger"
+								th:if="${#fields.hasErrors('company_name')}"
+								th:errors="*{company_name}"> エラーメッセージ </small>
+						</div>
+					</div>
 
 					<button type="submit" class="btn btn-warning">作成</button>
 				</form>
 			</div>
 		</div>
-	</div>
 
 	<!-- 共通スクリプト -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
