@@ -5,6 +5,7 @@ import java.security.Principal;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,9 @@ public class LoginService {
 
 	@Autowired
 	HttpSession session;
+
+	@Autowired
+    PasswordEncoder passwordEncoder;
 
 	/**
 	 * ログインしたユーザのユーザ情報を取得する.
@@ -50,7 +54,8 @@ public class LoginService {
 	 * パスワードの暗号化
 	 */
 	public String encryptionPassword(String password) {
-		String enPass = null;
+		password = "password";
+		String enPass = passwordEncoder.encode(password);
 		return enPass;
 	}
 
