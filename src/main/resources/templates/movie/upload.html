@@ -99,7 +99,7 @@
 
 
 			<div class="input-form" style="margin-top: 50px;">
-				<form method="post" th:action="@{/user/insert}"
+				<form method="post" th:action="@{/files}"
 					th:object="${userForm}">
 
 					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
@@ -108,8 +108,7 @@
 									<h5 class="fw-bold text-center">動画を選択</h5>
 								</div>
 						<div class="col-md-5 mb-1">
-							<input type="file"  name="company_name"
-								required id="company_name">
+							<input type="file"  accept=".mp4" name="file">
 								<hr>
 								<small>動画形式：MP4のみ対応</small>
 								 <small
@@ -143,7 +142,7 @@
 						</div>
 					</div>
 
-					<button type="submit" class="btn btn-warning">作成</button>
+					<input type="submit" value="Upload" />
 				</form>
 			</div>
 		</div>
