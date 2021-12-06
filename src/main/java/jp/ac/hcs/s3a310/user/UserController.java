@@ -42,9 +42,9 @@ public class UserController {
 	/** ユーザ状態のラジオボタンを初期化する処理 */
 	private Map<String, String> initUserStatus() {
 		Map<String, String> radio = new LinkedHashMap<>();
-		radio.put("有効", String.valueOf(UserStatus.GENERAL.getCode()));
+		radio.put("一般", String.valueOf(UserStatus.GENERAL.getCode()));
 		// ロック中はユーザは個別に設定できない
-		radio.put("無効", String.valueOf(UserStatus.ADMIN.getCode()));
+		radio.put("管理者", String.valueOf(UserStatus.ADMIN.getCode()));
 		return radio;
 	}
 

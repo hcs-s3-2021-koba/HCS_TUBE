@@ -2,9 +2,8 @@ package jp.ac.hcs.s3a310.user;
 
 /**
  * ユーザ状態を定義する.
- * 1 有効		←初期値
- * 2 ロック中
- * 3 無効
+ * 1 一般
+ * 2 管理者
  */
 public enum UserStatus {
 	GENERAL(1), ADMIN(2);
