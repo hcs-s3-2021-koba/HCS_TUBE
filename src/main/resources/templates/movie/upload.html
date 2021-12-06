@@ -1,29 +1,34 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
 <meta charset="UTF-8">
-<title>Main</title>
+<title>HCStube Main</title>
 
 <!-- モバイル設定 -->
 <meta id="viewport" name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="manifest" th:href="@{/css/manifest.json}"
 	crossorigin="use-credentials">
-<meta name="application-name" content="WebPortal">
+<meta name="application-name" content="HCStube Main">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="WebPortal">
+<meta name="apple-mobile-web-app-title" content="HCStube Main">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <!-- アイコン設定 -->
-<link rel="icon" th:href="@{/img/P.ico}" sizes="192x192"
-	href="../static/img/P.ico">
-<link rel="shortcut icon" th:href="@{/img/P.ico}">
-<link rel="apple-touch-icon" th:href="@{/img/P.ico}">
-<link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="192x192">
-<link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="58x58">
+<link rel="icon" th:href="@{/img/company_slave_egg_favicon.ico}"
+	sizes="192x192" href="../static/img/company_slave_egg_favicon.ico">
+<link rel="shortcut icon"
+	th:href="@{/img/company_slave_egg_favicon.ico}">
+<link rel="apple-touch-icon"
+	th:href="@{/img/company_slave_egg_favicon.ico}">
+<link rel="apple-touch-icon"
+	th:href="@{/img/company_slave_egg_favicon.ico}" sizes="192x192">
+<link rel="apple-touch-icon"
+	th:href="@{/img/company_slave_egg_favicon.ico}" sizes="58x58">
 
 <!-- スタイル設定 -->
 <link rel="stylesheet"
@@ -31,9 +36,9 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <link rel="stylesheet" th:href="@{/css/ress.css}"
-	href="../static/css/ress.css">
+	href="../../static/css/ress.css">
 <link rel="stylesheet" th:href="@{/css/home.css}"
-	href="../static/css/home.css">
+	href="../../static/css/home.css">
 
 </head>
 
@@ -71,7 +76,7 @@
 				</li>
 				<li class="nav-item active"><a class="nav-link"
 					th:href="@{/change}"> <img class="config-img"
-						th:src="@{/img/config.png}" src="../static/img/config.png">
+						th:src="@{/img/config.png}" src="../../static/img/config.png">
 				</a></li>
 				<li>
 					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
@@ -86,63 +91,59 @@
 	</nav>
 
 	<!-- コンテンツ -->
-
-	<div class="container">
-
-	<div class="row">
-	<form class="form-inline">
-    <input class="form-control mr-sm-2" style="width: 450px;" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-
-	</div>
-
-	<h2 style="margin-top: 50px; color: red;">LIVE</h2>
-		<div class="row" style="margin-top: 50px;">
+		<div class="container">
+			<h2 style="margin-top: 10px;">動画をアップロードする</h2>
 
 
-			<div class="content-box">
-				<a href="">
-				<video controls="controls" width="300" height="200" src="../static/movie/sample_movie.mp4"></video></a>
-				<h3>飛んでみた</h3>
-			</div>
+			<div class="input-form" style="margin-top: 50px;">
+				<form method="post" th:action="@{/user/insert}"
+					th:object="${userForm}">
 
-			<hr>
-			<div class="content-box">
-				<video src=""></video>
-				<h3>LIVE</h3>
-			</div>
+					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
 
-			<hr>
-			<div class="content-box">
-				<video src=""></video>
-				<h3>LIVE</h3>
-			</div>
-		</div>
+					<div class="col-md-5 mb-4">
+									<h5 class="fw-bold text-center">動画を選択</h5>
+								</div>
+						<div class="col-md-5 mb-1">
+							<input type="file"  name="company_name"
+								required id="company_name">
+								<hr>
+								<small>動画形式：MP4のみ対応</small>
+								 <small
+								class="form-text input-group justify-content-md-start justify-content-center text-danger"
+								th:if="${#fields.hasErrors('company_name')}"
+								th:errors="*{company_name}"> エラーメッセージ</small>
+						</div>
 
-<h2 style="margin-top: 50px;">MOVIE</h2>
-		<div class="row" style="margin-top: 50px;">
+						<div class="col-md-5 mb-1">
+									<h5 class="fw-bold text-center">タイトル</h5>
+								</div>
+						<div class="col-md-5 mb-1">
+							<input type="text" class="form-control" name="company_name" placeholder="タイトルを入力してください"
+								required id="company_name" value="">
+								 <small
+								class="form-text input-group justify-content-md-start justify-content-center text-danger"
+								th:if="${#fields.hasErrors('company_name')}"
+								th:errors="*{company_name}"> エラーメッセージ </small>
+						</div>
 
+						<div class="col-md-5 mb-1">
+									<h5 class="fw-bold text-center">概要</h5>
+								</div>
+						<div class="col-md-5 mb-1">
+							<textarea class="form-control" name="company_name" style="max-width: 800px; max-height: 100px;" placeholder="動画の内容などを入力してください"
+								required id="company_name"></textarea>
+								 <small
+								class="form-text input-group justify-content-md-start justify-content-center text-danger"
+								th:if="${#fields.hasErrors('company_name')}"
+								th:errors="*{company_name}"> エラーメッセージ </small>
+						</div>
+					</div>
 
-			<div class="content-box">
-				<video src=""></video>
-				<h3>NEW MOVIE</h3>
-			</div>
-
-			<hr>
-			<div class="content-box">
-				<video src=""></video>
-				<h3>NEW MOVIE</h3>
-			</div>
-
-			<hr>
-			<div class="content-box">
-				<video src=""></video>
-				<h3>NEW MOVIE</h3>
+					<button type="submit" class="btn btn-warning">作成</button>
+				</form>
 			</div>
 		</div>
-
-	</div>
 
 	<!-- 共通スクリプト -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
