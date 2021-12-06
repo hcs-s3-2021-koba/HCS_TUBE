@@ -91,29 +91,54 @@
 
 	<div class="row">
 	<form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <input class="form-control mr-sm-2" style="width: 450px;" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
+
 	</div>
-		<div class="row">
 
-			<hr>
+	<h2 style="margin-top: 50px;">LIVE</h2>
+		<div class="row" style="margin-top: 50px;">
 
-			<div class="col-sm-6">
-				<div class="content-box">
-					<h2>NEW MOVIE</h2>
-					<form method="get" th:action="@{/report/reportlist}" id="form">
-						<button type="submit" class="btn btn-primary">受験報告一覧へ</button>
-					</form>
-				</div>
+
+			<div class="content-box">
+				<a href="">
+				<video controls="controls" width="300" height="200" src="../static/movie/sample_movie.mp4"></video></a>
+				<h3>飛んでみた</h3>
 			</div>
 
 			<hr>
 			<div class="content-box">
-				<h2>LIVE</h2>
-				<form method="get" th:action="@{/apply/applyIndex}">
-					<button type="submit" class="btn btn-primary">申請メニューへ</button>
-				</form>
+				<video src=""></video>
+				<h3>LIVE</h3>
+			</div>
+
+			<hr>
+			<div class="content-box">
+				<video src=""></video>
+				<h3>LIVE</h3>
+			</div>
+		</div>
+
+<h2 style="margin-top: 50px;">MOVIE</h2>
+		<div class="row" style="margin-top: 50px;">
+
+
+			<div class="content-box">
+				<video src=""></video>
+				<h3>NEW MOVIE</h3>
+			</div>
+
+			<hr>
+			<div class="content-box">
+				<video src=""></video>
+				<h3>NEW MOVIE</h3>
+			</div>
+
+			<hr>
+			<div class="content-box">
+				<video src=""></video>
+				<h3>NEW MOVIE</h3>
 			</div>
 		</div>
 
