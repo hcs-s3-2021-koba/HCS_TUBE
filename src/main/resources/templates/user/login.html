@@ -70,20 +70,18 @@
 
 		<hr>
 		<div class="input-form">
-			<form method="post" th:action="@{/loginProcess}">
-			<label for="user_id">ユーザID(メールアドレス)</label>
-				<input type="text" class="form-control input-box" name="user_id">
-				<br>
-				<label for="password">パスワード</label>
-				<input type="password" class="form-control input-box"
-					name="password">
+			<form method="post" th:action="@{/user/loginProcess}">
+				<label for="user_id">ユーザID(メールアドレス)</label> <input type="text"
+					class="form-control input-box" name="user_id"> <br> <label
+					for="password">パスワード</label> <input type="password"
+					class="form-control input-box" name="password">
 				<div>
 					<button type="submit" class="btn btn-primary">ログイン</button>
 				</div>
 				<br>
-			</form>s
+			</form>
 			<div>
-					<button type="submit" class="btn btn-primary">新規登録</button>
+				<button type="submit" class="btn btn-primary">新規登録</button>
 			</div>
 		</div>
 	</div>
