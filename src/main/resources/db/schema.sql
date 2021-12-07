@@ -11,11 +11,10 @@ CREATE TABLE IF NOT EXISTS users (
 
 /* 動画マスタ */
 CREATE TABLE IF NOT EXISTS movies (
-	movie_id INT(254),
+	movie_id INT(254) DEFAULT 0,
 	user_id VARCHAR(254) ,
 	post_time DATETIME NOT NULL,
 	movie_title VARCHAR(254) NOT NULL,
-	movie_time TIME NOT NULL,
 	movie_detail VARCHAR(254),
 	PRIMARY KEY (movie_id),
 	FOREIGN KEY (user_id) REFERENCES users(user_id)
