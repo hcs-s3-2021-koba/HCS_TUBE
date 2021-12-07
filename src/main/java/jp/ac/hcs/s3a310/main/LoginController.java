@@ -15,7 +15,7 @@ public class LoginController{
 		 * @param model ログイン情報を受け渡す
 		 * @return ログイン画面
 		 */
-		@PostMapping("/login")
+		@PostMapping("/loginProcess")
 		public String getLogin(Model model) {
 			return "user/login";
 		}

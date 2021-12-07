@@ -42,8 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/user/**").hasAuthority("")// ユーザ管理機能は管理権限ユーザに許可
 				.anyRequest().authenticated(); // それ以外は直リンク禁止
 		//ログイン処理
-		http.formLogin().loginProcessingUrl("/start") // ログイン処理のパス
-				.loginPage("/top") // ログインページの指定
+		http.formLogin().loginProcessingUrl("/top") // ログイン処理のパス
+				.loginPage("/login") // ログインページの指定
 				.failureUrl("/login") // ログイン失敗時の遷移先
 				.usernameParameter("user_id") // ログインページのユーザID
 				.passwordParameter("password") // ログインページのパスワード
