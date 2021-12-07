@@ -45,7 +45,7 @@
 	<!-- 共通ヘッダ -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
 		<h1>
-			<a class="navbar-brand title-font" th:href="@{/}">HCStube.com</a>
+			<a class="navbar-brand title-font" th:href="@{/top}">HCStube.com</a>
 		</h1>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarToggler" aria-controls="navbarToggler"
@@ -64,13 +64,16 @@
 
 	<!-- ログイン -->
 	<div class="container" style="text-align: center">
+	<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+				th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+				class="text-danger">ログインエラーメッセージ</p>
 		<h1>
 			<a class="navbar-brand title-font" th:href="@{/}">ログイン</a>
 		</h1>
 
 		<hr>
 		<div class="input-form">
-			<form method="post" th:action="@{/user/loginProcess}">
+			<form method="post" th:action="@{/login}">
 				<label for="user_id">ユーザID(メールアドレス)</label> <input type="text"
 					class="form-control input-box" name="user_id"> <br> <label
 					for="password">パスワード</label> <input type="password"

@@ -37,17 +37,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// ログイン不要ページの設定
 		http.authorizeRequests().antMatchers("/css/**").permitAll() // cssへアクセス許可
 				.antMatchers("/login").permitAll() // ログインページは直リンクOK
+				.antMatchers("/login").permitAll() //ログインプロセスページは直リンクOK
 				.antMatchers("/top").permitAll() // ログインページは直リンクOK
 				.antMatchers("/signup").permitAll() // 新規ユーザー登録画面は直リンクOK
 				.antMatchers("/user/**").hasAuthority("")// ユーザ管理機能は管理権限ユーザに許可
 				.anyRequest().authenticated(); // それ以外は直リンク禁止
 		//ログイン処理
-		http.formLogin().loginProcessingUrl("/top") // ログイン処理のパス
+		http.formLogin().loginProcessingUrl("/login") // ログイン処理のパス
 				.loginPage("/login") // ログインページの指定
 				.failureUrl("/login") // ログイン失敗時の遷移先
 				.usernameParameter("user_id") // ログインページのユーザID
 				.passwordParameter("password") // ログインページのパスワード
-				.defaultSuccessUrl("/", true); // ログイン成功後の遷移先
+				.defaultSuccessUrl("/top", true); // ログイン成功後の遷移先
 		//ログアウト処理
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutUrl("/logout") //ログアウト処理のパス
