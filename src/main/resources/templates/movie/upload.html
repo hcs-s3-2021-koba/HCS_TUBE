@@ -111,10 +111,7 @@
 							<input type="file"  accept=".mp4" name="file">
 								<hr>
 								<small>動画形式：MP4のみ対応</small>
-								 <small
-								class="form-text input-group justify-content-md-start justify-content-center text-danger"
-								th:if="${#fields.hasErrors('company_name')}"
-								th:errors="*{company_name}"> エラーメッセージ</small>
+
 						</div>
 
 						<div class="col-md-5 mb-1">
@@ -123,10 +120,7 @@
 						<div class="col-md-5 mb-1">
 							<input type="text" class="form-control" name="company_name" placeholder="タイトルを入力してください"
 								required id="company_name" value="">
-								 <small
-								class="form-text input-group justify-content-md-start justify-content-center text-danger"
-								th:if="${#fields.hasErrors('company_name')}"
-								th:errors="*{company_name}"> エラーメッセージ </small>
+
 						</div>
 
 						<div class="col-md-5 mb-1">
@@ -135,10 +129,7 @@
 						<div class="col-md-5 mb-1">
 							<textarea class="form-control" name="company_name" style="max-width: 800px; max-height: 100px;" placeholder="動画の内容などを入力してください"
 								required id="company_name"></textarea>
-								 <small
-								class="form-text input-group justify-content-md-start justify-content-center text-danger"
-								th:if="${#fields.hasErrors('company_name')}"
-								th:errors="*{company_name}"> エラーメッセージ </small>
+
 						</div>
 					</div>
 
