@@ -20,6 +20,9 @@ public class FileSystemStorageService implements StorageService {
 	private final Path rootLocation;
 
 	@Autowired
+	StorageRepository storageRepository = new StorageRepository();
+
+	@Autowired
 	public FileSystemStorageService(StorageProperties properties) {
 		this.rootLocation = Paths.get(properties.getLocation());
 	}
@@ -92,4 +95,14 @@ public class FileSystemStorageService implements StorageService {
 			throw new StorageException("Could not initialize storage", e);
 		}
 	}
+
+	public String InsertMovie(String title , String content ,String user_id) {
+
+		storageRepository.insertMovie(user_id, title, content);
+
+		String dammy=null;
+
+		return dammy;
+	}
+
 }
