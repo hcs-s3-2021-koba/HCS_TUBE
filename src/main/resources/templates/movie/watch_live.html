@@ -95,48 +95,59 @@
 		<div align="left">
 		<button type="button" class="btn btn-light">戻る</button>
 		</div>
-			<h2 style="margin-top: 10px;">動画をアップロードする</h2>
 
+		<div align="right">
+		<button class="btn btn-success">編集</button>
+		</div>
 
-			<div class="input-form" style="margin-top: 50px;">
-				<form method="post" th:action="@{/files}"
-					th:object="${userForm}">
-
-					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
-
-					<div class="col-md-5 mb-4">
-									<h5 class="fw-bold text-center">動画を選択</h5>
-								</div>
-						<div class="col-md-5 mb-1">
-							<input type="file"  accept=".mp4" name="file">
-								<hr>
-								<small>動画形式：MP4のみ対応</small>
-
-						</div>
-
-						<div class="col-md-5 mb-1">
-									<h5 class="fw-bold text-center">タイトル</h5>
-								</div>
-						<div class="col-md-5 mb-1">
-							<input type="text" class="form-control" name="company_name" placeholder="タイトルを入力してください"
-								required id="company_name" value="">
-
-						</div>
-
-						<div class="col-md-5 mb-1">
-									<h5 class="fw-bold text-center">概要</h5>
-								</div>
-						<div class="col-md-5 mb-1">
-							<textarea class="form-control" name="company_name" style="max-width: 800px; max-height: 100px;" placeholder="動画の内容などを入力してください"
-								required id="company_name"></textarea>
-
-						</div>
-					</div>
-
-					<input type="submit" value="Upload" />
-				</form>
+			<div class="content-box">
+				<video controls="controls" width="100%" height="60%" src="../../static/movie/sample_movie.mp4"></video>
+				<h3 align="left">飛んでみた</h3>
 			</div>
 		</div>
+
+		<br>
+		<div class="container">
+		<details>
+		<summary style="font-size: 25px; text-align: left;">概要</summary>
+		<div class="content-box">
+				<p>飛行機が飛んでいるだけでなんも面白くないですね～</p>
+			</div>
+		</details>
+		</div>
+
+		<hr>
+
+		<div class="container">
+		<details>
+		<summary style="font-size: 25px; text-align: left;">コメント</summary>
+		<div style="height: 100%; width: 100%; overflow-y: scroll;" align="left">
+		<div style="background-color: #FFFFFF">
+		あいうえお<br>
+      かきくけこ<br>
+      さしすせそ<br>
+      たちつてと<br>
+      なにぬねの<br>
+      はひふへほ<br>
+      まみむめも<br>
+      や　ゆ　よ<br>
+      らりるれろ<br>
+      わ　　　を<br>
+      ん
+    </div>
+  </div>
+
+  <div class="container">
+		<form class="form-inline">
+    <input class="form-control mr-sm-2" style="width: 85%; height: 25px;" type="text" placeholder="コメントをする" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">送信</button>
+  </form>
+  </div>
+  </details>
+		</div>
+<br>
+<br>
+<br>
 
 	<!-- 共通スクリプト -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
