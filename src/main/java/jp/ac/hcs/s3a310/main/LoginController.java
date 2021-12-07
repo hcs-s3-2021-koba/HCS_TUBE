@@ -3,8 +3,6 @@ package jp.ac.hcs.s3a310.main;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,7 +20,6 @@ public class LoginController{
 	 */
 	@GetMapping("/login")
 	public String getLogin(Model model) {
-		System.out.println("ろぐいんきちゃあああああああああ");
 		return "user/login";
 	}
 
@@ -33,17 +30,16 @@ public class LoginController{
 	 * @param password
 	 * @return top画面
 	 */
-	@PostMapping("/user/loginProcess")
+	/*
+	@PostMapping("/loginProcess")
 	public String checkLogin(Model model, @RequestParam("user_id") String user_id, @RequestParam("password") String password) {
 		LoginService loginService = new LoginService();
-		System.out.println("user_id" + "password");
 		// パスワードの暗号化
 		password = loginService.encryptionPassword(password);
-		System.out.println("password");
 
 		boolean login_flg = false;
 		login_flg =  loginService.checkLogin(user_id, password);
 		return null;
 
-	}
+	} */
 }

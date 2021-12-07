@@ -5,17 +5,18 @@ import java.security.Principal;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.ac.hcs.s3a310.user.UserData;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * ユーザ情報を操作する.
  */
-@Slf4j
+
 @Transactional
 @Service
 public class LoginService {
@@ -27,7 +28,13 @@ public class LoginService {
 	HttpSession session;
 
 	@Autowired
-    PasswordEncoder passwordEncoder;
+    PasswordEncoder passwordEncode;
+
+	@Bean
+    PasswordEncoder passwordEncode() {
+        return new BCryptPasswordEncoder();
+    }
+
 
 	/**
 	 * ログインしたユーザのユーザ情報を取得する.
@@ -54,10 +61,12 @@ public class LoginService {
 	 * パスワードの暗号化
 	 */
 	public String encryptionPassword(String password) {
-		password = "password";
-		String enPass = passwordEncoder.encode(password);
+		System.out.println(password);
+		String enPass = passwordEncode.encode(password);
 		return enPass;
 	}
+
+
 
 //	/**
 //	 * ユーザ状態を確認し、ログイン可能か判定する
