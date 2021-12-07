@@ -15,6 +15,17 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class LoginController{
 
+<<<<<<< HEAD
+		/**
+		 * ログイン画面を表示する
+		 * @param model ログイン情報を受け渡す
+		 * @return ログイン画面
+		 */
+		@PostMapping("/loginProcess")
+		public String getLogin(Model model) {
+			return "user/login";
+		}
+=======
 	/**
 	 * ログイン画面を表示する
 	 * @param model ログイン情報を受け渡す
@@ -46,4 +57,5 @@ public class LoginController{
 		return null;
 
 	}
+>>>>>>> branch 'main' of https://github.com/hcs-s3-2021-koba/HCS_TUBE.git
 }
