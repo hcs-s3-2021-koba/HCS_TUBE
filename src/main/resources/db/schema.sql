@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS users (
 	encrypted_password VARCHAR(100) NOT NULL,
 	user_name VARCHAR(60) NOT NULL,
 	user_authority VARCHAR(10) NOT NULL,
-	user_status VARCHAR(10) NOT NULL,
+	user_status BOOLEAN NOT NULL,
 	registration_time DATETIME NOT NULL,
 	PRIMARY KEY (user_id)
 );
