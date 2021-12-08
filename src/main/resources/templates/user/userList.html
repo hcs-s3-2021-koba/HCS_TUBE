@@ -1,34 +1,29 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
 <meta charset="UTF-8">
-<title>HCStube Main</title>
+<title>就職Portal Main</title>
 
 <!-- モバイル設定 -->
 <meta id="viewport" name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="manifest" th:href="@{/css/manifest.json}"
 	crossorigin="use-credentials">
-<meta name="application-name" content="HCStube Main">
+<meta name="application-name" content="HCSTube">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="HCStube Main">
+<meta name="apple-mobile-web-app-title" content="HCSTube">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <!-- アイコン設定 -->
-<link rel="icon" th:href="@{/img/company_slave_egg_favicon.ico}"
-	sizes="192x192" href="../static/img/company_slave_egg_favicon.ico">
-<link rel="shortcut icon"
-	th:href="@{/img/company_slave_egg_favicon.ico}">
-<link rel="apple-touch-icon"
-	th:href="@{/img/company_slave_egg_favicon.ico}">
-<link rel="apple-touch-icon"
-	th:href="@{/img/company_slave_egg_favicon.ico}" sizes="192x192">
-<link rel="apple-touch-icon"
-	th:href="@{/img/company_slave_egg_favicon.ico}" sizes="58x58">
+<link rel="icon" th:href="@{/img/P.ico}" sizes="192x192"
+	href="../static/img/P.ico">
+<link rel="shortcut icon" th:href="@{/img/P.ico}">
+<link rel="apple-touch-icon" th:href="@{/img/P.ico}">
+<link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="192x192">
+<link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="58x58">
 
 <!-- スタイル設定 -->
 <link rel="stylesheet"
@@ -36,9 +31,9 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <link rel="stylesheet" th:href="@{/css/ress.css}"
-	href="../../static/css/ress.css">
+	href="../static/css/ress.css">
 <link rel="stylesheet" th:href="@{/css/home.css}"
-	href="../../static/css/home.css">
+	href="../static/css/home.css">
 
 </head>
 
@@ -69,72 +64,86 @@
 						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Message</button>
 					</form>
 				</li>
+				<li class="nav-item active"><a class="nav-link"
+					th:href="@{/change}"> <img class="config-img"
+						th:src="@{/img/config.png}" src="../static/img/config.png">
+				</a></li>
 				<li>
-					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
+					<form class="my-2 my-lg-0" method="get" th:action="@{/login}">
 						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
 					</form>
 				</li>
-				<li class="nav-item active"><a class="nav-link"
-					th:href="@{/change}"> <img class="config-img"
-						th:src="@{/img/config.png}" src="../../static/img/config.png">
-				</a></li>
 				<li>
-					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
-						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
+					<form class="my-2 my-lg-0" method="get" th:action="@{/files}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">動画up確認</button>
+					</form>
+				</li>
+				<li>
+					<form class="my-2 my-lg-0" method="get" th:action="@{/userList}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">ユーザー</button>
 					</form>
 				</li>
 			</ul>
 		</div>
 		<h1>
-			<a class="navbar-brand title-font" th:href="@{/}"><font
+			<a class="navbar-brand title-font" th:href="@{/top}"><font
 				color="white">HCSTube</font></a>
 		</h1>
 	</nav>
 
 	<!-- コンテンツ -->
 	<div class="container">
-		<h2>新規登録</h2>
-
-<br>
-		<div class="input-form">
-			<form method="post" th:action="@{/user/insert}"
-				th:object="${userForm}">
-
-				<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
-
-					<div class="col-md-5 mb-4">
-						<h5 class="fw-bold text-center">ユーザID</h5>
-						<small class="text-danger text-center">※必須</small>
-					</div>
-					<div class="col-md-5 mb-1">
-						<input type="text" name="user_id" required id="user_id"
-							class="form-control"> <small>メールアドレスを入力してください</small>
-					</div>
-
-					<div class="col-md-5 mb-1">
-						<h5 class="fw-bold text-center">ニックネーム</h5>
-						<small class="text-danger text-center">※必須</small>
-					</div>
-					<div class="col-md-5 mb-1">
-						<input type="text" class="form-control" name="user_name"
-							required id="user_name"> <small>作成後変更が可能です</small>
-					</div>
-
-					<div class="col-md-5 mb-1">
-						<h5 class="fw-bold text-center">パスワード</h5>
-						<small class="text-danger text-center">※必須</small>
-					</div>
-					<div class="col-md-5 mb-1">
-						<input type="password" class="form-control" name="encrypted_password"
-							required id="encrypted_password" value=""> <small>下記の条件でパスワード設定をお願いします。</small><br>
-							<div align="left"><small>・半角英文字記号の２つ以上の組み合わせ<br> (使用可能記号 ./:;()&?![]{}#%*+_|-&lt;&gt;$)<br>
-							・8～16文字以内<br>下記のパスワードは設定できません。<br>・数字のみ、英字のみ、記号のみのパスワード)
-						</small></div>
-					</div>
+		<div class="content-box">
+			<h1>ユーザ一覧</h1>
+			<h4>絞り込み検索</h4>
+			<form method="post" th:action="@{/user/search}">
+				<input type="radio" name="category" value="user_id" checked>ユーザID
+				<input type="radio" name="category" value="user_name">氏名
+				<input type="radio" name="category" value="user_class">クラス <input
+					type="radio" name="category" value="user_class_number">出席番号 <input
+					type="radio" name="category" value="dark_mode">ダークモード <input
+					type="radio" name="category" value="user_authority">権限 <input
+					type="radio" name="category" value="user_status">ユーザ状態
+				<p></p>
+				<div class="input-group">
+					<input type="text" class="form-control" name="keyword"
+						placeholder="検索キーワード: XXXXXXX"> <span
+						class="input-group-btn">
+						<button type="submit" class="btn btn-info">検索</button>
+					</span>
 				</div>
-
-				<button type="submit" class="btn btn-warning">作成</button>
+				<p></p>
 			</form>
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>ユーザID（メールアドレス）</th>
+						<th>氏名</th>
+						<th>権限</th>
+						<th>ユーザ状態</th>
+					</tr>
+				</thead>
+				<tbody class="table-light">
+					<!-- ユーザID（メールアドレス） -->
+					<tr th:each="result : ${userEntity.userlist}" th:object="${result}">
+						<td th:text="*{user_id}"></td>
+
+						<!-- 氏名 -->
+						<td th:text="*{user_name}"></td>
+
+						<!-- 権限 -->
+						<th th:switch="*{user_authority}">
+							<p th:case="general">一般</p>
+							<p th:case="admin">管理者</p>
+						<!-- ユーザ状態 -->
+						<th th:switch="*{user_status}">
+							<p th:case="true"><a class="btn btn-success"
+							th:href="@{'/user/reverse/' + *{user_id}}">有効</a></p>
+							<p th:case="false"><a class="btn btn-success"
+							th:href="@{'/user/reverse/' + *{user_id}}">無効</a></p>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 

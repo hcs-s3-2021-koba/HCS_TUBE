@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS users (
 	user_name VARCHAR(60) NOT NULL,
 	user_authority VARCHAR(10) NOT NULL,
 	user_status BOOLEAN NOT NULL,
-	registration_time DATETIME NOT NULL,
 	PRIMARY KEY (user_id)
 );
 

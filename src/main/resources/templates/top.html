@@ -85,6 +85,11 @@
 						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">動画up確認</button>
 					</form>
 				</li>
+				<li>
+					<form class="my-2 my-lg-0" method="get" th:action="@{/userList}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">ユーザー</button>
+					</form>
+				</li>
 			</ul>
 		</div>
 ログインユーザ：<sec:authentication property="principal.username" />

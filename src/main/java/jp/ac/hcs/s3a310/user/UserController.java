@@ -61,7 +61,7 @@ public class UserController {
 	 * @param model 値を受け渡す
 	 * @return ユーザ一覧画面
 	 */
-	@GetMapping("/user/userList")
+	@GetMapping("/userList")
 	public String getUserList(Model model) {
 
 		// ユーザ状態の日本語表示の準備
@@ -81,7 +81,7 @@ public class UserController {
 	 */
 	@GetMapping("/user/insert")
 	public String getUserInsert(@ModelAttribute UserForm form, Model model) {
-		return "user/insert";
+		return "user/newuser";
 	}
 
 	/**
@@ -107,11 +107,14 @@ public class UserController {
 //		log.info("[" + principal.getName() + "]ユーザ登録データ:" + form.toString());
 		System.out.println(form);
 
+		String user_authority = "general";
+
 		UserData data = new UserData();
 		data.setUser_id(form.getUser_id());
 		data.setEncrypted_password(form.getEncrypted_password());
 		data.setUser_name(form.getUser_name());
-		data.setUser_authority(form.getUser_authority());
+		data.setUser_authority(user_authority);
+		data.setUser_status(true);
 
 		boolean result = userService.insertOne(data);
 
@@ -124,6 +127,7 @@ public class UserController {
 //		}
 
 //		return getUserList(model)
+		System.out.println("追加できたよ");
 		return "user/userList";
 	}
 	/**
@@ -157,7 +161,7 @@ public class UserController {
 			form.setUser_id(data.getUser_id());
 			form.setUser_name(data.getUser_name());
 			form.setUser_authority(data.getUser_authority());
-			form.setUser_status(data.getUser_status());
+			form.setUser_status(data.isUser_status());
 			model.addAttribute("userFormForUpdate", form);
 		}
 

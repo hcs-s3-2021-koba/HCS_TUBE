@@ -23,7 +23,7 @@ public class UserRepository {
 	private static final String SQL_SELECT_ONE = "SELECT * FROM users WHERE user_id = ?";
 
 	/** SQL 1件追加 */
-	private static final String SQL_INSERT_ONE = "INSERT INTO users(user_id, encrypted_password, user_name, user_authority) VALUES(?, ?, ?, ?)";
+	private static final String SQL_INSERT_ONE = "INSERT INTO users(user_id, encrypted_password, user_name, user_authority,user_status) VALUES(?, ?, ?, ?, ?)";
 
 	/** SQL 1件更新 管理者 パスワード更新有 */
 	private static final String SQL_UPDATE_ONE_WITH_PASSWORD = "UPDATE users SET encrypted_password = ?,  user_name = ?, user_authority = ?, user_status = ? WHERE user_id = ?";
@@ -64,8 +64,7 @@ public class UserRepository {
 			data.setUser_id((String) map.get("user_id"));
 			data.setUser_name((String) map.get("user_name"));
 			data.setUser_authority((String) map.get("user_authority"));
-			data.setUser_status((int) map.get("user_status"));
-			data.setRegistration_time((String) map.get("registration_time"));
+			data.setUser_status((boolean) map.get("user_status"));
 
 			entity.getUserlist().add(data);
 		}
@@ -83,7 +82,8 @@ public class UserRepository {
 				data.getUser_id(),
 				passwordEncoder.encode(data.getEncrypted_password()),
 				data.getUser_name(),
-				data.getUser_authority());
+				data.getUser_authority(),
+				data.isUser_status());
 		return rowNumber;
 	}
 
@@ -112,7 +112,7 @@ public class UserRepository {
 				passwordEncoder.encode(userData.getEncrypted_password()),
 				userData.getUser_name(),
 				userData.getUser_authority(),
-				userData.getUser_status(),
+				userData.isUser_status(),
 				userData.getUser_id());
 		return rowNumber;
 	}
@@ -127,7 +127,7 @@ public class UserRepository {
 		int rowNumber = jdbc.update(SQL_UPDATE_ONE,
 				userData.getUser_name(),
 				userData.getUser_authority(),
-				userData.getUser_status(),
+				userData.isUser_status(),
 				userData.getUser_id());
 		return rowNumber;
 	}

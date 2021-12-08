@@ -40,13 +40,6 @@ public class UserData {
 	 * ユーザ状態
 	 * - UserStatusクラスで定義
 	 */
-	private int user_status;
-
-	/**
-	 * 登録日時
-	 * ユーザ作成時は0固定
-	 * ユーザ状態を有効にした際に0に戻す
-	 */
-	private String registration_time;
+	private boolean user_status;
 
 }
