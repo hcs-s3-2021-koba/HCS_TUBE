@@ -4,16 +4,16 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Main</title>
+<title>就職Portal Main</title>
 
 <!-- モバイル設定 -->
 <meta id="viewport" name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="manifest" th:href="@{/css/manifest.json}"
 	crossorigin="use-credentials">
-<meta name="application-name" content="WebPortal">
+<meta name="application-name" content="HCSTube">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="WebPortal">
+<meta name="apple-mobile-web-app-title" content="HCSTube">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -69,17 +69,10 @@
 						th:src="@{/img/config.png}" src="../static/img/config.png">
 				</a></li>
 				<li>
-				<div th:if="${#authorization.expression('!isAuthenticated()')}">
 					<form class="my-2 my-lg-0" method="get" th:action="@{/login}">
 						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
 					</form>
-					</div>
 				</li>
-				<div th:if="${#authorization.expression('isAuthenticated()')}">
-					<form th:action="@{/logout}" method="post">
-						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout</button>
-					</form>
-				</div>
 				<li>
 					<form class="my-2 my-lg-0" method="get" th:action="@{/files}">
 						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">動画up確認</button>
@@ -99,67 +92,59 @@
 	</nav>
 
 	<!-- コンテンツ -->
-
 	<div class="container">
-
-		<div class="row">
-			<form class="form-inline">
-				<input class="form-control mr-sm-2" style="width: 450px;"
-					type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		<div class="content-box">
+			<h1>ユーザ一覧</h1>
+			<h4>絞り込み検索</h4>
+			<form method="post" th:action="@{/user/search}">
+				<input type="radio" name="category" value="user_id" checked>ユーザID
+				<input type="radio" name="category" value="user_name">氏名
+				<input type="radio" name="category" value="user_class">クラス <input
+					type="radio" name="category" value="user_class_number">出席番号 <input
+					type="radio" name="category" value="dark_mode">ダークモード <input
+					type="radio" name="category" value="user_authority">権限 <input
+					type="radio" name="category" value="user_status">ユーザ状態
+				<p></p>
+				<div class="input-group">
+					<input type="text" class="form-control" name="keyword"
+						placeholder="検索キーワード: XXXXXXX"> <span
+						class="input-group-btn">
+						<button type="submit" class="btn btn-info">検索</button>
+					</span>
+				</div>
+				<p></p>
 			</form>
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>ユーザID（メールアドレス）</th>
+						<th>氏名</th>
+						<th>権限</th>
+						<th>ユーザ状態</th>
+					</tr>
+				</thead>
+				<tbody class="table-light">
+					<!-- ユーザID（メールアドレス） -->
+					<tr th:each="result : ${userEntity.userlist}" th:object="${result}">
+						<td th:text="*{user_id}"></td>
 
+						<!-- 氏名 -->
+						<td th:text="*{user_name}"></td>
+
+						<!-- 権限 -->
+						<th th:switch="*{user_authority}">
+							<p th:case="general">一般</p>
+							<p th:case="admin">管理者</p>
+						<!-- ユーザ状態 -->
+						<th th:switch="*{user_status}">
+							<p th:case="true"><a class="btn btn-success"
+							th:href="@{'/user/reverse/' + *{user_id}}">有効</a></p>
+							<p th:case="false"><a class="btn btn-success"
+							th:href="@{'/user/reverse/' + *{user_id}}">無効</a></p>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-
-		<h2 style="margin-top: 50px; color: red;">LIVE</h2>
-		<div class="row" style="margin-top: 50px;">
-
-
-			<div class="content-box">
-				<a href=""> <video controls="controls" width="300" height="200"
-						src="../static/movie/sample_movie.mp4"></video></a>
-				<h3>飛んでみた</h3>
-			</div>
-
-			<hr>
-			<div class="content-box">
-				<video src=""></video>
-				<h3>LIVE</h3>
-			</div>
-
-			<hr>
-			<div class="content-box">
-				<video src=""></video>
-				<h3>LIVE</h3>
-			</div>
-		</div>
-
-		<h2 style="margin-top: 50px;">MOVIE</h2>
-		<div class="row" style="margin-top: 50px;">
-
-
-			<div class="content-box">
-				<form method="get" th:action="@{/watcthMovie}">
-					<p>
-						<input type="image" src="img/thumbnail/test_one.png" >
-					</p>
-				</form>
-				<h3>テスト動画</h3>
-			</div>
-
-			<hr>
-			<div class="content-box">
-				<video src=""></video>
-				<h3>NEW MOVIE</h3>
-			</div>
-
-			<hr>
-			<div class="content-box">
-				<video src=""></video>
-				<h3>NEW MOVIE</h3>
-			</div>
-		</div>
-
 	</div>
 
 	<!-- 共通スクリプト -->

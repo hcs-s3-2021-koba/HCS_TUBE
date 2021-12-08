@@ -64,8 +64,7 @@ public class UserRepository {
 			data.setUser_id((String) map.get("user_id"));
 			data.setUser_name((String) map.get("user_name"));
 			data.setUser_authority((String) map.get("user_authority"));
-			data.setUser_status((int) map.get("user_status"));
-			data.setRegistration_time((String) map.get("registration_time"));
+			data.setUser_status((boolean) map.get("user_status"));
 
 			entity.getUserlist().add(data);
 		}
@@ -112,7 +111,7 @@ public class UserRepository {
 				passwordEncoder.encode(userData.getEncrypted_password()),
 				userData.getUser_name(),
 				userData.getUser_authority(),
-				userData.getUser_status(),
+				userData.isUser_status(),
 				userData.getUser_id());
 		return rowNumber;
 	}
@@ -127,7 +126,7 @@ public class UserRepository {
 		int rowNumber = jdbc.update(SQL_UPDATE_ONE,
 				userData.getUser_name(),
 				userData.getUser_authority(),
-				userData.getUser_status(),
+				userData.isUser_status(),
 				userData.getUser_id());
 		return rowNumber;
 	}
