@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/login").permitAll() // ログインページは直リンクOK
 				.antMatchers("/login").permitAll() //ログインプロセスページは直リンクOK
 				.antMatchers("/top").permitAll() // ログインページは直リンクOK
-				.antMatchers("/signup").permitAll() // 新規ユーザー登録画面は直リンクOK
+				.antMatchers("/newuser").permitAll() // 新規ユーザー登録画面は直リンクOK
 				.antMatchers("/watch_video").permitAll() // 動画視聴画面は直リンクOK
 				.antMatchers("/watch_live").permitAll() // ライブ視聴画面は直リンクOK
 				.antMatchers("/user/**").hasAuthority("")// ユーザ管理機能は管理権限ユーザに許可
