@@ -107,11 +107,13 @@ public class UserController {
 //		log.info("[" + principal.getName() + "]ユーザ登録データ:" + form.toString());
 		System.out.println(form);
 
+		String user_authority = "general";
+
 		UserData data = new UserData();
 		data.setUser_id(form.getUser_id());
 		data.setEncrypted_password(form.getEncrypted_password());
 		data.setUser_name(form.getUser_name());
-		data.setUser_authority(form.getUser_authority());
+		data.setUser_authority(user_authority);
 
 		boolean result = userService.insertOne(data);
 
