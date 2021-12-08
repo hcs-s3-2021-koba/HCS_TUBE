@@ -54,7 +54,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarToggler">
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-			<li>
+				<li>
 					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
 						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">LIVE</button>
 					</form>
@@ -86,72 +86,67 @@
 			</ul>
 		</div>
 		<h1>
-			<a class="navbar-brand title-font" th:href="@{/}"><font color="white">HCSTube</font></a>
+			<a class="navbar-brand title-font" th:href="@{/}"><font
+				color="white">HCSTube</font></a>
 		</h1>
 	</nav>
 
 	<!-- コンテンツ -->
-		<div class="container">
-			<h2>新規登録</h2>
+	<div class="container">
+		<h2>新規登録</h2>
 
 
-			<div class="input-form">
-				<form method="post" th:action="@{/user/insert}"
-					th:object="${userForm}">
+		<div class="input-form">
+			<form method="post" th:action="@{/user/insert}"
+				th:object="${userForm}">
 
-					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
+				<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
 
 					<div class="col-md-5 mb-4">
-									<h5 class="fw-bold text-center">ユーザID</h5>
-									<small class="text-danger text-center">※必須</small>
-								</div>
-						<div class="col-md-5 mb-1">
-							<input type="text" class="form-control" name="company_name"
-								required id="company_name" value="">
-								<small>メールアドレスを入力してください</small>
-								 <small
-								class="form-text input-group justify-content-md-start justify-content-center text-danger"
-								th:if="${#fields.hasErrors('company_name')}"
-								th:errors="*{company_name}"> エラーメッセージ </small>
-						</div>
-
-						<div class="col-md-5 mb-1">
-									<h5 class="fw-bold text-center">ニックネーム</h5>
-									<small class="text-danger text-center">※必須</small>
-								</div>
-						<div class="col-md-5 mb-1">
-							<input type="text" class="form-control" name="company_name"
-								required id="company_name" value="">
-								<small>作成後変更が可能です</small>
-								 <small
-								class="form-text input-group justify-content-md-start justify-content-center text-danger"
-								th:if="${#fields.hasErrors('company_name')}"
-								th:errors="*{company_name}"> エラーメッセージ </small>
-						</div>
-
-						<div class="col-md-5 mb-1">
-									<h5 class="fw-bold text-center">パスワード</h5>
-									<small class="text-danger text-center">※必須</small>
-								</div>
-						<div class="col-md-5 mb-1">
-							<input type="password" class="form-control" name="company_name"
-								required id="company_name" value="">
-								<small>下記の条件でパスワード設定をお願いします。<br>
-								 ・半角英文字記号の２つ以上の組み合わせ<br>
-								  (使用可能記号  ./:;()&?![]{}#%*+_|-<>$)<br>
-								 ・8～16文字以内
-								 ・数字のみ、英字のみ、記号のみのパスワード)</small>
-								 <small
-								class="form-text input-group justify-content-md-start justify-content-center text-danger"
-								th:if="${#fields.hasErrors('company_name')}"
-								th:errors="*{company_name}"> エラーメッセージ </small>
-						</div>
+						<h5 class="fw-bold text-center">ユーザID</h5>
+						<small class="text-danger text-center">※必須</small>
+					</div>
+					<div class="col-md-5 mb-1">
+						<input type="text" name="user_id" required id="user_id"
+							class="form-control"> <small>メールアドレスを入力してください</small> <small
+							class="form-text input-group justify-content-md-start justify-content-center text-danger"
+							th:if="${#fields.hasErrors('company_name')}"
+							th:errors="*{company_name}"> エラーメッセージ </small>
 					</div>
 
-					<button type="submit" class="btn btn-warning">作成</button>
-				</form>
-			</div>
+					<div class="col-md-5 mb-1">
+						<h5 class="fw-bold text-center">ニックネーム</h5>
+						<small class="text-danger text-center">※必須</small>
+					</div>
+					<div class="col-md-5 mb-1">
+						<input type="text" class="form-control" name="user_name"
+							required id="user_name"> <small>作成後変更が可能です</small>
+						<small
+							class="form-text input-group justify-content-md-start justify-content-center text-danger"
+							th:if="${#fields.hasErrors('company_name')}"
+							th:errors="*{company_name}"> エラーメッセージ </small>
+					</div>
+
+					<div class="col-md-5 mb-1">
+						<h5 class="fw-bold text-center">パスワード</h5>
+						<small class="text-danger text-center">※必須</small>
+					</div>
+					<div class="col-md-5 mb-1">
+						<input type="password" class="form-control" name="encrypted_password"
+							required id="encrypted_password" value=""> <small>下記の条件でパスワード設定をお願いします。<br>
+							・半角英文字記号の２つ以上の組み合わせ<br> (使用可能記号 ./:;()&?![]{}#%*+_|-<>$)<br>
+							・8～16文字以内 ・数字のみ、英字のみ、記号のみのパスワード)
+						</small> <small
+							class="form-text input-group justify-content-md-start justify-content-center text-danger"
+							th:if="${#fields.hasErrors('company_name')}"
+							th:errors="*{company_name}"> エラーメッセージ </small>
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-warning">作成</button>
+			</form>
 		</div>
+	</div>
 
 	<!-- 共通スクリプト -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

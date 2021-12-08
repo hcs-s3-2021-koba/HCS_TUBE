@@ -93,17 +93,19 @@ public class UserController {
 	 * @return ユーザ一覧画面
 	 */
 	@PostMapping("/user/insert")
-	public String postUserInsert(@ModelAttribute @Validated UserForm form,
-			BindingResult bindingResult,
-			Principal principal,
-			Model model) {
+	public String postUserInsert(@ModelAttribute @Validated UserForm form
+//			,BindingResult bindingResult,
+//			Principal principal,
+//			Model model
+			) {
 
-		// 入力チェックに引っかかった場合、前の画面に戻る
-		if (bindingResult.hasErrors()) {
-			return getUserInsert(form, model);
-		}
+//		// 入力チェックに引っかかった場合、前の画面に戻る
+//		if (bindingResult.hasErrors()) {
+//			return getUserInsert(form, model);
+//		}
 
-		log.info("[" + principal.getName() + "]ユーザ登録データ:" + form.toString());
+//		log.info("[" + principal.getName() + "]ユーザ登録データ:" + form.toString());
+		System.out.println(form);
 
 		UserData data = new UserData();
 		data.setUser_id(form.getUser_id());
@@ -113,15 +115,16 @@ public class UserController {
 
 		boolean result = userService.insertOne(data);
 
-		if (result) {
-			log.info("[" + principal.getName() + "]ユーザ登録成功");
-			model.addAttribute("result", "ユーザ登録成功");
-		} else {
-			log.warn("[" + principal.getName() + "]ユーザ登録失敗");
-			model.addAttribute("result", "ユーザ登録失敗");
-		}
+//		if (result) {
+//			log.info("[" + principal.getName() + "]ユーザ登録成功");
+//			model.addAttribute("result", "ユーザ登録成功");
+//		} else {
+//			log.warn("[" + principal.getName() + "]ユーザ登録失敗");
+//			model.addAttribute("result", "ユーザ登録失敗");
+//		}
 
-		return getUserList(model);
+//		return getUserList(model)
+		return "user/userList";
 	}
 	/**
 	 * ユーザ詳細情報画面を表示する.
