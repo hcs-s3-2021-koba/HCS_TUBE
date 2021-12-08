@@ -81,7 +81,7 @@ public class UserController {
 	 */
 	@GetMapping("/user/insert")
 	public String getUserInsert(@ModelAttribute UserForm form, Model model) {
-		return "user/insert";
+		return "user/newuser";
 	}
 
 	/**

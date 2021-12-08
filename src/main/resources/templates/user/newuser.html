@@ -95,7 +95,7 @@
 	<div class="container">
 		<h2>新規登録</h2>
 
-
+<br>
 		<div class="input-form">
 			<form method="post" th:action="@{/user/insert}"
 				th:object="${userForm}">
@@ -108,10 +108,7 @@
 					</div>
 					<div class="col-md-5 mb-1">
 						<input type="text" name="user_id" required id="user_id"
-							class="form-control"> <small>メールアドレスを入力してください</small> <small
-							class="form-text input-group justify-content-md-start justify-content-center text-danger"
-							th:if="${#fields.hasErrors('company_name')}"
-							th:errors="*{company_name}"> エラーメッセージ </small>
+							class="form-control"> <small>メールアドレスを入力してください</small>
 					</div>
 
 					<div class="col-md-5 mb-1">
@@ -121,10 +118,6 @@
 					<div class="col-md-5 mb-1">
 						<input type="text" class="form-control" name="user_name"
 							required id="user_name"> <small>作成後変更が可能です</small>
-						<small
-							class="form-text input-group justify-content-md-start justify-content-center text-danger"
-							th:if="${#fields.hasErrors('company_name')}"
-							th:errors="*{company_name}"> エラーメッセージ </small>
 					</div>
 
 					<div class="col-md-5 mb-1">
@@ -134,12 +127,9 @@
 					<div class="col-md-5 mb-1">
 						<input type="password" class="form-control" name="encrypted_password"
 							required id="encrypted_password" value=""> <small>下記の条件でパスワード設定をお願いします。<br>
-							・半角英文字記号の２つ以上の組み合わせ<br> (使用可能記号 ./:;()&?![]{}#%*+_|-<>$)<br>
+							・半角英文字記号の２つ以上の組み合わせ<br> (使用可能記号 ./:;()&?![]{}#%*+_|-&lt;&gt;$)<br>
 							・8～16文字以内 ・数字のみ、英字のみ、記号のみのパスワード)
-						</small> <small
-							class="form-text input-group justify-content-md-start justify-content-center text-danger"
-							th:if="${#fields.hasErrors('company_name')}"
-							th:errors="*{company_name}"> エラーメッセージ </small>
+						</small>
 					</div>
 				</div>
 
