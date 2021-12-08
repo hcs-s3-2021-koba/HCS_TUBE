@@ -23,7 +23,7 @@ public class UserRepository {
 	private static final String SQL_SELECT_ONE = "SELECT * FROM users WHERE user_id = ?";
 
 	/** SQL 1件追加 */
-	private static final String SQL_INSERT_ONE = "INSERT INTO users(user_id, encrypted_password, user_name, user_authority) VALUES(?, ?, ?, ?)";
+	private static final String SQL_INSERT_ONE = "INSERT INTO users(user_id, encrypted_password, user_name, user_authority,user_status) VALUES(?, ?, ?, ?, ?)";
 
 	/** SQL 1件更新 管理者 パスワード更新有 */
 	private static final String SQL_UPDATE_ONE_WITH_PASSWORD = "UPDATE users SET encrypted_password = ?,  user_name = ?, user_authority = ?, user_status = ? WHERE user_id = ?";
@@ -82,7 +82,8 @@ public class UserRepository {
 				data.getUser_id(),
 				passwordEncoder.encode(data.getEncrypted_password()),
 				data.getUser_name(),
-				data.getUser_authority());
+				data.getUser_authority(),
+				data.isUser_status());
 		return rowNumber;
 	}
 

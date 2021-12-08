@@ -114,6 +114,7 @@ public class UserController {
 		data.setEncrypted_password(form.getEncrypted_password());
 		data.setUser_name(form.getUser_name());
 		data.setUser_authority(user_authority);
+		data.setUser_status(true);
 
 		boolean result = userService.insertOne(data);
 
@@ -126,6 +127,7 @@ public class UserController {
 //		}
 
 //		return getUserList(model)
+		System.out.println("追加できたよ");
 		return "user/userList";
 	}
 	/**
