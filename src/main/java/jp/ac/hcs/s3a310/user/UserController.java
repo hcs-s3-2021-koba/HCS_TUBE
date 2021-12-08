@@ -61,7 +61,7 @@ public class UserController {
 	 * @param model 値を受け渡す
 	 * @return ユーザ一覧画面
 	 */
-	@GetMapping("/user/userList")
+	@GetMapping("/userList")
 	public String getUserList(Model model) {
 
 		// ユーザ状態の日本語表示の準備
@@ -157,7 +157,7 @@ public class UserController {
 			form.setUser_id(data.getUser_id());
 			form.setUser_name(data.getUser_name());
 			form.setUser_authority(data.getUser_authority());
-			form.setUser_status(data.getUser_status());
+			form.setUser_status(data.isUser_status());
 			model.addAttribute("userFormForUpdate", form);
 		}
 

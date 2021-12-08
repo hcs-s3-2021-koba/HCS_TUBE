@@ -1,7 +1,6 @@
 package jp.ac.hcs.s3a310.user;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
@@ -30,7 +29,6 @@ public class UserFormForUpdate {
 	private String user_authority;
 
 	/** ユーザ状態 */
-	@Min(value=1, message = "{user_status_check}")
-	private int user_status;
+	private boolean user_status;
 
 }
