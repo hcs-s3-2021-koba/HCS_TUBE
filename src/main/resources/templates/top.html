@@ -69,10 +69,17 @@
 						th:src="@{/img/config.png}" src="../static/img/config.png">
 				</a></li>
 				<li>
+				<div th:if="${#authorization.expression('!isAuthenticated()')}">
 					<form class="my-2 my-lg-0" method="get" th:action="@{/login}">
 						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
 					</form>
+					</div>
 				</li>
+				<div th:if="${#authorization.expression('isAuthenticated()')}">
+					<form th:action="@{/logout}" method="post">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout</button>
+					</form>
+				</div>
 				<li>
 					<form class="my-2 my-lg-0" method="get" th:action="@{/files}">
 						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">動画up確認</button>
