@@ -49,7 +49,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarToggler">
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-			<li>
+				<li>
 					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
 						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">LIVE</button>
 					</form>
@@ -81,7 +81,8 @@
 			</ul>
 		</div>
 		<h1>
-			<a class="navbar-brand title-font" th:href="@{/top}"><font color="white">HCSTube</font></a>
+			<a class="navbar-brand title-font" th:href="@{/top}"><font
+				color="white">HCSTube</font></a>
 		</h1>
 	</nav>
 
@@ -89,21 +90,22 @@
 
 	<div class="container">
 
-	<div class="row">
-	<form class="form-inline">
-    <input class="form-control mr-sm-2" style="width: 450px;" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
+		<div class="row">
+			<form class="form-inline">
+				<input class="form-control mr-sm-2" style="width: 450px;"
+					type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
 
-	</div>
+		</div>
 
-	<h2 style="margin-top: 50px; color: red;">LIVE</h2>
+		<h2 style="margin-top: 50px; color: red;">LIVE</h2>
 		<div class="row" style="margin-top: 50px;">
 
 
 			<div class="content-box">
-				<a href="">
-				<video controls="controls" width="300" height="200" src="../static/movie/sample_movie.mp4"></video></a>
+				<a href=""> <video controls="controls" width="300" height="200"
+						src="../static/movie/sample_movie.mp4"></video></a>
 				<h3>飛んでみた</h3>
 			</div>
 
@@ -120,13 +122,17 @@
 			</div>
 		</div>
 
-<h2 style="margin-top: 50px;">MOVIE</h2>
+		<h2 style="margin-top: 50px;">MOVIE</h2>
 		<div class="row" style="margin-top: 50px;">
 
 
 			<div class="content-box">
-				<video src=""></video>
-				<h3>NEW MOVIE</h3>
+				<form method="get" th:action="@{/watcthMovie}">
+					<p>
+						<input type="image" src="img/thumbnail/test_one.png" >
+					</p>
+				</form>
+				<h3>テスト動画</h3>
 			</div>
 
 			<hr>
