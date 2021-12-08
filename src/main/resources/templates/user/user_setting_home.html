@@ -91,35 +91,34 @@
 		</h1>
 	</nav>
 
-	<!-- ログイン -->
-	<div class="container" style="text-align: center">
-		<h1>
-			<a class="navbar-brand title-font" th:href="@{/}">ログイン</a>
-		</h1>
+	<!-- コンテンツ -->
+	<div class="container">
+		<h2>ユーザ管理画面</h2>
+		<div class="input-group">
+			<input type="text" class="form-control" name="keyword" placeholder="ユーザ検索(ユーザID,ニックネーム,登録日時)">
+			<span class="input-group-btn"><select name="set"><option
+						value="項目">選択肢1</option></select>
+				<button type="submit" class="btn btn-info">検索</button> </span>
+		</div>
 
 		<hr>
-		<div class="input-form">
-			<form method="post" th:action="@{/login}">
-				<label for="user_id">ユーザID(メールアドレス)</label> <input type="text"
-					class="form-control input-box" name="user_id"> <br> <label
-					for="password">パスワード</label> <input type="password"
-					class="form-control input-box" name="password">
-				<div>
-					<button type="submit" class="btn btn-primary">ログイン</button>
-				</div>
-				<br>
-				<div>
-					<button type="submit" class="btn btn-primary">ゲストでログイン</button>
-				</div>
-				<br>
-			</form>
-			<div>
-				<button type="submit" class="btn btn-primary">新規登録</button>
-			</div>
-		</div>
-	</div>
 
-	<hr>
+
+		<div class="table-responsive">
+			<table class=" table table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th>ユーザID</th>
+						<th>ニックネーム</th>
+						<th>登録日時</th>
+					</tr>
+				</thead>
+			</table>
+
+			<br> <a class="btn btn-success" th:href="@{/application/insert}">新規作成</a>
+		</div>
+
+	</div>
 
 
 
