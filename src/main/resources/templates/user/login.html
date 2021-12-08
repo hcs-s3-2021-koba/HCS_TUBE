@@ -114,7 +114,11 @@
 				<br>
 			</form>
 			<div>
-				<button type="submit" class="btn btn-primary" onclick="location.href='newuser.html'">新規登録</button>
+
+			<form method="get" th:action="@{/user/insert}">
+					<button type="submit" class="btn btn-primary">新規登録</button>
+			</form>
+
 			</div>
 		</div>
 	</div>
