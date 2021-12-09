@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class StrageData {
+public class StorageData {
 
 
 	/** 動画ID*/

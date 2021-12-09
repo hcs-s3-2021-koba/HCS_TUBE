@@ -18,10 +18,14 @@ public interface StorageService {
 	/** まとめたPathにfilename（アップロードしたファイル名）のみを抽出*/
 	Path load(String filename);
 
+	/** 動画情報を一件追加する*/
 	String insertMovie(String title , String content , String user_id , String fileName);
 
+	/** 動画ファイルの読み込みを行う*/
 	Resource loadAsResource(String filename);
 
+
+	/** 動画ファイルの削除を行う。*/
 	void deleteAll();
 
 }

@@ -15,5 +15,6 @@ public class StorageEntity {
 	private String errMsg;
 
 	/** 動画情報のリスト*/
-	private List<StrageData> strageList= new ArrayList<StrageData>() ;
+	private List<StorageData> storageList= new ArrayList<StorageData>() ;
+
 }

@@ -52,11 +52,11 @@ public class FileUploadController {
 
 	@PostMapping("/files")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("movie_title") String title,@RequestParam("content") String content,
-			 Principal principal) {
+			 Principal principal , Model model ) {
 
 		storageService.store(file);
-		String dammy=storageService.insertMovie(title, content, principal.getName() , file.getOriginalFilename());
-
+		String msg =storageService.insertMovie(title, content, principal.getName() , file.getOriginalFilename());
+		model.addAttribute(msg,"msg");
 		return "/top";
 	}
 

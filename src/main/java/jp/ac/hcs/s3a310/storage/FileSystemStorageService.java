@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -98,9 +99,21 @@ public class FileSystemStorageService implements StorageService {
 
 	@Override
 	public String insertMovie(String title , String content ,String user_id ,String fileName) {
+		String msg = "";
+		boolean flg=true;
+		try {
+		flg = storageRepository.insertMovie(user_id, title, content , fileName);
+		}catch(DataAccessException e ) {
+			flg=false;
 
-		String msg=null;
-		msg=storageRepository.insertMovie(user_id, title, content , fileName);
+		}
+
+		if(flg ) {
+			msg="動画の投稿に成功しました";
+		}else {
+			msg="動画の投稿に失敗しました";
+		}
+
 		return msg;
 	}
 
