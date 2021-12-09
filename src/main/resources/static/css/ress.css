@@ -232,8 +232,8 @@ textarea {
 
 /* Style select like a standard input */
 select {
-  -moz-appearance: none; /* Firefox 36+ */
-  -webkit-appearance: none; /* Chrome 41+ */
+	-moz-appearance: menulist;
+	-webkit-appearance: menulist;
 }
 
 select::-ms-expand {
