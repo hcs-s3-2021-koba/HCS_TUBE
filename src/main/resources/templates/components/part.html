@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 
 <!-- モバイル設定 -->
+<th:block th:fragment="frag_mobile">
 <meta id="viewport" name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="manifest" th:href="@{/css/manifest.json}"
@@ -15,16 +16,20 @@
 <meta name="apple-mobile-web-app-title" content="WebPortal">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</th:block>
 
 <!-- アイコン設定 -->
+<th:block th:fragment="frag_icon">
 <link rel="icon" th:href="@{/img/P.ico}" sizes="192x192"
 	href="../static/img/P.ico">
 <link rel="shortcut icon" th:href="@{/img/P.ico}">
 <link rel="apple-touch-icon" th:href="@{/img/P.ico}">
 <link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="192x192">
 <link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="58x58">
+</th:block>
 
 <!-- スタイル設定 -->
+<th:block th:fragment="frag_style">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -33,11 +38,13 @@
 	href="../static/css/ress.css">
 <link rel="stylesheet" th:href="@{/css/home.css}"
 	href="../static/css/home.css">
+	</th:block>
 
 </head>
 <body>
 
 <!-- 共通ヘッダ -->
+<th:block th:fragment="frag_header">
 <nav class="navbar navbar-dark bg-dark justify-content-end">
 
 	<a class="nav-link" th:href="@{/change}">
@@ -106,10 +113,11 @@
 			<font color="white">ログインユーザ：<sec:authentication property="principal.username" /></font>
 		</div>
 	</nav>
-
+</th:block>
 
 
 	<!-- 共通スクリプト -->
+	<th:block th:fragment="frag_script">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -121,6 +129,7 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+		</th:block>
 
 </body>
 </html>
