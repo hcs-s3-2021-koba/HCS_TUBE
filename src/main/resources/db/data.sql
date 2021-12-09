@@ -15,8 +15,8 @@ VALUES('hashimoto@hcs.ac.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF
 
 /* 動画データ */
 
-INSERT INTO movies (movie_id, user_id, post_time, movie_title, movie_detail)
-VALUES(1, 'saito-san@hcs.ac.jp','2021-12-02 12:00:00', 'SAITOとつくってあそぼ', 'SAITOさんが様々な素材を使って楽しく遊べるおもちゃを作ります！');
+INSERT INTO movies (movie_id, user_id, post_time, movie_title, movie_detail,file_name)
+VALUES(1, 'saito-san@hcs.ac.jp','2021-12-02 12:00:00', 'SAITOとつくってあそぼ', 'SAITOさんが様々な素材を使って楽しく遊べるおもちゃを作ります！', 'sample_movie');
 
 /* コメントデータ */
 INSERT INTO comments (post_time, user_id, movie_id, comment)

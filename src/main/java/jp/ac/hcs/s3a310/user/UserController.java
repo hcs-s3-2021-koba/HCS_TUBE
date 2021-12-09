@@ -267,4 +267,20 @@ public class UserController {
 		return "/user/userList";
 	}
 
+	/**
+	 * ユーザ状態を反転する
+	 * @param user_id ユーザID
+	 * @param principal ログインユーザ
+	 * @param model モデル
+	 * @return ユーザ一覧画面
+	 */
+	@GetMapping("/user/reverse/{id}")
+	public String getReverseStatus(@PathVariable("id") String user_id,
+			Principal principal, Model model) {
+
+		boolean status_flg = userService.getStatus(user_id);
+		userService.reverseStatus(status_flg,user_id);
+		return getUserList(model);
+	}
+
 }
