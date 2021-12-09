@@ -14,6 +14,6 @@ public class StartUpController {
 	 */
 	@GetMapping("/top")
 	public String getLogin(Model model) {
-		return "top";
+		return "/top";
 	}
 }

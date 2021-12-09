@@ -86,7 +86,7 @@
 			</ul>
 		</div>
 		<h1>
-			<a class="navbar-brand title-font" th:href="@{/}"><font
+			<a class="navbar-brand title-font" th:href="@{/top}"><font
 				color="white">HCSTube</font></a>
 		</h1>
 	</nav>
@@ -94,7 +94,7 @@
 	<!-- ログイン -->
 	<div class="container" style="text-align: center">
 		<h1>
-			<a class="navbar-brand title-font" th:href="@{/}">ログイン</a>
+			<a class="navbar-brand title-font" th:href="@{/login}">ログイン</a>
 		</h1>
 
 		<hr>
@@ -109,12 +109,13 @@
 				<div>
 					<button type="submit" class="btn btn-primary">ログイン</button>
 				</div>
+				</form>
 				<br>
 				<div>
-					<button type="submit" class="btn btn-primary">ゲストでログイン</button>
+					<button type="button" class="btn btn-primary" th:href="@{/top}">ゲストでログイン</button>
 				</div>
 				<br>
-			</form>
+
 			<div>
 
 			<form method="get" th:action="@{/user/insert}">
