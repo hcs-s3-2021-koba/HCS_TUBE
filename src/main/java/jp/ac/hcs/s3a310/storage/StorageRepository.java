@@ -1,6 +1,5 @@
 package jp.ac.hcs.s3a310.storage;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -33,11 +32,11 @@ public class StorageRepository {
 	public String insertMovie(String user_id , String movie_title , String content) {
 
 		Date dateObj = new Date();
-		SimpleDateFormat format = new SimpleDateFormat( "yyyy/MM/dd HH:mm:ss" );
-		String display = format.format( dateObj );
+
+
 		int movie_id =0;
 		int rowNumber = 0;
-		
+
 
 		List<Map<String, Object>> resultList=jdbc.queryForList(SQL_SELECT_MOVIE_ID_MIN );
 
@@ -46,7 +45,7 @@ public class StorageRepository {
 		}
 
 		rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content);
-		
+
 		//TODO エラーメッセージ　または成功メッセージを返す分岐を作る
 
 		return String.valueOf(movie_id);
