@@ -127,8 +127,7 @@ public class UserController {
 //		}
 
 //		return getUserList(model)
-		System.out.println("追加できたよ");
-		return "user/userList";
+		return "user/login";
 	}
 	/**
 	 * ユーザ詳細情報画面を表示する.
