@@ -235,24 +235,16 @@ public class UserController {
 	 * @param model 値を受け渡す
 	 * @return ユーザ一覧画面
 	 */
-	@PostMapping(value = "/user/detail", params = "delete")
-	public String postUserDetailDelete(@RequestParam("user_id") String user_id,
-			Principal principal,
-			Model model) {
-
-		log.info("[" + principal.getName() + "]ユーザ削除:" + user_id);
-
+	@PostMapping("/user/delete")
+	public String getUserDelete(@RequestParam("user_id")String user_id, Principal principal, Model model) {
 		boolean result = userService.deleteOne(user_id);
-
-		if (result) {
-			log.info("[" + principal.getName() + "]ユーザ削除成功");
-			model.addAttribute("result", "ユーザ削除成功");
-		} else {
-			log.warn("[" + principal.getName() + "]ユーザ削除失敗");
-			model.addAttribute("result", "ユーザ削除失敗");
+		if(result) {
+			return getUserList(model);
+		}else {
+			String errormsg = "ユーザを削除できませんでした";
+			model.addAttribute("errormsg",errormsg);
+			return getUserList(model);
 		}
-
-		return getUserList(model);
 	}
 
 	/**
@@ -265,10 +257,11 @@ public class UserController {
 	 */
 	@PostMapping("/user/search")
 	public String searchReport(@RequestParam("category") String category, @RequestParam("keyword") String keyword, Principal principal, Model model ) {
-
+		System.out.println("やあ");
 		//エンティティクラスを作成
 		UserEntity userEntity = new UserEntity();
 		userEntity = userService.selectSearch(category,keyword);
+		System.out.println(userEntity);
 		model.addAttribute("userEntity" , userEntity);
 
 		return "/user/userList";
