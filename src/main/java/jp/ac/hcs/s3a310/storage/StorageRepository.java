@@ -37,7 +37,7 @@ public class StorageRepository {
 		String display = format.format( dateObj );
 		int movie_id =0;
 		int rowNumber = 0;
-		System.out.println(dateObj);
+		
 
 		List<Map<String, Object>> resultList=jdbc.queryForList(SQL_SELECT_MOVIE_ID_MIN );
 
@@ -46,7 +46,7 @@ public class StorageRepository {
 		}
 
 		rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content);
-		System.out.println(rowNumber+"成功？");
+		
 		//TODO エラーメッセージ　または成功メッセージを返す分岐を作る
 
 		return String.valueOf(movie_id);

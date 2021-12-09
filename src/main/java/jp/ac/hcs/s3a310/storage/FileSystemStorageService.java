@@ -29,7 +29,7 @@ public class FileSystemStorageService implements StorageService {
 
 	@Override
 	public void store(MultipartFile file) {
-		System.out.println(this.rootLocation+"こんにちわ");
+
 
 
 		try {
@@ -39,7 +39,7 @@ public class FileSystemStorageService implements StorageService {
 			/** ファイルの拡張子を抽出し、形式を確認する*/
 			String name=file.getOriginalFilename();
 			String[] data = name.split("\\.");
-			System.out.println(name+"こんにちは");
+
 			if(data[data.length-1].equals("mp4") || data[data.length-1].equals("m4a")) {
 			Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
 			}
