@@ -96,39 +96,7 @@
 						<p>※未入力の場合、前のパスワードを維持します</p>
 					</div>
 
-					<label for="user_class">クラス</label>
-					<div class="form-group input-box">
-						<th:block th:if="*{user_class} == null">
-							<input type="text" class="form-control" name="user_class"
-								th:field="*{user_class}" placeholder="所属なし">
-						</th:block>
-						<th:block th:if="*{user_class} != null">
-							<input type="text" class="form-control" name="user_class"
-								th:field="*{user_class}">
-						</th:block>
-					</div>
-
-					<label for="user_class_number">出席番号</label>
-					<div class="form-group input-box">
-						<input type="text" class="form-control" name="user_class_numbere"
-							th:field="*{user_class_number}">
-					</div>
-
-					<label for="role">ダークモード</label>
-					<div class="form-group input-box">
-						<div>
-							<input type="radio" name="darkmode"
-								th:checked="*{dark_mode == true}" value="true">有効
-						</div>
-						<div>
-							<input type="radio" name="darkmode"
-								th:checked="*{dark_mode == false}" value="false">無効
-						</div>
-					</div>
-
-
-
-					<label for="role">ユーザ状態</label>
+					<label for="user_status">ユーザ状態</label>
 					<div class="form-group input-box">
 						<div>
 							<input type="radio" name="user_status"
@@ -144,22 +112,18 @@
 					<div class="form-group input-box">
 						<div>
 							<input type="radio" name="user_authority"
-								th:checked="*{user_authority == 'STUDENT'}" value="STUDENT">生徒
+								th:checked="*{user_authority == 'GENERAL'}" value="STUDENT">一般
 						</div>
 						<div>
 							<input type="radio" name="user_authority"
-								th:checked="*{user_authority == 'TEACHER'}" value="TEACHER">担任
-						</div>
-						<div>
-							<input type="radio" name="user_authority"
-								th:checked="*{user_authority == 'STAFF'}" value="STAFF">事務
+								th:checked="*{user_authority == 'ADMIN'}" value="TEACHER">管理者
 						</div>
 					</div>
 					<button class="btn btn-primary" type="submit" name="update">更新</button>
 				</form>
 				<hr>
 				<form method="post" th:action="@{/user/delete}"
-					th:object="${userData}">
+					th:object="${userFormForUpdate}">
 					<input type="hidden" th:value="*{user_id}" name="user_id">
 					<button class="btn btn-danger" type="submit" name="delete">削除</button>
 				</form>
