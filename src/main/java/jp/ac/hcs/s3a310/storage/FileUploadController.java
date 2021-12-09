@@ -56,7 +56,7 @@ public class FileUploadController {
 
 		storageService.store(file);
 		String msg =storageService.insertMovie(title, content, principal.getName() , file.getOriginalFilename());
-		model.addAttribute(msg,"msg");
+		model.addAttribute("msg",msg);
 		return "/top";
 	}
 

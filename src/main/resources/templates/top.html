@@ -113,6 +113,11 @@
 		</div>
 
 		<h2 style="margin-top: 50px; color: red;">LIVE</h2>
+		<th:block th:if="${msg != null}">
+				<div class="alert alert-danger">
+					<span th:text="${msg}"></span>
+				</div>
+			</th:block>
 		<div class="row" style="margin-top: 50px;">
 
 

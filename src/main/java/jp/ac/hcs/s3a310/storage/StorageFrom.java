@@ -9,6 +9,7 @@ public class StorageFrom {
 
 	//TODO @系の制約をつける
 
+	
 	private MultipartFile file;
 
 	private String movie_title;

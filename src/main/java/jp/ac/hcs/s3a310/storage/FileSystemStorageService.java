@@ -31,8 +31,6 @@ public class FileSystemStorageService implements StorageService {
 	@Override
 	public void store(MultipartFile file) {
 
-
-
 		try {
 			if (file.isEmpty()) {
 				throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
