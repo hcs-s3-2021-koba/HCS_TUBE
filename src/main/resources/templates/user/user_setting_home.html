@@ -95,8 +95,9 @@
 	<div class="container">
 		<h2>ユーザ管理画面</h2>
 		<div class="input-group">
-			<input type="text" class="form-control" name="keyword" placeholder="ユーザ検索(ユーザID,ニックネーム,登録日時)">
-			<span class="input-group-btn"><select name="set"><option
+			<input type="text" class="form-control" name="keyword"
+				placeholder="ユーザ検索(ユーザID,ニックネーム,登録日時)"> <span
+				class="input-group-btn"><select name="set"><option
 						value="項目">選択肢1</option></select>
 				<button type="submit" class="btn btn-info">検索</button> </span>
 		</div>
@@ -105,7 +106,7 @@
 
 
 		<div class="table-responsive">
-			<table class=" table table-bordered">
+			<table class="table">
 				<thead class="thead-dark">
 					<tr>
 						<th>ユーザID</th>
@@ -113,9 +114,36 @@
 						<th>登録日時</th>
 					</tr>
 				</thead>
+				<tbody class="table-light">
+					<td>xxx@yyy.zzz</td>
+					<td>ハシモトバカ</td>
+					<td>2022/01/11</td>
+				</tbody>
 			</table>
 
-			<br> <a class="btn btn-success" th:href="@{/application/insert}">新規作成</a>
+			<div class="nav-links" align="right">
+				<a class="prev page-numbers"
+					href="https://techacademy.jp/magazine/category/webdesign/">«</a>
+				<!-- 現在の前のページへのリンク -->
+				<a class="page-numbers"
+					href="https://techacademy.jp/magazine/category/webdesign/">1</a>
+				<!-- 1ページ目へのリンク -->
+				<span class="page-numbers current">2</span>
+				<!-- 現在閲覧しているページ(2ページ) -->
+				<a class="page-numbers"
+					href="https://techacademy.jp/magazine/category/webdesign/page/3">3</a>
+				<!-- 3ページ目へのリンク -->
+				<span class="page-numbers dots">…</span>
+				<!-- ...の部分 -->
+				<a class="page-numbers"
+					href="https://techacademy.jp/magazine/category/webdesign/page/6">6</a>
+				<!-- 27ページ目(最後のページ)へのリンク -->
+				<a class="next page-numbers"
+					href="https://techacademy.jp/magazine/category/webdesign/page/3">»</a>
+				<!-- 現在の次のページへのリンク -->
+			</div>
+
+			<br> <a class="btn btn-success" th:href="@{/user/newuser}">新規作成</a>
 		</div>
 
 	</div>
