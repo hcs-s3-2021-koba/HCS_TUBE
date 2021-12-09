@@ -37,7 +37,7 @@
 
 </head>
 
-<body th:classappend="${session.isDarkmode} ? 'mode-dark'">
+<body>
 
 	<!-- 共通ヘッダ -->
 	<nav class="navbar navbar-dark bg-dark">
@@ -99,8 +99,8 @@
 			<form method="post" th:action="@{/user/search}">
 				<input type="radio" name="category" value="user_id" checked>ユーザID
 				<input type="radio" name="category" value="user_name">ニックネーム
-				 <input type="radio" name="category" value="user_authority">権限
-				 <input type="radio" name="category" value="user_status">ユーザ状態
+				<input type="radio" name="category" value="user_authority">権限
+				<input type="radio" name="category" value="user_status">ユーザ状態
 				<p></p>
 				<div class="input-group">
 					<input type="text" class="form-control" name="keyword"
