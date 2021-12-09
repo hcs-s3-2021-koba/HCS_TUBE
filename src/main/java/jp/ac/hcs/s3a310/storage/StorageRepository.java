@@ -19,7 +19,7 @@ public class StorageRepository {
 	public final String SQL_INSERT_MOVIE ="INSERT INTO movies(movie_id , user_id , post_time , movie_title , movie_detail)VALUES(?,?,?,?,?) ";
 
 	/** 動画IDの最小値を求める*/
-	public final String SQL_SELECT_MOVIE_ID_MIN ="SELECT MIN(movie_id) FROM movies ";
+	public final String SQL_SELECT_MOVIE_ID_MIN ="SELECT min(movie_id) AS movie_id FROM MOVIES";
 
 
 
@@ -37,15 +37,16 @@ public class StorageRepository {
 		String display = format.format( dateObj );
 		int movie_id =0;
 		int rowNumber = 0;
+		System.out.println(dateObj);
 
 		List<Map<String, Object>> resultList=jdbc.queryForList(SQL_SELECT_MOVIE_ID_MIN );
 
 		for(Map<String , Object> map : resultList) {
-			 movie_id = (int)map.get("application_id") + 1;
+			 movie_id = (int)map.get("movie_id") + 1;
 		}
 
-		rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , display , movie_title , content);
-
+		rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content);
+		System.out.println(rowNumber+"成功？");
 		//TODO エラーメッセージ　または成功メッセージを返す分岐を作る
 
 		return String.valueOf(movie_id);

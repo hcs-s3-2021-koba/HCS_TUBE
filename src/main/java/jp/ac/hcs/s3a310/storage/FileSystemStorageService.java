@@ -29,6 +29,8 @@ public class FileSystemStorageService implements StorageService {
 
 	@Override
 	public void store(MultipartFile file) {
+		System.out.println(this.rootLocation+"こんにちわ");
+
 
 		try {
 			if (file.isEmpty()) {
@@ -37,9 +39,7 @@ public class FileSystemStorageService implements StorageService {
 			/** ファイルの拡張子を抽出し、形式を確認する*/
 			String name=file.getOriginalFilename();
 			String[] data = name.split("\\.");
-
-			 System.out.println(data[data.length -1]);
-
+			System.out.println(name+"こんにちは");
 			if(data[data.length-1].equals("mp4") || data[data.length-1].equals("m4a")) {
 			Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
 			}
@@ -96,13 +96,12 @@ public class FileSystemStorageService implements StorageService {
 		}
 	}
 
-	public String InsertMovie(String title , String content ,String user_id) {
+	@Override
+	public String insertMovie(String title , String content ,String user_id) {
 
-		storageRepository.insertMovie(user_id, title, content);
-
-		String dammy=null;
-
-		return dammy;
+		String msg=null;
+		msg=storageRepository.insertMovie(user_id, title, content);
+		return msg;
 	}
 
 }

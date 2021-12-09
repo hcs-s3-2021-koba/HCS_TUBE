@@ -99,7 +99,7 @@
 
 
 			<div class="input-form" style="margin-top: 50px;">
-				<form method="post" th:action="@{/files}"
+				<form method="post"enctype="multipart/form-data" th:action="@{/files}"
 					th:object="${userForm}">
 
 					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">

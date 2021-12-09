@@ -18,7 +18,7 @@ public interface StorageService {
 	/** まとめたPathにfilename（アップロードしたファイル名）のみを抽出*/
 	Path load(String filename);
 
-	String InsertMovie(String title , String content , String user_id);
+	String insertMovie(String title , String content , String user_id);
 
 	Resource loadAsResource(String filename);
 

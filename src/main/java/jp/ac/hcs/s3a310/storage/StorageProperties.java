@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
 こいつが原因や
-Properties(
 */
 @Configuration("storage")
 public class StorageProperties {
