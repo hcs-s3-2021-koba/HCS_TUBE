@@ -72,8 +72,8 @@
 			<div class="input-form">
 			<div class="alert alert-warning" role="alert" th:if="${errMsg}"
 				th:text="${errMsg}"></div>
-				<form method="post" th:action="@{/user/updata}"
-					th:object="${userData}">
+				<form method="post" th:action="@{/user/update}"
+					th:object="${userFormForUpdate}">
 
 					<label for="user_id">ユーザID(メールアドレス)</label>
 					<p class="view-mail" th:text="*{user_id}"></p>

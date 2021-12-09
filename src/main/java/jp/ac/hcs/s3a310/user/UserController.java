@@ -168,6 +168,16 @@ public class UserController {
 	}
 
 	/**
+	 * ユーザ登録画面（管理者用）を表示する.
+	 * @param form 登録時の入力チェック用UserForm
+	 * @param model 値を受け渡す
+	 * @return ユーザ登録画面（管理者用）
+	 */
+	@GetMapping("/user/update")
+	public String getUserUpdate(@ModelAttribute UserForm form, Model model) {
+		return "user/newuser";
+	}
+	/**
 	 * 1件分のユーザ情報でデータベースを更新する.
 	 * パスワードの更新が不要の場合は、画面側で何も値を設定しないものとする.
 	 * @param form 更新するユーザ情報(パスワードは平文)
