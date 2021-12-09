@@ -130,4 +130,31 @@ public class UserService {
 		return userEntity;
 	}
 
+	/**
+	 * ユーザのステータスを取得
+	 * @param user_id ユーザID
+	 * @return s_flg
+	 */
+	public boolean getStatus(String user_id) {
+		boolean s_flg = userRepository.selectStatus(user_id);
+		return s_flg;
+	}
+
+
+	/**
+	 * ユーザのステータスを反転する
+	 * @param status_flg 状態フラグ
+	 * @param user_id ユーザID
+	 * @return rowNumber
+	 */
+	public int reverseStatus(boolean status_flg, String user_id) {
+		int rowNumber;
+		if(status_flg) {
+			rowNumber = userRepository.updateInvalid(user_id);
+		} else {
+			rowNumber = userRepository.updateValid(user_id);
+		}
+		return rowNumber;
+	}
+
 }
