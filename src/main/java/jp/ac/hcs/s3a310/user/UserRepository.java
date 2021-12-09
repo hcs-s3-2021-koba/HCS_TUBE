@@ -34,6 +34,19 @@ public class UserRepository {
 	/** SQL 1件削除 */
 	private static final String SQL_DELETE_ONE = "DELETE FROM users WHERE user_id = ?";
 
+	/** SQL 検索_No */
+	private static final String SQL_SELECT_SEARCH_USER_ID = "SELECT * FROM users WHERE user_id LIKE ?";
+
+	/** SQL 検索_NAME */
+	private static final String SQL_SELECT_SEARCH_NAME = "SELECT * FROM users WHERE user_name LIKE ?";
+
+	/** SQL 検索_権限 */
+	private static final String SQL_SELECT_SEARCH_AUTHORITY = "SELECT * FROM users WHERE user_authority LIKE ?";
+
+	/** SQL 検索_REPORT_STATE */
+	private static final String SQL_SELECT_SEARCH_STATUS = "SELECT * FROM users WHERE user_status LIKE ?";
+
+
 	@Autowired
 	private JdbcTemplate jdbc;
 
@@ -141,6 +154,30 @@ public class UserRepository {
 	public int deleteOne(String user_id) throws DataAccessException {
 		int rowNumber = jdbc.update(SQL_DELETE_ONE, user_id);
 		return rowNumber;
+	}
+
+	public UserEntity selectSearchUserId(String keyword) {
+		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_SEARCH_USER_ID,'%' +  keyword + '%');
+		UserEntity userEntity = mappingSelectResult(resultList);
+		return userEntity;
+	}
+
+	public UserEntity selectUserName(String keyword)throws DataAccessException {
+		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_SEARCH_NAME, '%' +  keyword + '%');
+		UserEntity userEntity = mappingSelectResult(resultList);
+		return userEntity;
+	}
+
+	public UserEntity selectSearchAuthority(String keyword)throws DataAccessException {
+		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_SEARCH_AUTHORITY, '%' +  keyword + '%');
+		UserEntity userEntity = mappingSelectResult(resultList);
+		return userEntity;
+	}
+
+	public UserEntity selectSearchSratus(boolean keyword)throws DataAccessException {
+		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_SEARCH_STATUS,keyword);
+		UserEntity userEntity = mappingSelectResult(resultList);
+		return userEntity;
 	}
 
 }

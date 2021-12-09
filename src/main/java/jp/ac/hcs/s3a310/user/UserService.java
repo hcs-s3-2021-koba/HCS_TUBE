@@ -1,6 +1,7 @@
 package jp.ac.hcs.s3a310.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,6 +74,60 @@ public class UserService {
 		int rowNumber = userRepository.deleteOne(user_id);
 		boolean result = (rowNumber > 0) ? true : false;
 		return result;
+	}
+
+	/**
+	 * 検索機能
+	 * @param category カテゴリー
+	 * @param keyword キーワード
+	 * @return userEntity
+	 */
+	public UserEntity selectSearch(String category, String keyword) {
+
+		//エンティティクラスを作成
+		UserEntity userEntity = new UserEntity();
+		try {
+			userEntity = cheakCategorySelect(category,keyword);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+
+		return userEntity;
+	}
+
+	/**
+	 * 検索SQLを判断する
+	 * @param category 項目
+	 * @param keyword キーワード
+	 * @return userEntity
+	 */
+	private UserEntity cheakCategorySelect(String category, String keyword) {
+		//エンティティクラスを作成
+		UserEntity userEntity = new UserEntity();
+
+
+		if(category.equals("user_id")){
+			userEntity = userRepository.selectSearchUserId(keyword);
+		}else if(category.equals("user_name")) {
+			userEntity = userRepository.selectUserName(keyword);
+		}else if(category.equals("user_authority")) {
+			if(keyword.equals("一般")||keyword.equals("general")) {
+				userEntity = userRepository.selectSearchAuthority("general");
+			}else if(keyword.equals("管理者")||keyword.equals("admin")) {
+				userEntity = userRepository.selectSearchAuthority("admin");
+			}else {
+				userEntity = userRepository.selectSearchAuthority(keyword);
+			}
+		}else if(category.equals("user_status")) {
+			if(keyword.equals("有効")||keyword.equals("true")) {
+				userEntity = userRepository.selectSearchSratus(true);
+			}else if(keyword.equals("無効")||keyword.equals("false")) {
+				userEntity = userRepository.selectSearchSratus(false);
+			}
+
+		}
+
+		return userEntity;
 	}
 
 }
