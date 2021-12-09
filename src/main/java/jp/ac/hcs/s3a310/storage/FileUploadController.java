@@ -55,7 +55,7 @@ public class FileUploadController {
 			 Principal principal) {
 
 		storageService.store(file);
-		String dammy=storageService.insertMovie(title, content, principal.getName());
+		String dammy=storageService.insertMovie(title, content, principal.getName() , file.getOriginalFilename());
 
 		return "/top";
 	}

@@ -97,10 +97,10 @@ public class FileSystemStorageService implements StorageService {
 	}
 
 	@Override
-	public String insertMovie(String title , String content ,String user_id) {
+	public String insertMovie(String title , String content ,String user_id ,String fileName) {
 
 		String msg=null;
-		msg=storageRepository.insertMovie(user_id, title, content);
+		msg=storageRepository.insertMovie(user_id, title, content , fileName);
 		return msg;
 	}
 
