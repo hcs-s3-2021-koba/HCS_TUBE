@@ -204,6 +204,7 @@ public class UserController {
 		data.setUser_id(form.getUser_id());
 		data.setUser_name(form.getUser_name());
 		data.setUser_authority(form.getUser_authority());
+		data.setUser_status(form.isUser_status());
 
 
 		boolean result = false;
