@@ -57,7 +57,7 @@
 	</h1>
 
 </nav>
-<div style="position: absolute;">
+<div style="position: absolute; z-index: 1">
 <nav class="navbar navbar-dark bg-dark" style="width: 230px; margin-top: -65px">
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarToggler" aria-controls="navbarToggler"
@@ -71,39 +71,39 @@
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 				<li>
 					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
-						<button class="btn btn-outline-light" style="width: 200px; height:50px; border: none;font-size: 20px" type="submit">LIVE</button>
+						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">LIVE</button>
 					</form>
 				</li>
 				<li>
 					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
-						<button class="btn btn-outline-light" style="width: 200px; height:50px; border: none;font-size: 20px" type="submit">Upload</button>
+						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">Upload</button>
 					</form>
 				</li>
 				<li>
 					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
-						<button class="btn btn-outline-light" style="width: 200px; height:50px; border: none;font-size: 20px" type="submit">Message</button>
+						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">Message</button>
 					</form>
 				</li>
 				<li>
 				<div th:if="${#authorization.expression('!isAuthenticated()')}">
 					<form class="my-2 my-lg-0" method="get" th:action="@{/login}">
-						<button class="btn btn-outline-light" style="width: 200px; height:50px; border: none;font-size: 20px" type="submit">Login</button>
+						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">Login</button>
 					</form>
 					</div>
 				</li>
 				<div th:if="${#authorization.expression('isAuthenticated()')}">
 					<form th:action="@{/logout}" method="post">
-						<button class="btn btn-outline-light" style="width: 200px; height:50px; border: none;font-size: 20px" type="submit">Logout</button>
+						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">Logout</button>
 					</form>
 				</div>
 				<li>
 					<form class="my-2 my-lg-0" method="get" th:action="@{/files}">
-						<button class="btn btn-outline-light" style="width: 200px; height:50px; border: none;font-size: 20px" type="submit">動画up確認</button>
+						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">動画up確認</button>
 					</form>
 				</li>
 				<li>
 					<form class="my-2 my-lg-0" method="get" th:action="@{/userList}">
-						<button class="btn btn-outline-light" style="width: 200px; height:50px; border: none;font-size: 20px" type="submit">ユーザー</button>
+						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">ユーザー</button>
 					</form>
 				</li>
 				<li>
