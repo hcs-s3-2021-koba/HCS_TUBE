@@ -64,26 +64,14 @@
 		<h2 style="margin-top: 50px;">MOVIE</h2>
 		<div class="row" style="margin-top: 50px;">
 
-
-			<div class="content-box">
-				<form method="get" th:action="@{/watcthMovie}">
-					<p>
-						<input type="image" src="img/thumbnail/test_one.png" >
-					</p>
-				</form>
-				<h3>テスト動画</h3>
-			</div>
-
+			<div th:each="result : ${movieEntity.movielist}" th:object="${result}">
 			<hr>
 			<div class="content-box">
+			<a th:text="*{thumbnail}"></a>
 				<video src=""></video>
-				<h3>NEW MOVIE</h3>
+				<h3 th:text=*{movie_title}></h3>
 			</div>
 
-			<hr>
-			<div class="content-box">
-				<video src=""></video>
-				<h3>NEW MOVIE</h3>
 			</div>
 		</div>
 
