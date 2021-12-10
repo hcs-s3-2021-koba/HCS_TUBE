@@ -35,8 +35,14 @@
 
 		<h2 style="margin-top: 50px; color: red;">LIVE</h2>
 		<th:block th:if="${msg != null}">
-				<div class="alert alert-danger">
+				<div class="alert alert-primary">
 					<span th:text="${msg}"></span>
+				</div>
+			</th:block>
+
+		<th:block th:if="${errMsg != null}">
+				<div class="alert alert-danger">
+					<span th:text="${errMsg}"></span>
 				</div>
 			</th:block>
 		<div class="row" style="margin-top: 50px;">

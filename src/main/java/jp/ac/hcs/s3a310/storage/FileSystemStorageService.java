@@ -12,6 +12,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,7 +30,7 @@ public class FileSystemStorageService implements StorageService {
 	}
 
 	@Override
-	public void store(MultipartFile file) {
+	public void store(MultipartFile file , Model model) {
 
 		try {
 			if (file.isEmpty()) {
@@ -43,7 +44,8 @@ public class FileSystemStorageService implements StorageService {
 			Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
 			}
 		} catch (IOException e) {
-			throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
+			String errMsg = "すでに同じ名前のファイルが存在します。";
+			model.addAttribute(errMsg,"errMsg");
 		}
 	}
 
@@ -85,6 +87,20 @@ public class FileSystemStorageService implements StorageService {
 	public void deleteAll() {
 		FileSystemUtils.deleteRecursively(rootLocation.toFile());
 	}
+	@Override
+	public Boolean delete(String filename){
+		Path p = Paths.get("/HCS_TUBE/upload-dir/"+filename);
+		boolean flg =false;
+		try{
+			  Files.delete(p);
+			  flg=true;
+			}catch(IOException e){
+			  flg=false;
+			}
+
+		return flg;
+
+	}
 
 	@Override
 	public void init() {
@@ -96,7 +112,7 @@ public class FileSystemStorageService implements StorageService {
 	}
 
 	@Override
-	public String insertMovie(String title , String content ,String user_id ,String fileName) {
+	public Boolean insertMovie(String title , String content ,String user_id ,String fileName) {
 		String msg = "";
 		boolean flg=true;
 		try {
@@ -106,13 +122,9 @@ public class FileSystemStorageService implements StorageService {
 
 		}
 
-		if(flg ) {
-			msg="動画の投稿に成功しました";
-		}else {
-			msg="動画の投稿に失敗しました";
-		}
 
-		return msg;
+
+		return flg;
 	}
 
 }
