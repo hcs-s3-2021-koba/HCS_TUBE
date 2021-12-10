@@ -54,9 +54,16 @@ public class FileUploadController {
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("movie_title") String title,@RequestParam("content") String content,
 			 Principal principal , Model model ) {
 
-		storageService.store(file);
-		String msg =storageService.insertMovie(title, content, principal.getName() , file.getOriginalFilename());
-		model.addAttribute("msg",msg);
+		storageService.store(file,model);
+		boolean flg =storageService.insertMovie(title, content, principal.getName() , file.getOriginalFilename());
+		if(flg) {
+			String msg="動画の投稿に成功しました";
+			model.addAttribute("msg",msg);
+		}else {
+			String errMsg="動画の投稿に失敗しました";
+			model.addAttribute("errMsg",errMsg);
+		}
+
 		return "/top";
 	}
 
