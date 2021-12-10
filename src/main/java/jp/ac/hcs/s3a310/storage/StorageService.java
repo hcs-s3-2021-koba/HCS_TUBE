@@ -25,6 +25,9 @@ public interface StorageService {
 	/** 動画ファイルの読み込みを行う*/
 	Resource loadAsResource(String filename);
 
+	/** Pathにある動画ファイルを削除する*/
+	Boolean delete(String filename);
+
 
 	/** 動画ファイルの削除を行う。*/
 	void deleteAll();

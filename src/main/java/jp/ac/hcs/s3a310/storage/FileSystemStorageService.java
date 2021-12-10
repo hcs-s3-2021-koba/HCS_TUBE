@@ -87,6 +87,20 @@ public class FileSystemStorageService implements StorageService {
 	public void deleteAll() {
 		FileSystemUtils.deleteRecursively(rootLocation.toFile());
 	}
+	@Override
+	public Boolean delete(String filename){
+		Path p = Paths.get("/HCS_TUBE/upload-dir/"+filename);
+		boolean flg =false;
+		try{
+			  Files.delete(p);
+			  flg=true;
+			}catch(IOException e){
+			  flg=false;
+			}
+
+		return flg;
+
+	}
 
 	@Override
 	public void init() {
