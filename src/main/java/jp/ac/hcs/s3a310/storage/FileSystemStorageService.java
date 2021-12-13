@@ -10,7 +10,9 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +30,7 @@ public class FileSystemStorageService implements StorageService {
 	}
 
 	@Override
-	public void store(MultipartFile file) {
+	public void store(MultipartFile file , Model model) {
 
 		try {
 			if (file.isEmpty()) {
@@ -38,13 +40,12 @@ public class FileSystemStorageService implements StorageService {
 			String name=file.getOriginalFilename();
 			String[] data = name.split("\\.");
 
-			 System.out.println(data[data.length -1]);
-
 			if(data[data.length-1].equals("mp4") || data[data.length-1].equals("m4a")) {
 			Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
 			}
 		} catch (IOException e) {
-			throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
+			String errMsg = "すでに同じ名前のファイルが存在します。";
+			model.addAttribute(errMsg,"errMsg");
 		}
 	}
 
@@ -86,6 +87,20 @@ public class FileSystemStorageService implements StorageService {
 	public void deleteAll() {
 		FileSystemUtils.deleteRecursively(rootLocation.toFile());
 	}
+	@Override
+	public Boolean delete(String filename){
+		Path p = Paths.get("/HCS_TUBE/upload-dir/"+filename);
+		boolean flg =false;
+		try{
+			  Files.delete(p);
+			  flg=true;
+			}catch(IOException e){
+			  flg=false;
+			}
+
+		return flg;
+
+	}
 
 	@Override
 	public void init() {
@@ -96,13 +111,20 @@ public class FileSystemStorageService implements StorageService {
 		}
 	}
 
-	public String InsertMovie(String title , String content ,String user_id) {
+	@Override
+	public Boolean insertMovie(String title , String content ,String user_id ,String fileName) {
+		String msg = "";
+		boolean flg=true;
+		try {
+		flg = storageRepository.insertMovie(user_id, title, content , fileName);
+		}catch(DataAccessException e ) {
+			flg=false;
 
-		storageRepository.insertMovie(user_id, title, content);
+		}
 
-		String dammy=null;
 
-		return dammy;
+
+		return flg;
 	}
 
 }

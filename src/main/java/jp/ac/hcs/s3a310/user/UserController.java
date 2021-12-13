@@ -167,6 +167,16 @@ public class UserController {
 	}
 
 	/**
+	 * ユーザ登録画面（管理者用）を表示する.
+	 * @param form 登録時の入力チェック用UserForm
+	 * @param model 値を受け渡す
+	 * @return ユーザ登録画面（管理者用）
+	 */
+	@GetMapping("/user/update")
+	public String getUserUpdate(@ModelAttribute UserForm form, Model model) {
+		return "user/newuser";
+	}
+	/**
 	 * 1件分のユーザ情報でデータベースを更新する.
 	 * パスワードの更新が不要の場合は、画面側で何も値を設定しないものとする.
 	 * @param form 更新するユーザ情報(パスワードは平文)
@@ -193,6 +203,7 @@ public class UserController {
 		data.setUser_id(form.getUser_id());
 		data.setUser_name(form.getUser_name());
 		data.setUser_authority(form.getUser_authority());
+		data.setUser_status(form.isUser_status());
 
 
 		boolean result = false;
@@ -224,23 +235,51 @@ public class UserController {
 	 * @param model 値を受け渡す
 	 * @return ユーザ一覧画面
 	 */
-	@PostMapping(value = "/user/detail", params = "delete")
-	public String postUserDetailDelete(@RequestParam("user_id") String user_id,
-			Principal principal,
-			Model model) {
-
-		log.info("[" + principal.getName() + "]ユーザ削除:" + user_id);
-
+	@PostMapping("/user/delete")
+	public String getUserDelete(@RequestParam("user_id")String user_id, Principal principal, Model model) {
 		boolean result = userService.deleteOne(user_id);
-
-		if (result) {
-			log.info("[" + principal.getName() + "]ユーザ削除成功");
-			model.addAttribute("result", "ユーザ削除成功");
-		} else {
-			log.warn("[" + principal.getName() + "]ユーザ削除失敗");
-			model.addAttribute("result", "ユーザ削除失敗");
+		if(result) {
+			return getUserList(model);
+		}else {
+			String errormsg = "ユーザを削除できませんでした";
+			model.addAttribute("errormsg",errormsg);
+			return getUserList(model);
 		}
+	}
 
+	/**
+	 * ユーザ情報を検索する
+	 * @param category カテゴリー
+	 * @param keyword キーワード
+	 * @param principal ログインユーザ
+	 * @param model モデル
+	 * @return ユーザ一覧画面
+	 */
+	@PostMapping("/user/search")
+	public String searchReport(@RequestParam("category") String category, @RequestParam("keyword") String keyword, Principal principal, Model model ) {
+		System.out.println("やあ");
+		//エンティティクラスを作成
+		UserEntity userEntity = new UserEntity();
+		userEntity = userService.selectSearch(category,keyword);
+		System.out.println(userEntity);
+		model.addAttribute("userEntity" , userEntity);
+
+		return "/user/userList";
+	}
+
+	/**
+	 * ユーザ状態を反転する
+	 * @param user_id ユーザID
+	 * @param principal ログインユーザ
+	 * @param model モデル
+	 * @return ユーザ一覧画面
+	 */
+	@GetMapping("/user/reverse/{id}")
+	public String getReverseStatus(@PathVariable("id") String user_id,
+			Principal principal, Model model) {
+
+		boolean status_flg = userService.getStatus(user_id);
+		userService.reverseStatus(status_flg,user_id);
 		return getUserList(model);
 	}
 
