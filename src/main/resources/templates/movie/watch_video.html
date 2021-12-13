@@ -32,7 +32,7 @@
 		</div>
 
 			<div class="content-box">
-				<video controls="controls" width="100%" height="60%" src="../../static/movie/sample_movie.mp4"></video>
+				<video controls width="100%" height="60%" src="/upload-dir/sample.mp4"></video>
 				<h3 align="left">飛んでみた</h3>
 			</div>
 		</div>
@@ -69,8 +69,8 @@
   </div>
 
   <div class="container">
-		<form class="form-inline">
-    <input class="form-control mr-sm-2" style="width: 85%; height: 25px;" type="text" placeholder="コメントをする" aria-label="Search">
+	<form method="post" th:action="@{/comment/insert}">
+    <input class="form-control mr-sm-2" style="width: 85%; height: 25px;" type="text" placeholder="コメントをする" aria-label="Search" name="comment">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">送信</button>
   </form>
   </div>

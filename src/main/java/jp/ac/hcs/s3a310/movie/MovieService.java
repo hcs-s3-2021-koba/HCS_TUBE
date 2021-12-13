@@ -16,4 +16,14 @@ public class MovieService {
 		return movieRepository.selectAll();
 	}
 
+	/**
+	 * 動画情報を一件取得する
+	 * @param movie_id
+	 * @return data
+	 */
+	public MovieData selectMovie(String movie_id) {
+		MovieData data = movieRepository.selectOne(movie_id);
+		return data;
+	}
+
 }

@@ -10,17 +10,37 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MovieRepository {
+
 	/** SQL 全件取得(投稿日時の降順) */
 	private static final String SQL_SELECT_ALL_MOVIE = "SELECT * FROM movies ORDER BY post_time DESC";
 
+	/** SQL 1件取得(movie_id) */
+	private static final String SQL_SELECT_ONE_MOVIE = "SELECT * FROM movies WHERE movie_id = ?";
 
 	@Autowired
 	private JdbcTemplate jdbc;
 
+	/**
+	 * 動画情報全件取得
+	 * @return movieEntity
+	 */
 	public MovieEntity selectAll() {
 		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_ALL_MOVIE);
 		MovieEntity movieEntity = mappingSelectResult(resultList);
 		return movieEntity;
+	}
+
+
+	/**
+	 * 動画情報1件取得
+	 * @param movie_id
+	 * @return movieData
+	 */
+	public MovieData selectOne(String movie_id) {
+		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_ONE_MOVIE, movie_id);
+		MovieEntity userEntity = mappingSelectResult(resultList);
+		MovieData movieData = userEntity.getMovielist().get(0);
+		return movieData;
 	}
 
 	private MovieEntity mappingSelectResult(List<Map<String, Object>> resultList) {
@@ -57,6 +77,7 @@ public class MovieRepository {
 		}
 		return date2;
 	}
+
 
 
 
