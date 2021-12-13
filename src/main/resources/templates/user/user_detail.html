@@ -93,58 +93,28 @@
 
 	<!-- コンテンツ -->
 	<div class="container">
-		<h2>新規登録</h2>
-
+		<h2>ユーザ詳細画面</h2>
 		<br>
-		<div class="input-form">
-			<form method="post" th:action="@{/user/insert}"
-				th:object="${userForm}">
-
-				<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
-
-					<div class="col-md-5 mb-4">
-						<h5 class="fw-bold text-center">ユーザID</h5>
-						<small class="text-danger text-center">※必須</small>
-					</div>
-					<div class="col-md-5 mb-1">
-						<input type="text" name="user_id" required id="user_id"
-							class="form-control"> <small>メールアドレスを入力してください</small>
-					</div>
-
-					<div class="col-md-5 mb-1">
-						<h5 class="fw-bold text-center">ニックネーム</h5>
-						<small class="text-danger text-center">※必須</small>
-					</div>
-					<div class="col-md-5 mb-1">
-						<input type="text" class="form-control" name="user_name" required
-							id="user_name"> <small>作成後変更が可能です</small>
-					</div>
-
-
-					<div class="col-md-5 mb-1">
-						<h5 class="fw-bold text-center">パスワード</h5>
-						<small class="text-danger text-center">※必須</small>
-					</div>
-					<div class="col-md-5 mb-1">
-						<input type="password" class="form-control"
-							name="encrypted_password" required id="encrypted_password"
-							value=""> <span class="text-danger"
-							th:if="${#fields.hasErrors('encrypted_password')}"
-							th:errors="*{encrypted_password}">パスワードは〇文字以上で入力してください。</span><br>
-						<small>下記の条件でパスワード設定をお願いします。</small><br>
-						<div align="left">
-							<small>・半角英文字<br>
-							・半角英数字<br>
-							・8～16文字以内<br>
-							</small>
-						</div>
-					</div>
-				</div>
-
-				<button type="submit" class="btn btn-warning">作成</button>
-			</form>
+		<div>
+			<h5 class="fw-bold text-center">ユーザID：xxx@yyy.zzz</h5>
+			<br>
+			<h5 class="fw-bold text-center">ニックネーム：ハシモトバカ</h5>
+			<br>
+			<h5 class="fw-bold text-center">アップロード数：99,999</h5>
+			<br>
+			<h5 class="fw-bold text-center">
+				状態： <input type="radio">有効 <input type="radio">無効 <input
+					type="radio">ロック中
+			</h5>
+		</div>
+		<br>
+		<div>
+			<button type="submit" class="btn btn-warning">変更</button>
+			<button type="submit" class="btn btn-warning">削除</button>
 		</div>
 	</div>
+
+
 
 	<!-- 共通スクリプト -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
