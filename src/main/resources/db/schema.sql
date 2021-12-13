@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS movies (
 	movie_title VARCHAR(254) NOT NULL,
 	movie_detail VARCHAR(254),
 	file_name VARCHAR(254) NOT NULL,
+	thumbnail VARCHAR(254) NOT NULL,
 	PRIMARY KEY (movie_id),
 	FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
