@@ -22,7 +22,7 @@ INSERT INTO movies (movie_id, user_id, post_time, movie_title, movie_detail, fil
 VALUES(2, 'saito-san@hcs.ac.jp', '2021-12-05 15:00:00', 'SAITOの質問返信コーナー', 'SAITOさんが皆の疑問に色々答えちゃうよ！', 'test.mp4', 'test_two.jpg');
 
 INSERT INTO movies (movie_id, user_id, post_time, movie_title, movie_detail, file_name, thumbnail)
-VALUES(3, 'saito-san@hcs.ac.jp', '2021-12-07 15:00:00', 'SAITOの初顔だし', 'SAITOさんが皆の疑問に色々答えちゃうよ！', 'kao.mp4', 'comment_thumbnail');
+VALUES(3, 'saito-san@hcs.ac.jp', '2021-12-07 15:00:00', 'SAITOの初顔だし', 'SAITOさんが皆の疑問に色々答えちゃうよ！', 'kao.mp4', 'kao.jpg');
 
 
 /* コメントデータ */
