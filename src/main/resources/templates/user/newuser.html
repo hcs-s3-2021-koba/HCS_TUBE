@@ -95,7 +95,7 @@
 	<div class="container">
 		<h2>新規登録</h2>
 
-<br>
+		<br>
 		<div class="input-form">
 			<form method="post" th:action="@{/user/insert}"
 				th:object="${userForm}">
@@ -116,20 +116,27 @@
 						<small class="text-danger text-center">※必須</small>
 					</div>
 					<div class="col-md-5 mb-1">
-						<input type="text" class="form-control" name="user_name"
-							required id="user_name"> <small>作成後変更が可能です</small>
+						<input type="text" class="form-control" name="user_name" required
+							id="user_name"> <small>作成後変更が可能です</small>
 					</div>
+
 
 					<div class="col-md-5 mb-1">
 						<h5 class="fw-bold text-center">パスワード</h5>
 						<small class="text-danger text-center">※必須</small>
 					</div>
 					<div class="col-md-5 mb-1">
-						<input type="password" class="form-control" name="encrypted_password"
-							required id="encrypted_password" value=""> <small>下記の条件でパスワード設定をお願いします。</small><br>
-							<div align="left"><small>・半角英文字記号の２つ以上の組み合わせ<br> (使用可能記号 ./:;()&?![]{}#%*+_|-&lt;&gt;$)<br>
-							・8～16文字以内<br>下記のパスワードは設定できません。<br>・数字のみ、英字のみ、記号のみのパスワード)
-						</small></div>
+						<input type="password" class="form-control"
+							name="encrypted_password" required id="encrypted_password"
+							value=""> <span class="text-danger"
+							th:if="${#fields.hasErrors('encrypted_password')}"
+							th:errors="*{encrypted_password}">パスワードは〇文字以上で入力してください。</span><br>
+						<small>下記の条件でパスワード設定をお願いします。</small><br>
+						<div align="left">
+							<small>・半角英文字記号の２つ以上の組み合わせ<br> (使用可能記号
+								./:;()&?![]{}#%*+_|-&lt;&gt;$)<br> ・8～16文字以内<br>下記のパスワードは設定できません。<br>・数字のみ、英字のみ、記号のみのパスワード)
+							</small>
+						</div>
 					</div>
 				</div>
 

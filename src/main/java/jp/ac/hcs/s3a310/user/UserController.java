@@ -94,15 +94,14 @@ public class UserController {
 	 */
 	@PostMapping("/user/insert")
 	public String postUserInsert(@ModelAttribute @Validated UserForm form
-//			,BindingResult bindingResult,
-//			Principal principal,
-//			Model model
+		,BindingResult bindingResult,
+		Model model
 			) {
 
-//		// 入力チェックに引っかかった場合、前の画面に戻る
-//		if (bindingResult.hasErrors()) {
-//			return getUserInsert(form, model);
-//		}
+		// 入力チェックに引っかかった場合、前の画面に戻る
+		if (bindingResult.hasErrors()) {
+			return getUserInsert(form, model);
+		}
 
 //		log.info("[" + principal.getName() + "]ユーザ登録データ:" + form.toString());
 		System.out.println(form);
