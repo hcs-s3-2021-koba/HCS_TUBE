@@ -19,7 +19,7 @@ INSERT INTO movies (movie_id, user_id, post_time, movie_title, movie_detail, fil
 VALUES(1, 'saito-san@hcs.ac.jp', '2021-12-02 12:00:00', 'SAITOとつくってあそぼ', 'SAITOさんが様々な素材を使って楽しく遊べるおもちゃを作ります！', 'sample.mp4', 'test_one.png');
 
 INSERT INTO movies (movie_id, user_id, post_time, movie_title, movie_detail, file_name, thumbnail)
-VALUES(2, 'saito-san@hcs.ac.jp', '2021-12-05 15:00:00', 'SAITOの質問返信コーナー', 'SAITOさんが皆の疑問に色々答えちゃうよ！', 'test.mp4', 'comment_thumbnail');
+VALUES(2, 'saito-san@hcs.ac.jp', '2021-12-05 15:00:00', 'SAITOの質問返信コーナー', 'SAITOさんが皆の疑問に色々答えちゃうよ！', 'test.mp4', 'test_two.jpg');
 
 
 /* コメントデータ */
