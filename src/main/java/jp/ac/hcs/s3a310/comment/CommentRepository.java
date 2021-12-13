@@ -9,12 +9,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-/**
- * 就職活動申請(報告)情報のデータを管理する
- *  - Houkokuテーブル
- * @author s20193088
- *
- */
 @Repository
 public class CommentRepository {
 
@@ -28,22 +22,12 @@ public class CommentRepository {
 	@Autowired
 	private JdbcTemplate jdbc;
 
-	/**
-	 * Houkokuテーブルから全件取得
-	 * @return HoukokuEntity
-	 * @throws DataAccessException データアクセス時の例外をthrowする
-	 */
 	public CommentEntity selectAll() throws DataAccessException {
 		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_ALL);
 		CommentEntity commentEntity = mappingSelectResult(resultList);
 		return commentEntity;
 	}
 
-	/**
-	 * Houkokuテーブルから取得したデータをHoukokuEntity形式にマッピングする.
-	 * @param reportList Houkokuテーブルから取得したデータ
-	 * @return HoukokuEntity データアクセス時の例外をthrowする
-	 */
 	private CommentEntity mappingSelectResult(List<Map<String, Object>> reportList) {
 		CommentEntity entity = new CommentEntity();
 
@@ -60,12 +44,6 @@ public class CommentRepository {
 		return entity;
 	}
 
-	/**
-	 * Houkokuテーブルにデータを1件追加する.
-	 * @param data 追加するユーザ情報
-	 * @return 追加データ数
-	 * @throws DataAccessException データアクセス時の例外をthrowする
-	 */
 	public int insertOne(CommentData data) throws DataAccessException {
 		int rowNumber = jdbc.update(SQL_INSERT_ONE,
 				data.getComment(),
@@ -76,12 +54,6 @@ public class CommentRepository {
 		return rowNumber;
 	}
 
-	/**
-	 * Userテーブルのデータを1件削除する.
-	 * @param user_id 削除するユーザID
-	 * @return 削除データ数
-	 * @throws DataAccessException データアクセス時の例外をthrowする
-	 */
 	public int deleteOne(String comment) throws DataAccessException {
 		int rowNumber = jdbc.update(SQL_DELETE_ONE, comment);
 		return rowNumber;

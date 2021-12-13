@@ -22,11 +22,6 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 
-	/**
-	 * コメントを表示する
-	 * @param model 値の受け渡し
-	 * @return 結果画面 - 就職活動申請報告一覧画面
-	 */
 	@GetMapping("/comment/commentList")
 	public String getCommentList(Model model) {
 
@@ -35,14 +30,6 @@ public class CommentController {
 		return "/comment/commentList";
 	}
 
-	/**
-	 *コメント新規登録する
-	 * @param form 新規に登録するコメント内容
-	 * @param bindingResult データバインド実施結果
-	 * @param principal ログイン情報
-	 * @param model 値の受け渡し
-	 * @return 就職活動申請報告画面 - 就職活動申請報告一覧画面
-	 */
 	@PostMapping("/comment/insert")
 	public String insertReport(@ModelAttribute @Validated CommentForm form,
 			BindingResult bindingResult,
