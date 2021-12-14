@@ -85,7 +85,7 @@ public class UserController {
 	}
 
 	/**
-	 * ユーザ登録画面（管理者用）を表示する.
+	 * ユーザ管理画面（管理者用）を表示する.
 	 * @param form 登録時の入力チェック用UserForm
 	 * @param model 値を受け渡す
 	 * @return ユーザ登録画面（管理者用）
