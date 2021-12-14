@@ -52,6 +52,7 @@
 		</div>
 	</form>
 
+
 	<hr>
 
 	<div class="container">
@@ -74,6 +75,7 @@
 						style="width: 85%; height: 25px;" type="text"
 						placeholder="コメントをする" aria-label="Search" name="comment">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">送信</button>
+					<input type=hidden th:value=${movieData.movie_id} name=movie_id>
 				</form>
 			</div>
 		</details>

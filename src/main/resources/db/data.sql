@@ -34,7 +34,8 @@ INSERT INTO comments (post_time, user_id, movie_id, comment)
 VALUES('2021-12-02 12:30:00', 'hashimoto@hcs.ac.jp', 3, 'とても面白かったです！チャンネル登録しました！');
 
 INSERT INTO comments (post_time, user_id, movie_id, comment)
-VALUES('2021-12-03 09:00:00', 'satou@hcs.ac.jp', 3, 'クソ動画ですね！チャンネル登録しました！');
+VALUES(CURRENT_TIME, 'satou@hcs.ac.jp', 3, 'クソ動画ですね！チャンネル登録しました！');
+
 
 /* ライブデータ */
 INSERT INTO lives (live_id, live_name, user_id, start_time, end_time, live_detail)
