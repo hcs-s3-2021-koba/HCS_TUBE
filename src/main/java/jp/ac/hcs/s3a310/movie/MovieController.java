@@ -6,11 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import jp.ac.hcs.s3a310.comment.CommentEntity;
+import jp.ac.hcs.s3a310.comment.CommentService;
+
 @Controller
 public class MovieController {
 
 	@Autowired
 	MovieService movieService;
+
+	@Autowired
+	CommentService commentService;
 
 	/**
 	 *
@@ -18,8 +24,15 @@ public class MovieController {
 	 */
 	@GetMapping("/watcthMovie/{id}")
 	public String watchMovie(@PathVariable("id") String movie_id, Model model) {
+		/** 動画データ取得 */
 		MovieData movieData = movieService.selectMovie(movie_id);
+
+		/** コメントデータ取得 */
+		CommentEntity commentEntity = commentService.selectComment(movie_id);
+
 		model.addAttribute("movieData", movieData);
+		model.addAttribute("commentEntity", commentEntity);
+
 		return "movie/watch_video";
 
 	}

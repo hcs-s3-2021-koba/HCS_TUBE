@@ -71,15 +71,12 @@
 		<div class="row" style="margin-top: 50px;">
 
 			<div th:each="result : ${movieEntity.movielist}" th:object="${result}">
-			<hr>
 			<div class="content-box">
 			<form method="get" th:action="@{'/watcthMovie/' + *{movie_id}}" name="movieForm">
-			<input type="text" size="10" />
-			<input type="image" name="submit" width="320" height="180" src="/thumbnail/test_one.png" alt="送信">
+			<input type="image" name="submit" width="300" height="200" th:src="'/thumbnail/' + *{thumbnail}" alt="送信">
 			<h3 th:text=*{movie_title}></h3>
 			</form>
 			</div>
-
 			</div>
 		</div>
 

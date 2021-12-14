@@ -12,19 +12,29 @@ VALUES('saito-san@hcs.ac.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF
 INSERT INTO users (user_id, encrypted_password,	user_name,	user_authority,  user_status)
 VALUES('hashimoto@hcs.ac.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', 'まさるるる', 'general', true);
 
+INSERT INTO users (user_id, encrypted_password,	user_name,	user_authority,  user_status)
+VALUES('satou@hcs.ac.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', 'しゅーへー', 'general', true);
+
+
 
 /* 動画データ */
 
 INSERT INTO movies (movie_id, user_id, post_time, movie_title, movie_detail, file_name, thumbnail)
-VALUES(1, 'saito-san@hcs.ac.jp', '2021-12-02 12:00:00', 'SAITOとつくってあそぼ', 'SAITOさんが様々な素材を使って楽しく遊べるおもちゃを作ります！', 'sample_movie', 'test_one.png');
+VALUES(1, 'saito-san@hcs.ac.jp', '2021-12-02 12:00:00', 'SAITOとつくってあそぼ', 'SAITOさんが様々な素材を使って楽しく遊べるおもちゃを作ります！', 'sample.mp4', 'test_one.png');
 
 INSERT INTO movies (movie_id, user_id, post_time, movie_title, movie_detail, file_name, thumbnail)
-VALUES(2, 'saito-san@hcs.ac.jp', '2021-12-05 15:00:00', 'SAITOの質問返信コーナー', 'SAITOさんが皆の疑問に色々答えちゃうよ！', 'comment_movie', 'comment_thumbnail');
+VALUES(2, 'saito-san@hcs.ac.jp', '2021-12-05 15:00:00', 'SAITOの質問返信コーナー', 'SAITOさんが皆の疑問に色々答えちゃうよ！', 'test.mp4', 'test_two.jpg');
+
+INSERT INTO movies (movie_id, user_id, post_time, movie_title, movie_detail, file_name, thumbnail)
+VALUES(3, 'saito-san@hcs.ac.jp', '2021-12-07 15:00:00', 'SAITOの初顔だし', 'SAITOさんが皆の疑問に色々答えちゃうよ！', 'kao.mp4', 'kao.jpg');
 
 
 /* コメントデータ */
 INSERT INTO comments (post_time, user_id, movie_id, comment)
-VALUES('2021-12-02 12:30:00', 'hashimoto@hcs.ac.jp', 1, 'とても面白かったです！チャンネル登録しました！');
+VALUES('2021-12-02 12:30:00', 'hashimoto@hcs.ac.jp', 3, 'とても面白かったです！チャンネル登録しました！');
+
+INSERT INTO comments (post_time, user_id, movie_id, comment)
+VALUES('2021-12-03 09:00:00', 'satou@hcs.ac.jp', 3, 'クソ動画ですね！チャンネル登録しました！');
 
 /* ライブデータ */
 INSERT INTO lives (live_id, live_name, user_id, start_time, end_time, live_detail)

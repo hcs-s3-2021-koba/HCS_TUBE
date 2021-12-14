@@ -13,17 +13,25 @@ import org.springframework.stereotype.Repository;
 public class CommentRepository {
 
 	/** SQL 全件取得（report_id昇順） */
-	private static final String SQL_SELECT_ALL = "SELECT * FROM comments a INNER JOIN movies u ON a.movie_id = u.movie_id  order by houkoku_id";
+	private static final String SQL_SELECT_ALL = "SELECT * FROM comments a INNER JOIN movies u ON a.movie_id = u.movie_id  order by movie_id";
 	/** SQL 1件追加 */
 	private static final String SQL_INSERT_ONE = "INSERT INTO comments(comment, user_id, movie_id, Registration_time) VALUES(?, ?, ?, ?)";
 	/** SQL 1件削除 */
 	private static final String SQL_DELETE_ONE = "DELETE FROM users WHERE comment = ?";
+	/** SQL movie_idで全件取得(post_timeの降順) */
+	private static final String SQL_SELECT_COMMENT_ALL = "SELECT * FROM comments WHERE movie_id = ? ORDER BY post_time DESC";
 
 	@Autowired
 	private JdbcTemplate jdbc;
 
 	public CommentEntity selectAll() throws DataAccessException {
 		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_ALL);
+		CommentEntity commentEntity = mappingSelectResult(resultList);
+		return commentEntity;
+	}
+
+	public CommentEntity selectComment(String movie_id) {
+		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_COMMENT_ALL, movie_id);
 		CommentEntity commentEntity = mappingSelectResult(resultList);
 		return commentEntity;
 	}
@@ -37,7 +45,6 @@ public class CommentRepository {
 			data.setUser_id((String) map.get("user_id"));
 			data.setMovie_id((int) map.get("movie_id"));
 			data.setPost_time((Date) map.get("post_time"));
-
 
 			entity.getCommentlist().add(data);
 		}
@@ -58,4 +65,6 @@ public class CommentRepository {
 		int rowNumber = jdbc.update(SQL_DELETE_ONE, comment);
 		return rowNumber;
 	}
+
+
 }

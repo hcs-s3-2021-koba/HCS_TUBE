@@ -18,12 +18,12 @@ public class UserForm {
 
 	/** ユーザID（メールアドレス）*/
 //	@NotBlank(message = "{require_check}")
-	@Email(message = "{email_check}")
+	@Email(message = "アドレス形式で入力してください")
 	private String user_id;
 
 	/** パスワード */
-	@Length(min = 8, max = 16, message = "{length_check}")
-	@Pattern(regexp = "^\\w+$", message = "{pattern_check}")
+	@Length(min = 8, max = 16, message = "8桁以上、16桁以下の桁数で入力してください")
+	@Pattern(regexp = "^\\w+$", message = "半角英数字を入力してください")
 	private String encrypted_password;
 
 	/** ユーザ名 */

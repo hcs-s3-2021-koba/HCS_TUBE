@@ -38,8 +38,8 @@ public class MovieRepository {
 	 */
 	public MovieData selectOne(String movie_id) {
 		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_ONE_MOVIE, movie_id);
-		MovieEntity userEntity = mappingSelectResult(resultList);
-		MovieData movieData = userEntity.getMovielist().get(0);
+		MovieEntity movieEntity = mappingSelectResult(resultList);
+		MovieData movieData = movieEntity.getMovielist().get(0);
 		return movieData;
 	}
 
