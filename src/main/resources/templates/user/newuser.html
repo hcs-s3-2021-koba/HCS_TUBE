@@ -108,7 +108,9 @@
 					</div>
 					<div class="col-md-5 mb-1">
 						<input type="text" name="user_id" required id="user_id"
-							class="form-control"> <small>メールアドレスを入力してください</small>
+							class="form-control" th:field="*{user_id}"> <span class="text-danger"
+							th:if="${#fields.hasErrors('user_id')}"
+							th:errors="*{user_id}">パスワードは〇文字以上で入力してください。</span><br> <small>メールアドレスを入力してください</small>
 					</div>
 
 					<div class="col-md-5 mb-1">
@@ -117,7 +119,7 @@
 					</div>
 					<div class="col-md-5 mb-1">
 						<input type="text" class="form-control" name="user_name" required
-							id="user_name"> <small>作成後変更が可能です</small>
+							id="user_name" th:field="*{user_name}"> <small>作成後変更が可能です</small>
 					</div>
 
 

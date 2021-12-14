@@ -18,7 +18,7 @@ public class UserForm {
 
 	/** ユーザID（メールアドレス）*/
 //	@NotBlank(message = "{require_check}")
-	@Email(message = "{email_check}")
+	@Email(message = "アドレス形式で入力してください")
 	private String user_id;
 
 	/** パスワード */
