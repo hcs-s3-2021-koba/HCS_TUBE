@@ -68,7 +68,7 @@ margin-right: 10px;
 				<th:block th:if="${commentEntity.commentlist.isEmpty}">コメントは投稿されていません。</th:block>
 				<div style="background-color: #FFFFFF; height:500px; overflow-y: scroll; ">
 				<div th:each="result : ${commentEntity.commentlist}" th:object="${result}">
-				<a><b><a th:text=*{user_name}></a></b>: 投稿日</a>
+				<a><b><a th:text=*{user_name}></a></b>: </a>
 				<a th:text=*{post_time}></a><br>
 				<a th:text=*{comment} style="margin-left: 20px"></a>
 				<hr>
