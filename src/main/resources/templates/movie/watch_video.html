@@ -45,6 +45,7 @@ margin-right: 10px;
 					th:src="'/upload-dir/' + *{file_name}"></video>
 			</div>
 			<h3 th:text="*{movie_title}" align="left"></h3>
+			<div th:text="*{post_time}" style="font-size: 15px;" align="left"></div>
 			<hr style="width: 100%;">
 		</div>
 
@@ -64,6 +65,7 @@ margin-right: 10px;
 	<div class="container">
 		<details>
 			<summary style="font-size: 25px; text-align: left;">コメント</summary>
+			<br>
 			<div style="height: 100%; width: 100%;" align="left">
 				<th:block th:if="${commentEntity.commentlist.isEmpty}">コメントは投稿されていません。</th:block>
 				<div style="background-color: #FFFFFF; max-height:500px; overflow-y: scroll; ">

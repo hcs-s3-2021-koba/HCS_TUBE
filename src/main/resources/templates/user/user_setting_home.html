@@ -7,6 +7,30 @@
 <meta charset="UTF-8">
 <title>HCStube Main</title>
 
+<script
+	src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script
+	src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
+<script>
+	jQuery(function($) {
+		$(".table")
+				.DataTable(
+						{
+							"language" : {
+								"url" : "//cdn.datatables.net/plug-ins/1.10.16/i18n/Japanese.json"
+							},
+							lengthMenu: [3, 5, 10],
+						    searching: false
+
+						});
+	});
+</script>
+
 <!-- モバイル設定 -->
 <th:block th:insert="components/part::frag_mobile"></th:block>
 <!-- アイコン設定 -->
@@ -58,27 +82,6 @@
 				</tbody>
 			</table>
 
-			<div class="nav-links" align="right">
-				<a class="prev page-numbers"
-					href="https://techacademy.jp/magazine/category/webdesign/">«</a>
-				<!-- 現在の前のページへのリンク -->
-				<a class="page-numbers"
-					href="https://techacademy.jp/magazine/category/webdesign/">1</a>
-				<!-- 1ページ目へのリンク -->
-				<span class="page-numbers current">2</span>
-				<!-- 現在閲覧しているページ(2ページ) -->
-				<a class="page-numbers"
-					href="https://techacademy.jp/magazine/category/webdesign/page/3">3</a>
-				<!-- 3ページ目へのリンク -->
-				<span class="page-numbers dots">…</span>
-				<!-- ...の部分 -->
-				<a class="page-numbers"
-					href="https://techacademy.jp/magazine/category/webdesign/page/6">6</a>
-				<!-- 27ページ目(最後のページ)へのリンク -->
-				<a class="next page-numbers"
-					href="https://techacademy.jp/magazine/category/webdesign/page/3">»</a>
-				<!-- 現在の次のページへのリンク -->
-			</div>
 
 		</div>
 
