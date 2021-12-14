@@ -60,9 +60,11 @@
 			<div style="height: 100%; width: 100%; overflow-y: scroll;"
 				align="left">
 				<div style="background-color: #FFFFFF">
-					あいうえお<br> かきくけこ<br> さしすせそ<br> たちつてと<br> なにぬねの<br>
-					はひふへほ<br> まみむめも<br> や ゆ よ<br> らりるれろ<br> わ を<br>
-					ん
+				<div th:each="result : ${commentEntity.commentlist}" th:object="${result}">
+				<a th:text=*{comment}></a>
+				<a th:text=*{post_time}></a>
+				<br>
+				</div>
 				</div>
 			</div>
 

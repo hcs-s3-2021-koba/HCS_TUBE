@@ -41,4 +41,9 @@ public class CommentService {
 		boolean result = (rowNumber > 0) ? true : false;
 		return result;
 	}
+
+	public CommentEntity selectComment(String movie_id) {
+		CommentEntity commentEntity = commentRepository.selectComment(movie_id);
+		return commentEntity;
+	}
 }
