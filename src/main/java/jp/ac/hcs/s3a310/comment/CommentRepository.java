@@ -15,7 +15,7 @@ public class CommentRepository {
 	/** SQL 全件取得（report_id昇順） */
 	private static final String SQL_SELECT_ALL = "SELECT * FROM comments a INNER JOIN movies u ON a.movie_id = u.movie_id  order by movie_id";
 	/** SQL 1件追加 */
-	private static final String SQL_INSERT_ONE = "INSERT INTO comments(comment, user_id, movie_id, Registration_time) VALUES(?, ?, ?, ?)";
+	private static final String SQL_INSERT_ONE = "INSERT INTO comments(comment, user_id, movie_id, post_time) VALUES(?, ?, ?, CURRENT_TIME)";
 	/** SQL 1件削除 */
 	private static final String SQL_DELETE_ONE = "DELETE FROM users WHERE comment = ?";
 	/** SQL movie_idで全件取得(post_timeの降順) */
@@ -56,8 +56,7 @@ public class CommentRepository {
 		int rowNumber = jdbc.update(SQL_INSERT_ONE,
 				data.getComment(),
 				data.getUser_id(),
-				data.getMovie_id(),
-				data.getRegistration_time());
+				data.getMovie_id());
 
 		return rowNumber;
 	}
