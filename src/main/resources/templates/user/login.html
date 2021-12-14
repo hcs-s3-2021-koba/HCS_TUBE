@@ -30,27 +30,33 @@
 		<hr>
 		<div class="input-form">
 			<form method="post" th:action="@{/login}">
-				<label for="user_id">ユーザID(メールアドレス)</label>
-				<input type="text" class="form-control input-box" name="user_id">
-				<br>
-				<label for="password">パスワード</label>
-				<input type="password" class="form-control input-box" name="password">
+				<label for="user_id">ユーザID(メールアドレス)</label> <input type="text"
+					class="form-control input-box" name="user_id"> <br> <label
+					for="password">パスワード</label> <input type="password"
+					class="form-control input-box" name="password">
 
 				<div>
 					<button type="submit" class="btn btn-primary">ログイン</button>
 				</div>
-				</form>
-				<br>
-				<div>
-					<button type="button" class="btn btn-primary" th:href="@{/top}">ゲストでログイン</button>
-				</div>
-				<br>
+			</form>
+			<br>
+			<div>
+				<button type="button" class="btn btn-primary" th:href="@{/top}">ゲストでログイン</button>
+			</div>
+			<br>
 
 			<div>
 
-			<form method="get" th:action="@{/user/insert}">
+				<form method="get" th:action="@{/user/insert}">
 					<button type="submit" class="btn btn-primary">新規登録</button>
-			</form>
+				</form>
+
+				<br>
+			</div>
+			<div>
+				<form method="get" th:action="@{/user/user_setting}">
+					<button type="submit" class="btn btn-primary">ユーザ管理画面</button>
+				</form>
 
 			</div>
 		</div>

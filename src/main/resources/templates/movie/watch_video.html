@@ -62,6 +62,7 @@
 				align="left">
 				<div style="background-color: #FFFFFF">
 				<div th:each="result : ${commentEntity.commentlist}" th:object="${result}">
+				<a th:text=*{user_name}></a>
 				<a th:text=*{comment}></a>
 				<a th:text=*{post_time}></a>
 				<br>

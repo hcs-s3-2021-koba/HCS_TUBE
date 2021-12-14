@@ -18,7 +18,12 @@ public class CommentData {
 	private String user_id;
 
 	/**
-	 * コメントID
+	 * ユーザネーム
+	 */
+	private String user_name;
+
+	/**
+	 * コメント
 	 */
 	private String comment;
 

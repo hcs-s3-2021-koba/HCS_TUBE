@@ -19,7 +19,7 @@ public class CommentRepository {
 	/** SQL 1件削除 */
 	private static final String SQL_DELETE_ONE = "DELETE FROM users WHERE comment = ?";
 	/** SQL movie_idで全件取得(post_timeの降順) */
-	private static final String SQL_SELECT_COMMENT_ALL = "SELECT * FROM comments WHERE movie_id = ? ORDER BY post_time DESC";
+	private static final String SQL_SELECT_COMMENT_ALL = "SELECT c.user_id, u.user_name, c.comment, c.movie_id, c.post_time FROM comments c INNER JOIN users u ON c.user_id = u.user_id WHERE c.movie_id = ? ORDER BY c.post_time DESC";
 
 	@Autowired
 	private JdbcTemplate jdbc;
@@ -43,6 +43,7 @@ public class CommentRepository {
 			CommentData data = new CommentData();
 			data.setComment((String) map.get("comment"));
 			data.setUser_id((String) map.get("user_id"));
+			data.setUser_name((String) map.get("user_name"));
 			data.setMovie_id((int) map.get("movie_id"));
 			data.setPost_time((Date) map.get("post_time"));
 

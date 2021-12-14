@@ -2,18 +2,17 @@ package jp.ac.hcs.s3a310.storage;
 
 import org.springframework.context.annotation.Configuration;
 
-/**
-こいつが原因や
-*/
+
 @Configuration("storage")
 public class StorageProperties {
 
 	/**
 	 * locationにはファイルを格納したい場所を書く！
 	 */
-	private String location = "upload-dir";
+	private String location = "/HCS_TUBE/src/main/resources/up";
 
 	public String getLocation() {
+
 		return location;
 	}
 
