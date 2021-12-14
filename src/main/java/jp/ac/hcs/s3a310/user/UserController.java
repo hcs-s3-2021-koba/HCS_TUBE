@@ -61,7 +61,7 @@ public class UserController {
 	 * @param model 値を受け渡す
 	 * @return ユーザ一覧画面
 	 */
-	@GetMapping("/userList")
+	@GetMapping("/user_setting")
 	public String getUserList(Model model) {
 
 		// ユーザ状態の日本語表示の準備
@@ -70,7 +70,7 @@ public class UserController {
 		UserEntity userEntity = userService.selectAll();
 		model.addAttribute("userEntity", userEntity);
 
-		return "user/userList";
+		return "user/user_setting_home";
 	}
 
 	/**
@@ -82,17 +82,6 @@ public class UserController {
 	@GetMapping("/user/insert")
 	public String getUserInsert(@ModelAttribute UserForm form, Model model) {
 		return "user/newuser";
-	}
-
-	/**
-	 * ユーザ管理画面（管理者用）を表示する.
-	 * @param form 登録時の入力チェック用UserForm
-	 * @param model 値を受け渡す
-	 * @return ユーザ登録画面（管理者用）
-	 */
-	@GetMapping("/user/user_setting")
-	public String getUser_Setting(@ModelAttribute UserForm form, Model model) {
-		return "user/user_setting_home";
 	}
 
 	/**
