@@ -85,6 +85,17 @@ public class UserController {
 	}
 
 	/**
+	 * ユーザ登録画面（管理者用）を表示する.
+	 * @param form 登録時の入力チェック用UserForm
+	 * @param model 値を受け渡す
+	 * @return ユーザ登録画面（管理者用）
+	 */
+	@GetMapping("/user/user_setting")
+	public String getUser_Setting(@ModelAttribute UserForm form, Model model) {
+		return "user/user_setting_home";
+	}
+
+	/**
 	 * 1件分のユーザ情報をデータベースに登録する.
 	 * @param form 登録するユーザ情報(パスワードは平文)
 	 * @param bindingResult データバインド実施結果
@@ -163,7 +174,7 @@ public class UserController {
 			model.addAttribute("userFormForUpdate", form);
 		}
 
-		return "user/detail";
+		return "user/user_detail";
 	}
 
 	/**
