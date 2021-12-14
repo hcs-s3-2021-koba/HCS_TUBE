@@ -22,40 +22,25 @@
 	<th:block th:replace="components/part::frag_header"></th:block>
 
 	<!-- コンテンツ -->
-	<div class="container" style="text-align: center">
-		<h1>
-			<a class="navbar-brand title-font" th:href="@{/login}">ログイン</a>
-		</h1>
-
-		<hr>
-		<div class="input-form">
-			<form method="post" th:action="@{/login}">
-				<label for="user_id">ユーザID(メールアドレス)</label> <input type="text"
-					class="form-control input-box" name="user_id"> <br> <label
-					for="password">パスワード</label> <input type="password"
-					class="form-control input-box" name="password">
-
-				<div>
-					<button type="submit" class="btn btn-primary">ログイン</button>
-				</div>
-			</form>
+	<div class="container">
+		<h2>ユーザ詳細画面</h2>
+		<br>
+		<div>
+			<h5 class="fw-bold text-center">ユーザID：xxx@yyy.zzz</h5>
 			<br>
-			<div>
-				<button type="button" class="btn btn-primary" th:href="@{/top}">ゲストでログイン</button>
-			</div>
+			<h5 class="fw-bold text-center">
+				ニックネーム： <input type="text"></input>
+			</h5>
 			<br>
-
-			<div>
-
-				<form method="get" th:action="@{/user/insert}">
-					<button type="submit" class="btn btn-primary">新規登録</button>
-				</form>
-
-			</div>
+			<h5 class="fw-bold text-center">アップロード数：99,999</h5>
+			<br>
+			<h5 class="fw-bold text-center">状態：無効</h5>
+		</div>
+		<br>
+		<div>
+			<button type="submit" class="btn btn-warning">変更</button>
 		</div>
 	</div>
-
-	<hr>
 
 
 
