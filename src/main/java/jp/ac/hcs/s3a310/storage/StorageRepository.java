@@ -44,6 +44,7 @@ public class StorageRepository {
 		for(Map<String , Object> map : resultList) {
 			movie_id = (int)map.get("movie_id") + 1;
 			rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content , fileName);
+
 		}
 		return rowNumber > 0;
 
