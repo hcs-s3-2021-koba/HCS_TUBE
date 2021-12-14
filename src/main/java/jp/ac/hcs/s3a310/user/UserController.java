@@ -257,7 +257,6 @@ public class UserController {
 	 */
 	@PostMapping("/user/search")
 	public String searchReport(@RequestParam("category") String category, @RequestParam("keyword") String keyword, Principal principal, Model model ) {
-		System.out.println("やあ");
 		//エンティティクラスを作成
 		UserEntity userEntity = new UserEntity();
 		userEntity = userService.selectSearch(category,keyword);

@@ -46,11 +46,8 @@ public class UserRepository {
 	/** SQL 検索_REPORT_STATE */
 	private static final String SQL_SELECT_SEARCH_STATUS = "SELECT * FROM users WHERE user_status LIKE ?";
 
-	/** SQL ユーザの状態を無効にする */
-	private static final String SQL_USER_INVALID = "update users set user_status = false where user_id = ?";
-
-	/** SQL ユーザの状態を有効にする */
-	private static final String SQL_USER_VALID = "update users set user_status = true where user_id = ?";
+	/** SQL ユーザの状態を変更する */
+	private static final String SQL_UPDATE_USER_STATUS = "update users set user_status = ? where user_id = ?";
 
 	/** SQL ユーザの状態を取得する */
 	private static final String SQL_SELECT_STATUS = "select user_status from users where user_id = ?";
@@ -189,22 +186,12 @@ public class UserRepository {
 	}
 
 	/**
-	 * ユーザの状態を無効にする
+	 * ユーザの状態を変更する
 	 * @param name ユーザID
 	 * @return rowNumber
 	 */
-	public int updateInvalid(String name) {
-		int rowNumber = jdbc.update(SQL_USER_INVALID,name);
-		return rowNumber;
-	}
-
-	/**
-	 * ユーザの状態を有効にする
-	 * @param name ユーザID
-	 * @return rowNumber
-	 */
-	public int updateValid(String name) {
-		int rowNumber = jdbc.update(SQL_USER_VALID,name);
+	public int updateInvalid(String name, boolean flg) {
+		int rowNumber = jdbc.update(SQL_UPDATE_USER_STATUS,flg,name);
 		return rowNumber;
 	}
 
