@@ -37,7 +37,6 @@ public class CommentData {
 	 */
 	private Date post_time;
 
-	private String registration_time;
 
 
 }
