@@ -38,10 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/css/**").permitAll() // cssへアクセス許可
 				.antMatchers("/login").permitAll() // ログインページは直リンクOK
 				.antMatchers("/top").permitAll() // ログインページは直リンクOK
+				.antMatchers("/upload-dir/**").permitAll()//動画視聴は直リンクOK
+				.antMatchers("/thumbnail/**").permitAll()//サムネイルは直リンクOK
 				.antMatchers("/user/insert").permitAll() // 新規ユーザー登録画面は直リンクOK
-				.antMatchers("/watch_video").permitAll() // 動画視聴画面は直リンクOK
+				.antMatchers("/watcthMovie/**").permitAll() // 動画視聴画面は直リンクOK
 				.antMatchers("/watch_live").permitAll() // ライブ視聴画面は直リンクOK
 				.antMatchers("/user/reverse/**").hasAuthority("admin")// ユーザ管理機能は管理権限ユーザに許可
+				.antMatchers("/watch_video/comment/insert").hasAuthority("admin")//コメント投稿はログインユーザのみ
+				.antMatchers("/watch_video/comment/insert").hasAuthority("general")//コメント投稿はログインユーザのみ
 				.anyRequest().authenticated(); // それ以外は直リンク禁止
 		//ログイン処理
 		http.formLogin().loginProcessingUrl("/login") // ログイン処理のパス
