@@ -142,11 +142,11 @@ public class UserController {
 			Principal principal,
 			Model model) {
 
-		// ラジオボタンの準備
-		radioRole = initRadioRole();
-		model.addAttribute("radioRole", radioRole);
-		userStatus = initUserStatus();
-		model.addAttribute("userStatus", userStatus);
+//		// ラジオボタンの準備
+//		radioRole = initRadioRole();
+//		model.addAttribute("radioRole", radioRole);
+//		userStatus = initUserStatus();
+//		model.addAttribute("userStatus", userStatus);
 
 		// 検索するユーザーIDのチェック
 		if (user_id != null && user_id.length() > 0) {
@@ -257,14 +257,13 @@ public class UserController {
 	 */
 	@PostMapping("/user/search")
 	public String searchReport(@RequestParam("category") String category, @RequestParam("keyword") String keyword, Principal principal, Model model ) {
-		System.out.println("やあ");
 		//エンティティクラスを作成
 		UserEntity userEntity = new UserEntity();
 		userEntity = userService.selectSearch(category,keyword);
 		System.out.println(userEntity);
 		model.addAttribute("userEntity" , userEntity);
 
-		return "/user/userList";
+		return "/user/user_setting_home";
 	}
 
 	/**

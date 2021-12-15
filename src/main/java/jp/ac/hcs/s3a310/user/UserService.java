@@ -149,11 +149,9 @@ public class UserService {
 	 */
 	public int reverseStatus(boolean status_flg, String user_id) {
 		int rowNumber;
-		if(status_flg) {
-			rowNumber = userRepository.updateInvalid(user_id);
-		} else {
-			rowNumber = userRepository.updateValid(user_id);
-		}
+
+		rowNumber = userRepository.updateInvalid(user_id,status_flg);
+
 		return rowNumber;
 	}
 
