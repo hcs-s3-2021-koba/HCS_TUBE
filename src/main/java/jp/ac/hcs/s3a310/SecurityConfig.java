@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//ログアウト処理
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutUrl("/logout") //ログアウト処理のパス
-				.logoutSuccessUrl("/top"); //ログアウト成功後の遷移先
+				.logoutSuccessUrl("/login"); //ログアウト成功後の遷移先
 		// (開発用)CSRF対策 無効設定
 		// XXX h2-console使用時は有効にする.
 		http.csrf().disable();

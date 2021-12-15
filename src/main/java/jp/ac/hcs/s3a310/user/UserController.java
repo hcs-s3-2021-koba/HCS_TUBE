@@ -263,7 +263,7 @@ public class UserController {
 		System.out.println(userEntity);
 		model.addAttribute("userEntity" , userEntity);
 
-		return "/user/userList";
+		return "/user/user_setting_home";
 	}
 
 	/**

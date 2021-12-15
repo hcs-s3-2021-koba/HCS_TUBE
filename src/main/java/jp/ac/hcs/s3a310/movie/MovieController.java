@@ -43,6 +43,7 @@ public class MovieController {
 
 	}
 
+<<<<<<< HEAD
 	@GetMapping("/movie/update")
 	public String getUserUpdate(@ModelAttribute MovieFormForUpdate form, Model model) {
 		return "movie/upload_fix";
@@ -80,5 +81,12 @@ public class MovieController {
 //		}
 
 		return "movie/watch_video";
+=======
+	@PostMapping("/comment/fix")
+	public String fixMovie(@PathVariable("movie_id") String id ) {
+
+		return null;
+
+>>>>>>> refs/remotes/origin/main
 	}
 }
