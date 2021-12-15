@@ -68,7 +68,7 @@ margin-right: 10px;
 			<br>
 			<div style="height: 100%; width: 100%;" align="left">
 				<th:block th:if="${commentEntity.commentlist.isEmpty}">コメントは投稿されていません。</th:block>
-				<div style="background-color: #FFFFFF; border: 0.5px solid; padding: 10px; max-height:500px; overflow-y: scroll; ">
+				<div style="background-color: #FFFFFF; max-height:500px; overflow-y: scroll; ">
 				<div th:each="result : ${commentEntity.commentlist}" th:object="${result}">
 				<a><b th:text=*{user_name}></b> : </a>
 				<a th:text=*{post_time}></a><br>
