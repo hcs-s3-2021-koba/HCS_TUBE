@@ -18,8 +18,19 @@
 
 <body th:classappend="${session.isDarkmode} ? 'mode-dark'">
 
-	<!-- 共通ヘッダ -->
-	<th:block th:replace="components/part::frag_header"></th:block>
+	<!-- ログインのみのヘッダ -->
+	<nav class="navbar navbar-dark bg-dark justify-content-end">
+
+	<a class="nav-link" th:href="@{/change}">
+		<img class="config-img" th:src="@{/img/config.png}" src="../../static/img/config.png"></a>
+
+	<h1>
+	<a class="navbar-brand title-font" th:href="@{/top}">
+		<font color="white">HCSTube</font>
+		</a>
+	</h1>
+
+</nav>
 
 	<!-- ログイン -->
 	<div class="container" style="text-align: center">
