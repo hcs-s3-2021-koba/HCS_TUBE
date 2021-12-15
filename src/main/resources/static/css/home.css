@@ -26,6 +26,11 @@ h2{
 	background-color: #FFFFFF;
 }
 
+.content-moviebox {
+	min-width :400px;
+	background-color: #FFFFFF;
+}
+
 .kensaku-box {
 	min-width :600px;
 	margin: 5px;
@@ -168,4 +173,19 @@ display: none;
   80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
   81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
   100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+}
+
+summary {
+  display: block;
+  list-style: none;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 0.2s; /* 変化を滑らかに */
+}
+summary:hover {
+  cursor: pointer; /* カーソルを指マークに */
+  background-color: #EFEFEF;
+}
+details[open] summary {
+  color: gray;
 }

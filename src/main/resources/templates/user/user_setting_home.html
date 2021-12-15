@@ -49,8 +49,8 @@
 	<div class="container">
 		<h2>ユーザ管理画面</h2>
 		<div class="input-group">
-			<form method="post" th:action="@{/user/search}">
-				<input type="text" class="form-control" name="keyword"
+			<form method="post"class="form-inline" th:action="@{/user/search}">
+				<input type="text" class="form-control mr-sm-2" style="width: 900px" name="keyword"
 					placeholder="ユーザ検索(ユーザID,ニックネーム,登録日時)"> <span
 					class="input-group-btn"> <select name="category">
 						<option value="user_id">ユーザID</option>
