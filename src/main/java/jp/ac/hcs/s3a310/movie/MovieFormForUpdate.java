@@ -17,12 +17,12 @@ public class MovieFormForUpdate {
 	private int Movie_id;
 
 	/** タイトル名 */
-	@NotBlank(message = "{require_check}")
+	@NotBlank(message = "タイトルを入力してください")
 	private String movie_title;
 
 
 	/** 概要欄 */
-	@NotBlank(message = "{require_check}")
+	@NotBlank(message = "概要を入力してください")
 	private String movie_detail;
 
 }
