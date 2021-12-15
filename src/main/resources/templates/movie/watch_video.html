@@ -90,17 +90,7 @@ a {
 			<br>
 			<div style="height: 100%; width: 100%;" align="left">
 				<th:block th:if="${commentEntity.commentlist.isEmpty}">コメントは投稿されていません。</th:block>
-<<<<<<< HEAD
-				<div
-					style="background-color: #FFFFFF; height: 500px; overflow-y: scroll;">
-					<div th:each="result : ${commentEntity.commentlist}"
-						th:object="${result}">
-						<a><b><a th:text=*{user_name}></a></b>: </a> <a
-							th:text=*{post_time}></a><br> <a th:text=*{comment}
-							style="margin-left: 20px"></a>
-						<hr>
-					</div>
-=======
+
 				<div style="background-color: #FFFFFF; max-height:500px; overflow-y: scroll; ">
 				<div th:each="result : ${commentEntity.commentlist}" th:object="${result}">
 				<a><b th:text=*{user_name}></b> : </a>
@@ -108,7 +98,7 @@ a {
 				<a th:text=*{comment} style="margin-left: 20px"></a>
 				<hr>
 				</div>
->>>>>>> branch 'main' of https://github.com/hcs-s3-2021-koba/HCS_TUBE.git
+
 				</div>
 			</div>
 
