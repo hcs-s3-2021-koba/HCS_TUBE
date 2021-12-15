@@ -26,4 +26,15 @@ public class MovieService {
 		return data;
 	}
 
+	/**
+	 * 1件更新する
+	 * @param movieData 更新するユーザ情報(パスワードは設定しない)
+	 * @return 処理結果(成功:true, 失敗:false)
+	 */
+	public boolean updateOne(MovieData movieData) {
+		int rowNumber = movieRepository.updateOne(movieData);
+		boolean result = (rowNumber > 0) ? true : false;
+		return result;
+	}
+
 }

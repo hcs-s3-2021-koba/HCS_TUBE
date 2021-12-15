@@ -30,8 +30,8 @@
 
 
 			<div class="input-form" style="margin-top: 50px;">
-				<form method="post" th:action="@{/user/insert}"
-					th:object="${userForm}">
+				<form method="post" th:action="@{/watcthMovie/detail}"
+					th:object="${MovieFormForUpdate}">
 
 					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
 
@@ -45,32 +45,32 @@
 								<small>動画形式：MP4のみ対応</small>
 								 <small
 								class="form-text input-group justify-content-md-start justify-content-center text-danger"
-								th:if="${#fields.hasErrors('company_name')}"
-								th:errors="*{company_name}"> エラーメッセージ</small>
+								th:if="${#fields.hasErrors('movie_title')}"
+								th:errors="*{movie_title}"> エラーメッセージ</small>
 						</div>
 
 						<div class="col-md-5 mb-1">
 									<h5 class="fw-bold text-center">タイトル</h5>
 								</div>
 						<div class="col-md-5 mb-1">
-							<input type="text" class="form-control" name="company_name" placeholder="タイトルを入力してください"
-								required id="company_name" value="">
+							<input type="text" class="form-control" name="movie_title" placeholder="タイトルを入力してください"
+								required id="movie_title" value="">
 								 <small
 								class="form-text input-group justify-content-md-start justify-content-center text-danger"
-								th:if="${#fields.hasErrors('company_name')}"
-								th:errors="*{company_name}"> エラーメッセージ </small>
+								th:if="${#fields.hasErrors('movie_title')}"
+								th:errors="*{movie_title}"> エラーメッセージ </small>
 						</div>
 
 						<div class="col-md-5 mb-1">
 									<h5 class="fw-bold text-center">概要</h5>
 								</div>
 						<div class="col-md-5 mb-1">
-							<textarea class="form-control" name="company_name" style="max-width: 800px; max-height: 100px;" placeholder="動画の内容などを入力してください"
-								required id="company_name"></textarea>
+							<textarea class="form-control" name="movie_detail" style="max-width: 800px; max-height: 100px;" placeholder="動画の内容などを入力してください"
+								required id="movie_detail"></textarea>
 								 <small
 								class="form-text input-group justify-content-md-start justify-content-center text-danger"
-								th:if="${#fields.hasErrors('company_name')}"
-								th:errors="*{company_name}"> エラーメッセージ </small>
+								th:if="${#fields.hasErrors('movie_detail')}"
+								th:errors="*{movie_detail}"> エラーメッセージ </small>
 						</div>
 					</div>
 

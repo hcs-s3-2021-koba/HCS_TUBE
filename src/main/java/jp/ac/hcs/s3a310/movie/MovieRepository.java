@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,9 @@ public class MovieRepository {
 
 	/** SQL 1件取得(movie_id) */
 	private static final String SQL_SELECT_ONE_MOVIE = "SELECT * FROM movies WHERE movie_id = ?";
+
+	/** SQL 1件更新 */
+	private static final String SQL_UPDATE_ONE = "UPDATE movies SET  movie_title = ?, movie_detail = ? WHERE movie_id = ?";
 
 	@Autowired
 	private JdbcTemplate jdbc;
@@ -76,6 +80,20 @@ public class MovieRepository {
 			date2 = "";
 		}
 		return date2;
+	}
+
+	/**
+	 * (管理用)Userテーブルのデータを1件更新する(パスワード更新無).
+	 * @param userData 更新するユーザ情報
+	 * @return 更新データ数
+	 * @throws DataAccessException データアクセス時の例外をthrowする
+	 */
+	public int updateOne(MovieData movieData) throws DataAccessException {
+		int rowNumber = jdbc.update(SQL_UPDATE_ONE,
+				movieData.getMovie_title(),
+				movieData.getMovie_detail(),
+				movieData.getMovie_id());
+		return rowNumber;
 	}
 
 
