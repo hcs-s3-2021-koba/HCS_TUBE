@@ -14,6 +14,17 @@
 <!-- スタイル設定 -->
 <th:block th:insert="components/part::frag_style"></th:block>
 
+<script type="text/javascript">
+const $form = $('#form')
+$('.btn-send').on('click', evt => {
+  $form.submit()
+  $form[0].reset()
+  document.forms["myform"].reset();
+  return false
+})
+
+</script>
+
 <style>
 a {
 	margin-right: 10px;
@@ -33,7 +44,6 @@ a {
 	</div>
 
 	<div align="right"></div>
-	<div class="content-box">
 		<div align="right">
 			<form method="get" th:action="@{/movie/update}">
 				<button class="btn btn-success">編集</button>
@@ -90,17 +100,18 @@ a {
 
 		<div class="container">
 			<form method="post" class="form-inline"
-				th:action="@{/comment/insert}">
+				th:action="@{/comment/insert}" target="sendPhoto">
 				<input class="form-control mr-sm-2"
 					style="width: 85%; height: 25px;" type="text" placeholder="コメントをする"
 					aria-label="Search" name="comment">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">送信</button>
+				<button class="btn btn-outline-success my-2 my-sm-0 btn-send" type="submit">送信</button>
 				<input type=hidden th:value=${movieData.movie_id} name=movie_id>
 			</form>
+
+			<iframe name="sendPhoto" style="width:0px;height:0px;border:0px;"></iframe>
 		</div>
 		</details>
 		</th:block>
-	</div>
 	</div>
 	<br>
 	<br>
