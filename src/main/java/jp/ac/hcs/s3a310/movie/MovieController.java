@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.ac.hcs.s3a310.comment.CommentEntity;
 import jp.ac.hcs.s3a310.comment.CommentService;
@@ -34,6 +35,13 @@ public class MovieController {
 		model.addAttribute("commentEntity", commentEntity);
 
 		return "movie/watch_video";
+
+	}
+
+	@PostMapping("/comment/fix")
+	public String fixMovie(@PathVariable("movie_id") String id ) {
+
+		return null;
 
 	}
 }
