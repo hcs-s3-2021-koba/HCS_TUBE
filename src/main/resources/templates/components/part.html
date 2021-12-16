@@ -90,17 +90,17 @@
 						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">Upload</button>
 					</form>
 				</li>
+				<li class="btn-margin" sec:authorize="hasAuthority('admin')">
+					<form class="my-2 my-lg-0" method="get" th:action="@{user_setting}">
+						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">User</button>
+					</form>
+				</li>
 				<li class="btn-margin">
 				<div th:if="${#authorization.expression('isAuthenticated()')}">
 					<form th:action="@{/logout}" method="post">
 						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">Logout</button>
 					</form>
 				</div>
-				</li>
-				<li class="btn-margin" sec:authorize="hasAuthority('admin')">
-					<form class="my-2 my-lg-0" method="get" th:action="@{user_setting}">
-						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">User</button>
-					</form>
 				</li>
 			</ul>
 			</div>
