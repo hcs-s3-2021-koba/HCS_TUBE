@@ -23,6 +23,11 @@
 
 	<!-- コンテンツ -->
 	<div class="container">
+
+	<div align="left" style="margin-top: 10px; margin-left: 20px">
+		<button type="button" class="btn btn-light" onclick="history.back()">戻る</button>
+	</div>
+
 		<h2>ユーザ詳細画面</h2>
 		<br>
 		<div th:object="${userFormForUpdate}">
@@ -37,9 +42,10 @@
 			</h5>
 		</div>
 		<br>
+		<br>
 		<div>
 			<a class="btn btn-success" th:href="@{'/user/reverse' + *{user_id}}">変更</a>
-			<button type="submit" class="btn btn-warning">削除</button>
+			<button type="submit" class="btn btn-danger">削除</button>
 		</div>
 	</div>
 
