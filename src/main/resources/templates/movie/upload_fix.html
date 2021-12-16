@@ -30,20 +30,17 @@
 
 
 			<div class="input-form" style="margin-top: 50px;">
-				<form method="post" th:action="@{/watcthMovie/detail}"
+				<form method="post" th:action="@{'/watcthMovie/detail/' + ${movie_id}}"
 					th:object="${MovieFormForUpdate}">
-					<input type="hidden" th:value=${movie_id} name="movie_id">
 
 					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
-
-
 
 						<div class="col-md-5 mb-1">
 									<h5 class="fw-bold text-center">タイトル</h5>
 								</div>
 						<div class="col-md-5 mb-1">
 							<input type="text" class="form-control" name="movie_title" placeholder="タイトルを入力してください"
-								required id="movie_title" value="">
+								required id="movie_title">
 
 						</div>
 
