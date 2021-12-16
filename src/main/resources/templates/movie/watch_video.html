@@ -36,6 +36,7 @@ a {
 	<div class="content-box">
 		<div align="right">
 			<form method="get" th:action="@{/movie/update}">
+				<input type=hidden th:value=${movieData.movie_id} name=movie_id>
 				<button class="btn btn-success">編集</button>
 			</form>
 		</div>
@@ -88,19 +89,19 @@ a {
 
 
 
-		<div class="container">
-			<form method="post" class="form-inline"
-				th:action="@{/comment/insert}">
-				<input class="form-control mr-sm-2"
-					style="width: 85%; height: 25px;" type="text" placeholder="コメントをする"
-					aria-label="Search" name="comment">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">送信</button>
-				<input type=hidden th:value=${movieData.movie_id} name=movie_id>
-			</form>
+				<div class="container">
+					<form method="post" class="form-inline"
+						th:action="@{/comment/insert}">
+						<input class="form-control mr-sm-2"
+							style="width: 85%; height: 25px;" type="text"
+							placeholder="コメントをする" aria-label="Search" name="comment">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">送信</button>
+						<input type=hidden th:value=${movieData.movie_id} name=movie_id>
+					</form>
+				</div>
+			</details>
+			</th:block>
 		</div>
-		</details>
-		</th:block>
-	</div>
 	</div>
 	<br>
 	<br>
