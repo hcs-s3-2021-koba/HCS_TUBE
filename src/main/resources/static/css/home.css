@@ -188,3 +188,7 @@ summary:hover {
 details[open] summary {
   color: gray;
 }
+
+.btn-margin{
+	margin-top: 20px;
+}
