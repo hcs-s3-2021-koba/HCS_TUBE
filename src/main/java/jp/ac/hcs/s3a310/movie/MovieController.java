@@ -44,7 +44,8 @@ public class MovieController {
 	}
 
 	@GetMapping("/movie/update")
-	public String getUserUpdate(@ModelAttribute MovieFormForUpdate form, Model model) {
+	public String getUserUpdate(@ModelAttribute @Validated MovieFormForUpdate form, Model model, @PathVariable("movie_id") String movie_id ) {
+		model.addAttribute("movie_id", movie_id);
 		return "movie/upload_fix";
 	}
 
@@ -57,15 +58,16 @@ public class MovieController {
 	 * @return ユーザ一覧画面
 	 */
 	@PostMapping(value = "/watcthMovie/detail", params = "update")
-	public String postUserDetailUpdate(@ModelAttribute @Validated MovieFormForUpdate form,
+	public String postUserDetailUpdate(@PathVariable("movie_id") String movie_id,@ModelAttribute @Validated MovieFormForUpdate form,
 			BindingResult bindingResult,
 			Principal principal,
 			Model model) {
 
 //		log.info("[" + principal.getName() + "]ユーザ更新:" + form.toString());
 
+		int id = Integer.parseInt(movie_id);
 		MovieData data = new MovieData();
-		data.setMovie_id(form.getMovie_id());
+		data.setMovie_id(id);
 		data.setMovie_title(form.getMovie_title());
 		data.setMovie_detail(form.getMovie_detail());
 
