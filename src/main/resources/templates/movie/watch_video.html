@@ -43,75 +43,73 @@ a {
 		<button type="button" class="btn btn-light" onclick="history.back()">戻る</button>
 	</div>
 
-	<div align="right"></div>
-		<div align="right">
-			<form method="get" th:action="@{/movie/update}">
-				<input type=hidden th:value=${movieData.movie_id} name=movie_id>
-				<button class="btn btn-success">編集</button>
-			</form>
+	<div align="right">
+		<form method="get" th:action="@{'/movie/update/' + ${movieData.movie_id}}">
+			<button class="btn btn-success">編集</button>
+		</form>
+	</div>
+
+	<form th:object="${movieData}">
+		<div class="container">
+			<div class="content-moviebox">
+
+
+				<video controls width="100%" height="60%"
+					th:src="'/upload-dir/' + *{file_name}"></video>
+			</div>
+			<h3 th:text="*{movie_title}" align="left"></h3>
+			<div th:text="*{post_time}" style="font-size: 15px;" align="left"></div>
+			<hr style="width: 100%;">
 		</div>
 
-		<form th:object="${movieData}">
-			<div class="container">
-				<div class="content-moviebox">
-
-
-					<video controls width="100%" height="60%"
-						th:src="'/upload-dir/' + *{file_name}"></video>
-				</div>
-				<h3 th:text="*{movie_title}" align="left"></h3>
-				<div th:text="*{post_time}" style="font-size: 15px;" align="left"></div>
-				<hr style="width: 100%;">
-			</div>
-
-			<br>
-			<div class="container">
-				<details>
-					<summary style="font-size: 25px; text-align: left;">概要▸</summary>
-					<div class="content-box">
-						<p th:text="*{movie_detail}"></p>
-					</div>
-				</details>
-				<hr style="width: 100%">
-			</div>
-		</form>
-
-
-
+		<br>
 		<div class="container">
-
 			<details>
-				<summary style="font-size: 25px; text-align: left;">コメント▸</summary>
-				<br>
-				<div style="height: 100%; width: 100%;" align="left">
-					<th:block th:if="${commentEntity.commentlist.isEmpty}">コメントは投稿されていません。</th:block>
-
-					<div
-						style="background-color: #FFFFFF; max-height: 500px; overflow-y: scroll;">
-						<div th:each="result : ${commentEntity.commentlist}"
-							th:object="${result}">
-							<a><b th:text=*{user_name}></b> : </a> <a th:text=*{post_time}></a><br>
-							<a th:text=*{comment} style="margin-left: 20px"></a>
-							<hr>
-						</div>
-					</div>
-				</div>
-
-
-
-
-				<div class="container">
-					<form method="post" class="form-inline"
-						th:action="@{/comment/insert}">
-						<input class="form-control mr-sm-2"
-							style="width: 85%; height: 25px;" type="text"
-							placeholder="コメントをする" aria-label="Search" name="comment">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">送信</button>
-						<input type=hidden th:value=${movieData.movie_id} name=movie_id>
-					</form>
+				<summary style="font-size: 25px; text-align: left;">概要▸</summary>
+				<div class="content-box">
+					<p th:text="*{movie_detail}"></p>
 				</div>
 			</details>
-			</th:block>
+			<hr style="width: 100%">
+		</div>
+	</form>
+
+
+
+	<div class="container">
+
+		<details>
+			<summary style="font-size: 25px; text-align: left;">コメント▸</summary>
+			<br>
+			<div style="height: 100%; width: 100%;" align="left">
+				<th:block th:if="${commentEntity.commentlist.isEmpty}">コメントは投稿されていません。</th:block>
+
+				<div
+					style="background-color: #FFFFFF; max-height: 500px; overflow-y: scroll;">
+					<div th:each="result : ${commentEntity.commentlist}"
+						th:object="${result}">
+						<a><b th:text=*{user_name}></b> : </a> <a th:text=*{post_time}></a><br>
+						<a th:text=*{comment} style="margin-left: 20px"></a>
+						<hr>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="container">
+				<form method="post" class="form-inline"
+					th:action="@{/comment/insert}">
+					<input class="form-control mr-sm-2"
+						style="width: 85%; height: 25px;" type="text"
+						placeholder="コメントをする" aria-label="Search" name="comment">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">送信</button>
+					<input type=hidden th:value=${movieData.movie_id} name=movie_id>
+				</form>
+			</div>
+		</details>
+		</th:block>
 		</th:block>
 	</div>
 	<br>

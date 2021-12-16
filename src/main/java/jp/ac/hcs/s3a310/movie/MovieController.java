@@ -43,8 +43,8 @@ public class MovieController {
 
 	}
 
-	@GetMapping("/movie/update")
-	public String getUserUpdate(@ModelAttribute @Validated MovieFormForUpdate form, Model model, @PathVariable("movie_id") String movie_id ) {
+	@GetMapping("/movie/update/{id}")
+	public String getUserUpdate(@ModelAttribute @Validated MovieFormForUpdate form, @PathVariable("id") String movie_id, Model model) {
 		model.addAttribute("movie_id", movie_id);
 		return "movie/upload_fix";
 	}
@@ -57,13 +57,11 @@ public class MovieController {
 	 * @param model 値を受け渡す
 	 * @return ユーザ一覧画面
 	 */
-	@PostMapping(value = "/watcthMovie/detail", params = "update")
-	public String postUserDetailUpdate(@PathVariable("movie_id") String movie_id,@ModelAttribute @Validated MovieFormForUpdate form,
+	@PostMapping(value = "/watcthMovie/detail/{id}")
+	public String postUserDetailUpdate(@PathVariable("id") String movie_id,@ModelAttribute @Validated MovieFormForUpdate form,
 			BindingResult bindingResult,
 			Principal principal,
 			Model model) {
-
-//		log.info("[" + principal.getName() + "]ユーザ更新:" + form.toString());
 
 		int id = Integer.parseInt(movie_id);
 		MovieData data = new MovieData();
@@ -73,15 +71,7 @@ public class MovieController {
 
 		boolean result = movieService.updateOne(data);
 
-//		if (result) {
-//			log.info("[" + principal.getName() + "]ユーザ更新成功");
-//			model.addAttribute("result", "ユーザ更新成功");
-//		} else {
-//			log.warn("[" + principal.getName() + "]ユーザ更新失敗");
-//			model.addAttribute("result", "ユーザ更新失敗");
-//		}
-
-		return "movie/watch_video";
+		return watchMovie(movie_id,model);
 
 	}
 }
