@@ -25,21 +25,33 @@
 	<div class="container">
 		<h2>ユーザ詳細画面</h2>
 		<br>
-		<div>
-			<h5 class="fw-bold text-center">ユーザID：xxx@yyy.zzz</h5>
+		<form method="post" th:action="@{/user/detail}"
+			th:object="${userFormForUpdate}">
+			<div>
+				<label for="user_id">ユーザID(メールアドレス)</label>
+				<p class="view-mail" th:text="*{user_id}"></p>
+				<input type="hidden" name="user_id" th:value="*{user_id}"> <br>
+
+				<hr>
+
+				<label for="user_name" class="required">ユーザ名</label>
+				<div class="form-group input-box">
+					<input type="text" class="form-control" name="user_name"
+						th:field="*{user_name}">
+				</div>
+				<br> <label for="user_status">ユーザ状態</label>
+				<div th:switch="*{user_status}">
+					<p th:case="true">有効</p>
+					<p th:case="false">無効</p>
+				</div>
+				<input type="hidden" name="user_status" th:value="*{user_status}">
+				<input type="hidden" name="user_authority" th:value="*{user_authority}">
+			</div>
 			<br>
-			<h5 class="fw-bold text-center">
-				ニックネーム： <input type="text"></input>
-			</h5>
-			<br>
-			<h5 class="fw-bold text-center">アップロード数：99,999</h5>
-			<br>
-			<h5 class="fw-bold text-center">状態：無効</h5>
-		</div>
-		<br>
-		<div>
-			<button type="submit" class="btn btn-warning">変更</button>
-		</div>
+			<div>
+				<button type="submit" class="btn btn-warning">変更</button>
+			</div>
+		</form>
 	</div>
 
 

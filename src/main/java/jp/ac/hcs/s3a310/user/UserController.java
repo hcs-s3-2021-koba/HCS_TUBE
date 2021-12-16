@@ -185,11 +185,12 @@ public class UserController {
 	 * @param model 値を受け渡す
 	 * @return ユーザ一覧画面
 	 */
-	@PostMapping(value = "/user/detail", params = "update")
+	@PostMapping(value = "/user/detail")
 	public String postUserDetailUpdate(@ModelAttribute @Validated UserFormForUpdate form,
 			BindingResult bindingResult,
 			Principal principal,
 			Model model) {
+
 
 		// 入力チェックに引っかかった場合、前の画面に戻る
 		if (bindingResult.hasErrors()) {
@@ -225,7 +226,7 @@ public class UserController {
 			model.addAttribute("result", "ユーザ更新失敗");
 		}
 
-		return getUserList(model);
+		return "/top";
 	}
 
 	/**
@@ -280,6 +281,31 @@ public class UserController {
 		boolean status_flg = userService.getStatus(user_id);
 		userService.reverseStatus(status_flg,user_id);
 		return getUserList(model);
+	}
+
+	/*
+	 * ユーザ詳細画面を表示する
+	 * @param principal ログインユーザ
+	 * @param model モデル
+	 * @return ユーザ詳細画面
+	 */
+	@GetMapping("/user/user_update")
+	public String getUser_update(Model model,Principal principal) {
+
+		System.out.println(principal.getName());
+
+		UserFormForUpdate form = new UserFormForUpdate();
+
+		UserData data = userService.selectOne(principal.getName());
+
+		// データ表示準備(パスワードは暗号化済の為、表示しない)
+		form.setUser_id(data.getUser_id());
+		form.setUser_name(data.getUser_name());
+		form.setUser_authority(data.getUser_authority());
+		form.setUser_status(data.isUser_status());
+		model.addAttribute("userFormForUpdate", form);
+
+		return "user/user_update";
 	}
 
 }
