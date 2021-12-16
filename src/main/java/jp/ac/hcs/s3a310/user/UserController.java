@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.ac.hcs.s3a310.main.StartUpController;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -26,6 +27,8 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	StartUpController startUpController;
 
 	/** ラジオボタン用変数 */
 	private Map<String, String> radioRole;
@@ -226,7 +229,7 @@ public class UserController {
 			model.addAttribute("result", "ユーザ更新失敗");
 		}
 
-		return "/top";
+		return startUpController.getLogin(model);
 	}
 
 	/**
