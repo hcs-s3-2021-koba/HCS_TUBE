@@ -95,16 +95,15 @@
 	<div class="container">
 		<h2>ユーザ詳細画面</h2>
 		<br>
-		<div>
-			<h5 class="fw-bold text-center">ユーザID：xxx@yyy.zzz</h5>
+		<div th:object="${userFormForUpdate}">
+
+			<h5 class="fw-bold text-center" th:text="*{user_id}"></h5>
 			<br>
-			<h5 class="fw-bold text-center">ニックネーム：ハシモトバカ</h5>
-			<br>
-			<h5 class="fw-bold text-center">アップロード数：99,999</h5>
+			<h5 class="fw-bold text-center" th:text="*{user_name}"></h5>
 			<br>
 			<h5 class="fw-bold text-center">
-				状態： <input type="radio" name="user_status" value=true>有効 <input
-					type="radio" name="user_status" value=false>無効
+				状態： <input type="radio" name="user_status" value=true th:field="*{user_status}">有効
+				<input type="radio" name="user_status" value=false th:field="*{user_status}">無効
 			</h5>
 		</div>
 		<br>
