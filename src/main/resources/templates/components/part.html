@@ -55,7 +55,7 @@
 
 	<div th:if="${#authorization.expression('!isAuthenticated()')}">
 	<form class="my-2 my-lg-0" method="get" th:action="@{/login}">
-		<button class="btn btn-outline-light" style="width: 140px; height:50px; border: none;font-size: 30px" type="submit">Login</button>
+		<button class="btn btn-outline-light" style="width: 140px; height:55px; border: none;font-size: 30px" type="submit">Login</button>
 	</form>
 	</div>
 
@@ -78,7 +78,6 @@
 
 		<div class="collapse navbar-collapse" id="navbarToggler">
 		<div align="center">
-		<br>
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 				<li class="btn-margin" sec:authorize="hasAuthority('admin') || hasAuthority('general')">
 					<form class="my-2 my-lg-0" method="post" th:action="@{/login}">
