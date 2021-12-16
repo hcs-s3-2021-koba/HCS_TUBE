@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// ログイン不要ページの設定
 		http.authorizeRequests().antMatchers("/css/**").permitAll() // cssへアクセス許可
+				.antMatchers("/img/**").permitAll() // imgへアクセス可能
 				.antMatchers("/login").permitAll() // ログインページは直リンクOK
 				.antMatchers("/top").permitAll() // ログインページは直リンクOK
 				.antMatchers("/upload-dir/**").permitAll()//動画視聴は直リンクOK
