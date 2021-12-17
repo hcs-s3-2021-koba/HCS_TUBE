@@ -1,6 +1,7 @@
 package jp.ac.hcs.s3a310.movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,6 +36,46 @@ public class MovieService {
 		int rowNumber = movieRepository.updateOne(movieData);
 		boolean result = (rowNumber > 0) ? true : false;
 		return result;
+	}
+
+	/**
+	 * 検索機能
+	 * @param category カテゴリー
+	 * @param keyword キーワード
+	 * @return userEntity
+	 */
+	public MovieEntity selectSearch(String keyword) {
+
+		//エンティティクラスを作成
+		MovieEntity movieEntity = new MovieEntity();
+		try {
+			movieEntity = movieRepository.selectMovieName(keyword);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+
+		return movieEntity;
+	}
+
+	/**
+	 * 検索SQLを判断する
+	 * @param keyword キーワード
+	 * @return userEntity
+	 */
+	private MovieEntity cheakCategorySelect(String keyword) {
+		//エンティティクラスを作成
+		MovieEntity movieEntity = new MovieEntity();
+
+
+		if(keyword.equals("movie_title")){
+			movieEntity = movieRepository.selectMovieName(keyword);
+		}else {
+			System.out.println("失敗");
+
+
+		}
+
+		return movieEntity;
 	}
 
 }
