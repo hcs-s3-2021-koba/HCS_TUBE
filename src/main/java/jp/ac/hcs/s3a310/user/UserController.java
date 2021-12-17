@@ -240,7 +240,8 @@ public class UserController {
 	 * @return ユーザ一覧画面
 	 */
 	@PostMapping("/user/delete")
-	public String getUserDelete(@RequestParam("user_id")String user_id, Principal principal, Model model) {
+	public String getUserDelete(@RequestParam("user_id") String user_id, Principal principal, Model model) {
+		System.out.println(user_id);
 		boolean result = userService.deleteOne(user_id);
 		if(result) {
 			return getUserList(model);

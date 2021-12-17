@@ -30,24 +30,27 @@
 
 		<h2>ユーザ詳細画面</h2>
 		<br>
+		<div class="content-userbox">
 		<form method="post" th:action="@{/user/reverse}"
 			th:object="${userFormForUpdate}">
-
+			<h5 class="fw-bold text-center" style="text-decoration: underline;">ユーザID</h5>
+			<br>
 			<h5 class="fw-bold text-center" th:text="*{user_id}"></h5>
 			<input type="hidden" name="user_id" th:value="*{user_id}">
+			<hr>
+			<h5 class="fw-bold text-center" style="text-decoration: underline;">ニックネーム</h5>
 			<br>
 			<h5 class="fw-bold text-center" th:text="*{user_name}"></h5>
 			<input type="hidden" name="user_name" th:value="*{user_name}">
-			<br>
+			<hr>
 			<h5 class="fw-bold text-center">
-				状態： <input type="radio" name="user_status" value=true
-					th:field="*{user_status}">有効 <input type="radio"
-					name="user_status" value="false" th:field="*{user_status}">無効
+				状態： <input type="radio" name="user_status" value=true th:field="*{user_status}" style="transform:scale(1.5);"> 有効
+					<input type="radio" name="user_status" value="false" th:field="*{user_status}" style="transform:scale(1.5);"> 無効
 			</h5>
-			<br> <br> <button type="submit" class="btn btn-success">変更</button>
-
-			<button type="submit" class="btn btn-danger">削除</button>
+			<button type="submit" class="btn btn-success" style="width: 90px; height: 40px">変更</button>
 		</form>
+		</div>
+
 	</div>
 
 
