@@ -277,11 +277,11 @@ public class UserController {
 	 * @param model モデル
 	 * @return ユーザ一覧画面
 	 */
-	@GetMapping("/user/reverse/{user_id}")
-	public String getReverseStatus(@PathVariable("user_id") String user_id,
+	@PostMapping("/user/reverse")
+	public String getReverseStatus(@ModelAttribute @Validated UserFormForUpdate form,
 			Principal principal, Model model) {
-		boolean status_flg = userService.getStatus(user_id);
-		userService.reverseStatus(status_flg,user_id);
+
+		userService.reverseStatus(form.isUser_status(),form.getUser_id());
 		return getUserList(model);
 	}
 
