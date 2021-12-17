@@ -30,6 +30,9 @@ public class MovieRepository {
 	/** SQL 動画削除(movie_id) */
 	private static final String SQL_DELETE_MOVIE = "DELETE FROM movies WHERE movie_id = ?";
 
+	/** タイトル検索 */
+	private static final String SQL_SELECT_SEARCH_NAME = "SELECT * FROM movies WHERE movie_title LIKE ?";
+
 	@Autowired
 	private JdbcTemplate jdbc;
 
@@ -117,6 +120,18 @@ public class MovieRepository {
 	public String getFileName(String movie_id) {
 		String fileName = jdbc.queryForObject(SQL_SELECT_FILE, String.class, movie_id);
 		return fileName;
+	}
+
+	/**
+	 * 検索 動画タイトル
+	 * @param keyword
+	 * @return
+	 * @throws DataAccessException
+	 */
+	public MovieEntity selectMovieName(String keyword)throws DataAccessException {
+		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_SEARCH_NAME, '%' +  keyword + '%');
+		MovieEntity movieEntity = mappingSelectResult(resultList);
+		return movieEntity;
 	}
 
 

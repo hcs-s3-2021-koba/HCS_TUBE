@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.ac.hcs.s3a310.comment.CommentEntity;
 import jp.ac.hcs.s3a310.comment.CommentService;
@@ -85,5 +86,24 @@ public class MovieController {
 		int id = Integer.parseInt(movie_id);
 		movieService.deleteOne(movie_id);
 		return startUpController.getLogin(model);
+	}
+
+	/**
+	 * ユーザ情報を検索する
+	 * @param category カテゴリー
+	 * @param keyword キーワード
+	 * @param principal ログインユーザ
+	 * @param model モデル
+	 * @return ユーザ一覧画面
+	 */
+	@PostMapping("/movie/search")
+	public String searchReport(@RequestParam("keyword") String keyword, Principal principal, Model model ) {
+		//エンティティクラスを作成
+		MovieEntity movieEntity = new MovieEntity();
+		movieEntity = movieService.selectSearch(keyword);
+		System.out.println(movieEntity);
+		model.addAttribute("movieEntity" , movieEntity);
+
+		return "/top";
 	}
 }
