@@ -21,6 +21,15 @@ public class MovieRepository {
 	/** SQL 1件更新 */
 	private static final String SQL_UPDATE_ONE = "UPDATE movies SET  movie_title = ?, movie_detail = ? WHERE movie_id = ?";
 
+	/** ファイル名取得 */
+	private static final String SQL_SELECT_FILE = "SELECT file_name FROM movies WHERE movie_id = ?";
+
+	/** SQL コメント削除(movie_id) */
+	private static final String SQL_DELETE_COMMENT = "DELETE FROM comments WHERE movie_id = ?";
+
+	/** SQL 動画削除(movie_id) */
+	private static final String SQL_DELETE_MOVIE = "DELETE FROM movies WHERE movie_id = ?";
+
 	@Autowired
 	private JdbcTemplate jdbc;
 
@@ -95,6 +104,23 @@ public class MovieRepository {
 				movieData.getMovie_id());
 		return rowNumber;
 	}
+
+	public void deleteComment(String movie_id) {
+		jdbc.update(SQL_DELETE_COMMENT, movie_id);
+	}
+
+	public void deleteMovie(String movie_id) {
+		jdbc.update(SQL_DELETE_MOVIE, movie_id);
+	}
+
+
+	public String getFileName(String movie_id) {
+		String fileName = jdbc.queryForObject(SQL_SELECT_FILE, String.class, movie_id);
+		return fileName;
+	}
+
+
+
 
 
 

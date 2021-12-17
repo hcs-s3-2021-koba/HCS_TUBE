@@ -22,46 +22,52 @@
 	<th:block th:replace="components/part::frag_header"></th:block>
 
 	<!-- コンテンツ -->
-		<div class="container">
+	<div class="container">
 		<div align="left">
-		<button type="button" class="btn btn-light">戻る</button>
+			<button type="button" class="btn btn-light">戻る</button>
 		</div>
-			<h2 style="margin-top: 10px;">アップロード済み動画  詳細</h2>
+		<h2 style="margin-top: 10px;">アップロード済み動画 詳細</h2>
 
 
-			<div class="input-form" style="margin-top: 50px;">
-				<form method="post" th:action="@{'/watcthMovie/detail/' + ${movie_id}}"
-					th:object="${MovieFormForUpdate}">
+		<div class="input-form" style="margin-top: 50px;">
+			<form method="post"
+				th:action="@{'/watcthMovie/detail/' + ${movie_id}}"
+				th:object="${MovieFormForUpdate}">
 
-					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
+				<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
 
-						<div class="col-md-5 mb-1">
-									<h5 class="fw-bold text-center">タイトル</h5>
-								</div>
-						<div class="col-md-5 mb-1">
-							<input type="text" class="form-control" name="movie_title" placeholder="タイトルを入力してください"
-								required id="movie_title">
+					<div class="col-md-5 mb-1">
+						<h5 class="fw-bold text-center">タイトル</h5>
+					</div>
+					<div class="col-md-5 mb-1">
+						<input type="text" class="form-control" name="movie_title"
+							placeholder="タイトルを入力してください" required id="movie_title">
 
-						</div>
-
-						<div class="col-md-5 mb-1">
-									<h5 class="fw-bold text-center">概要</h5>
-								</div>
-						<div class="col-md-5 mb-1">
-							<textarea class="form-control" name="movie_detail" style="max-width: 800px; max-height: 100px;" placeholder="動画の内容などを入力してください"
-								required id="movie_detail"></textarea>
-
-						</div>
 					</div>
 
-					<button type="submit" class="btn btn-success" style="-webkit-appearance: none; width: 300px; height: 35px; font-size: 15px;">編集</button>
-				</form>
-<br>
-<br>
-<br>
-				<button type="submit" class="btn btn-danger" style="-webkit-appearance: none; width: 150px; height: 35px; font-size: 15px;">動画を削除</button>
-			</div>
+					<div class="col-md-5 mb-1">
+						<h5 class="fw-bold text-center">概要</h5>
+					</div>
+					<div class="col-md-5 mb-1">
+						<textarea class="form-control" name="movie_detail"
+							style="max-width: 800px; max-height: 100px;"
+							placeholder="動画の内容などを入力してください" required id="movie_detail"></textarea>
+
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-success"
+					style="-webkit-appearance: none; width: 300px; height: 35px; font-size: 15px;">編集</button>
+			</form>
+			<br> <br> <br>
+			<form method="post"
+				th:action="@{'/watcthMovie/delete/' + ${movie_id}}">
+				<button type="submit" class="btn btn-danger"
+					style="-webkit-appearance: none; width: 150px; height: 35px; font-size: 15px;">動画を削除</button>
+			</form>
+
 		</div>
+	</div>
 
 	<!-- 共通スクリプト -->
 	<th:block th:insert="components/part::frag_script"></th:block>

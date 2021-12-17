@@ -1,7 +1,7 @@
 /* ユーザマスタ */
 CREATE TABLE IF NOT EXISTS users (
 	user_id VARCHAR(254),
-	encrypted_password VARCHAR(100) NOT NULL,
+	encrypted_password VARCHAR(254) NOT NULL,
 	user_name VARCHAR(60) NOT NULL,
 	user_authority VARCHAR(10) NOT NULL,
 	user_status BOOLEAN NOT NULL,

@@ -1,5 +1,10 @@
 package jp.ac.hcs.s3a310.movie;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +40,30 @@ public class MovieService {
 		int rowNumber = movieRepository.updateOne(movieData);
 		boolean result = (rowNumber > 0) ? true : false;
 		return result;
+	}
+
+	/**
+	 * 動画を削除するとともに、紐づけられているコメントを削除する
+	 * @param movie_id
+	 */
+	public void deleteOne(String movie_id) {
+		/** 動画ファイルを取得する */
+		String fileName = movieRepository.getFileName(movie_id);
+		/** 動画ファイルを削除する */
+		String pa = "/HCS_TUBE/src/main/resources/static/upload-dir/" + fileName;
+
+		Path p = Paths.get(pa);
+
+		/** コメントデータを削除する */
+		movieRepository.deleteComment(movie_id);
+		/** 動画データを削除する */
+		movieRepository.deleteMovie(movie_id);
+		/** 動画ファイルを削除する */
+		try{
+			  Files.delete(p);
+			}catch(IOException e){
+			  System.out.println(e);
+			}
 	}
 
 }

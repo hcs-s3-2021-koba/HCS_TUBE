@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.ac.hcs.s3a310.comment.CommentEntity;
 import jp.ac.hcs.s3a310.comment.CommentService;
+import jp.ac.hcs.s3a310.main.StartUpController;
 
 @Controller
 public class MovieController {
@@ -23,6 +24,9 @@ public class MovieController {
 
 	@Autowired
 	CommentService commentService;
+
+	@Autowired
+	StartUpController startUpController;
 
 	/**
 	 *
@@ -73,5 +77,13 @@ public class MovieController {
 
 		return watchMovie(movie_id,model);
 
+	}
+
+	@PostMapping(value = "/watcthMovie/delete/{id}")
+	public String movieDelete(@PathVariable("id") String movie_id, @ModelAttribute @Validated MovieFormForUpdate form,
+			BindingResult bindingResult, Principal principal, Model model) {
+		int id = Integer.parseInt(movie_id);
+		movieService.deleteOne(movie_id);
+		return startUpController.getLogin(model);
 	}
 }
