@@ -277,10 +277,9 @@ public class UserController {
 	 * @param model モデル
 	 * @return ユーザ一覧画面
 	 */
-	@GetMapping("/user/reverse/{id}")
-	public String getReverseStatus(@PathVariable("id") String user_id,
+	@GetMapping("/user/reverse/{user_id}")
+	public String getReverseStatus(@PathVariable("user_id") String user_id,
 			Principal principal, Model model) {
-
 		boolean status_flg = userService.getStatus(user_id);
 		userService.reverseStatus(status_flg,user_id);
 		return getUserList(model);
