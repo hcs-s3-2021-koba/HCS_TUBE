@@ -44,7 +44,8 @@
 		<br>
 		<br>
 		<div>
-			<a class="btn btn-success" th:href="@{'/user/reverse' + *{user_id}}">変更</a>
+			<a class="btn btn-success" th:href="@{'/user/reverse/' + *{user_id}}">変更</a>
+
 			<button type="submit" class="btn btn-danger">削除</button>
 		</div>
 	</div>
