@@ -52,6 +52,6 @@ public class CommentController {
 			log.warn("[" + principal.getName() + "]コメント登録失敗");
 			model.addAttribute("result", "コメント登録失敗");
 		}
-		return movieController.watchMovie(movie_id,model);
+		return movieController.watchMovie(movie_id,model, principal);
 	}
 }
