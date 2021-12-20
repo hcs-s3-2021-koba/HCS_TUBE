@@ -34,13 +34,23 @@ public class MovieController {
 	 * @return 動画視聴画面
 	 */
 	@GetMapping("/watcthMovie/{id}")
-	public String watchMovie(@PathVariable("id") String movie_id, Model model) {
+	public String watchMovie(@PathVariable("id") String movie_id, Model model,Principal principal) {
+
+
 		/** 動画データ取得 */
 		MovieData movieData = movieService.selectMovie(movie_id);
+
+		// 投稿者かどうかの処理
+		boolean flg = false;
+		if(principal.getName().equals(movieData.getUser_id())) {
+
+			flg = true;
+		}
 
 		/** コメントデータ取得 */
 		CommentEntity commentEntity = commentService.selectComment(movie_id);
 
+		model.addAttribute("flg", flg);
 		model.addAttribute("movieData", movieData);
 		model.addAttribute("commentEntity", commentEntity);
 
@@ -76,7 +86,7 @@ public class MovieController {
 
 		boolean result = movieService.updateOne(data);
 
-		return watchMovie(movie_id,model);
+		return watchMovie(movie_id,model, principal);
 
 	}
 

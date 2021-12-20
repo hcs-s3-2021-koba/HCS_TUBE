@@ -43,7 +43,7 @@ a {
 		<button type="button" class="btn btn-light" onclick="history.back()">戻る</button>
 	</div>
 
-	<div align="right">
+	<div align="right" th:if="${flg}">
 		<form method="get" th:action="@{'/movie/update/' + ${movieData.movie_id}}">
 			<button class="btn btn-success">編集</button>
 		</form>
@@ -98,7 +98,7 @@ a {
 
 
 
-			<div class="container">
+			<div class="container" sec:authorize="hasAuthority('admin') || hasAuthority('general')">
 				<form method="post" class="form-inline"
 					th:action="@{/comment/insert}">
 					<input class="form-control mr-sm-2"

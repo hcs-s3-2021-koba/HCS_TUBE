@@ -16,6 +16,10 @@ INSERT INTO users (user_id, encrypted_password,	user_name,	user_authority,  user
 VALUES('satou@hcs.ac.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', 'しゅーへー', 'general', true);
 
 
+/* ゲストユーザ */
+INSERT INTO users (user_id, encrypted_password,	user_name,	user_authority,  user_status)
+VALUES('guest@hcs.ac.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', 'ゲスト', 'guest', true);
+
 
 /* 動画データ */
 
