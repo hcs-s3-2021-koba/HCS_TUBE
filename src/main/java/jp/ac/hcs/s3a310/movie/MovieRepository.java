@@ -31,7 +31,7 @@ public class MovieRepository {
 	private static final String SQL_DELETE_MOVIE = "DELETE FROM movies WHERE movie_id = ?";
 
 	/** タイトル検索 */
-	private static final String SQL_SELECT_SEARCH_NAME = "SELECT * FROM movies WHERE movie_title LIKE ?";
+	private static final String SQL_SELECT_SEARCH_NAME = "SELECT * FROM movies WHERE movie_title LIKE ? ORDER BY post_time DESC";
 
 	@Autowired
 	private JdbcTemplate jdbc;
