@@ -38,9 +38,9 @@
 		<div class="input-form">
 			<form method="post" th:action="@{/login}">
 				<label for="user_id">ユーザID(メールアドレス)</label> <input type="text"
-					class="form-control input-box" name="user_id"> <br> <label
+					class="form-control input-box" name="user_id" required="required"> <br> <label
 					for="password">パスワード</label> <input type="password"
-					class="form-control input-box" name="password">
+					class="form-control input-box" name="password" required="required">
 
 					<button type="submit" class="btn btn-primary" style="width: 170px;">ログイン</button>
 			</form>
