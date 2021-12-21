@@ -55,12 +55,12 @@
 
 	<nav class="navbar navbar-dark bg-dark justify-content-end">
 	<div sec:authorize="hasAuthority('admin') || hasAuthority('general')">
-	<a class="nav-link" th:href="@{/user/user_update}">
+	<a class="nav-link" th:href="@{/user/user_update}" style="margin-bottom: 10px">
 		<img class="config-img" th:src="@{/img/config.png}" src="../../static/img/config.png"></a>
 </div>
 	<h1>
 	<a class="navbar-brand title-font" th:href="@{/top}">
-		<font color="white">HCSTube</font>
+		<font color="white"><b>HCSTube</b></font>
 		</a>
 	</h1>
 	</nav>
