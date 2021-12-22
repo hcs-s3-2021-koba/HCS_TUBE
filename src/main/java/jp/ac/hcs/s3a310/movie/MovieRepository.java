@@ -53,6 +53,7 @@ public class MovieRepository {
 	 * @return movieData
 	 */
 	public MovieData selectOne(String movie_id) {
+		int id = Integer.parseInt(movie_id);
 		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_ONE_MOVIE, movie_id);
 		MovieEntity movieEntity = mappingSelectResult(resultList);
 		MovieData movieData = movieEntity.getMovielist().get(0);
@@ -63,8 +64,12 @@ public class MovieRepository {
 		MovieEntity entity = new MovieEntity();
 
 		for (Map<String, Object> map : resultList) {
+
+			String wk = map.get("movie_id").toString();
+			int id =Integer.valueOf(wk);
+
 			MovieData data = new MovieData();
-			data.setMovie_id((int)map.get("movie_id"));
+			data.setMovie_id((int)id);
 			data.setUser_id((String) map.get("user_id"));
 			data.setPost_time(ChangeDate(map.get("post_time")));
 			data.setMovie_title((String) map.get("movie_title"));

@@ -110,21 +110,6 @@ public class UserService {
 			userEntity = userRepository.selectSearchUserId(keyword);
 		}else if(category.equals("user_name")) {
 			userEntity = userRepository.selectUserName(keyword);
-		}else if(category.equals("user_authority")) {
-			if(keyword.equals("一般")||keyword.equals("general")) {
-				userEntity = userRepository.selectSearchAuthority("general");
-			}else if(keyword.equals("管理者")||keyword.equals("admin")) {
-				userEntity = userRepository.selectSearchAuthority("admin");
-			}else {
-				userEntity = userRepository.selectSearchAuthority(keyword);
-			}
-		}else if(category.equals("user_status")) {
-			if(keyword.equals("有効")||keyword.equals("true")) {
-				userEntity = userRepository.selectSearchSratus(true);
-			}else if(keyword.equals("無効")||keyword.equals("false")) {
-				userEntity = userRepository.selectSearchSratus(false);
-			}
-
 		}
 
 		return userEntity;
@@ -147,7 +132,7 @@ public class UserService {
 	 * @param user_id ユーザID
 	 * @return rowNumber
 	 */
-	public int reverseStatus(boolean status_flg, String user_id) {
+	public int reverseStatus(String status_flg, String user_id) {
 		int rowNumber;
 
 		rowNumber = userRepository.updateInvalid(user_id,status_flg);

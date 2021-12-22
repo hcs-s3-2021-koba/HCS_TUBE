@@ -40,12 +40,6 @@ public class UserRepository {
 	/** SQL 検索_NAME */
 	private static final String SQL_SELECT_SEARCH_NAME = "SELECT * FROM users WHERE user_name LIKE ?";
 
-	/** SQL 検索_権限 */
-	private static final String SQL_SELECT_SEARCH_AUTHORITY = "SELECT * FROM users WHERE user_authority LIKE ?";
-
-	/** SQL 検索_REPORT_STATE */
-	private static final String SQL_SELECT_SEARCH_STATUS = "SELECT * FROM users WHERE user_status LIKE ?";
-
 	/** SQL ユーザの状態を変更する */
 	private static final String SQL_UPDATE_USER_STATUS = "update users set user_status = ? where user_id = ?";
 
@@ -82,7 +76,7 @@ public class UserRepository {
 			data.setUser_id((String) map.get("user_id"));
 			data.setUser_name((String) map.get("user_name"));
 			data.setUser_authority((String) map.get("user_authority"));
-			data.setUser_status((boolean) map.get("user_status"));
+			data.setUser_status((String) map.get("user_status"));
 
 			entity.getUserlist().add(data);
 		}
@@ -101,7 +95,7 @@ public class UserRepository {
 				passwordEncoder.encode(data.getEncrypted_password()),
 				data.getUser_name(),
 				data.getUser_authority(),
-				data.isUser_status());
+				data.getUser_status());
 		return rowNumber;
 	}
 
@@ -130,7 +124,7 @@ public class UserRepository {
 				passwordEncoder.encode(userData.getEncrypted_password()),
 				userData.getUser_name(),
 				userData.getUser_authority(),
-				userData.isUser_status(),
+				userData.getUser_status(),
 				userData.getUser_id());
 		return rowNumber;
 	}
@@ -145,7 +139,7 @@ public class UserRepository {
 		int rowNumber = jdbc.update(SQL_UPDATE_ONE,
 				userData.getUser_name(),
 				userData.getUser_authority(),
-				userData.isUser_status(),
+				userData.getUser_status(),
 				userData.getUser_id());
 		return rowNumber;
 	}
@@ -173,25 +167,13 @@ public class UserRepository {
 		return userEntity;
 	}
 
-	public UserEntity selectSearchAuthority(String keyword)throws DataAccessException {
-		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_SEARCH_AUTHORITY, '%' +  keyword + '%');
-		UserEntity userEntity = mappingSelectResult(resultList);
-		return userEntity;
-	}
-
-	public UserEntity selectSearchSratus(boolean keyword)throws DataAccessException {
-		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_SEARCH_STATUS,keyword);
-		UserEntity userEntity = mappingSelectResult(resultList);
-		return userEntity;
-	}
-
 	/**
 	 * ユーザの状態を変更する
 	 * @param name ユーザID
 	 * @return rowNumber
 	 */
-	public int updateInvalid(String name, boolean flg) {
-		int rowNumber = jdbc.update(SQL_UPDATE_USER_STATUS,flg,name);
+	public int updateInvalid(String name, String status_flg) {
+		int rowNumber = jdbc.update(SQL_UPDATE_USER_STATUS,status_flg,name);
 		return rowNumber;
 	}
 

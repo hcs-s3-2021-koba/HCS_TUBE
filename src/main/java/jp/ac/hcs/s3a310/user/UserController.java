@@ -116,7 +116,7 @@ public class UserController {
 		data.setEncrypted_password(form.getEncrypted_password());
 		data.setUser_name(form.getUser_name());
 		data.setUser_authority(user_authority);
-		data.setUser_status(true);
+		data.setUser_status("1");
 
 		boolean result = userService.insertOne(data);
 
@@ -162,7 +162,7 @@ public class UserController {
 			form.setUser_id(data.getUser_id());
 			form.setUser_name(data.getUser_name());
 			form.setUser_authority(data.getUser_authority());
-			form.setUser_status(data.isUser_status());
+			form.setUser_status(data.getUser_status());
 			model.addAttribute("userFormForUpdate", form);
 		}
 
@@ -207,7 +207,7 @@ public class UserController {
 		data.setUser_id(form.getUser_id());
 		data.setUser_name(form.getUser_name());
 		data.setUser_authority(form.getUser_authority());
-		data.setUser_status(form.isUser_status());
+		data.setUser_status(form.getUser_status());
 
 
 		boolean result = false;
@@ -282,7 +282,7 @@ public class UserController {
 	public String getReverseStatus(@ModelAttribute @Validated UserFormForUpdate form,
 			Principal principal, Model model) {
 
-		userService.reverseStatus(form.isUser_status(),form.getUser_id());
+		userService.reverseStatus(form.getUser_status(),form.getUser_id());
 		return getUserList(model);
 	}
 
@@ -305,7 +305,7 @@ public class UserController {
 		form.setUser_id(data.getUser_id());
 		form.setUser_name(data.getUser_name());
 		form.setUser_authority(data.getUser_authority());
-		form.setUser_status(data.isUser_status());
+		form.setUser_status(data.getUser_status());
 		model.addAttribute("userFormForUpdate", form);
 
 		return "user/user_update";

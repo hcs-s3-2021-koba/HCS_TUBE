@@ -29,6 +29,6 @@ public class UserFormForUpdate {
 	private String user_authority;
 
 	/** ユーザ状態 */
-	private boolean user_status;
+	private String user_status;
 
 }

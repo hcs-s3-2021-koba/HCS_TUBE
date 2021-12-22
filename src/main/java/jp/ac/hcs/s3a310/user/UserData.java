@@ -42,6 +42,6 @@ public class UserData {
 	 * - true = 有効
 	 * - false = 無効
 	 */
-	private boolean user_status;
+	private String user_status;
 
 }
