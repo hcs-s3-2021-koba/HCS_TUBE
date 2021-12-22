@@ -64,7 +64,7 @@ public class MovieRepository {
 		MovieEntity entity = new MovieEntity();
 
 		for (Map<String, Object> map : resultList) {
-
+			/** BigDecimal→String→int変換 */
 			String wk = map.get("movie_id").toString();
 			int id =Integer.valueOf(wk);
 
