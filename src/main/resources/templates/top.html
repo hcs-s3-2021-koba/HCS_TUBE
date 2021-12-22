@@ -26,8 +26,9 @@
 
 		<div class="row">
 			<form method="post" class="form-inline" th:action="@{/movie/search}">
-				<input class="form-control mr-sm-2" style="width: 450px;" name="keyword"
-					type="search" placeholder="Search" aria-label="Search">
+				<input class="form-control mr-sm-2" style="width: 450px;"
+					name="keyword" type="search" placeholder="Search"
+					aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
 
@@ -35,26 +36,25 @@
 
 		<h2 style="margin-top: 50px; color: red;">LIVE</h2>
 		<th:block th:if="${msg != null}">
-				<div class="alert alert-primary">
-					<span th:text="${msg}"></span>
-				</div>
-			</th:block>
+			<div class="alert alert-primary">
+				<span th:text="${msg}"></span>
+			</div>
+		</th:block>
 
 		<th:block th:if="${errMsg != null}">
-				<div class="alert alert-danger">
-					<span th:text="${errMsg}"></span>
-				</div>
-			</th:block>
+			<div class="alert alert-danger">
+				<span th:text="${errMsg}"></span>
+			</div>
+		</th:block>
 		<div class="row" style="margin-top: 50px;">
 
 
 			<div class="content-box">
-			<form method="get" action="@{'/liveMovie'}">
-				<a href="/liveMovie"> <img width="300" height="200"
-						src="">とべや</a>
-				<h3>飛んでみた</h3>
-						</from>
-
+				<form method="get" action="@{'/liveMovie'}">
+					<a href="/liveMovie"> <img width="300" height="200" src="">とべや
+					</a>
+					<h3>飛んでみた</h3>
+				</form>
 			</div>
 
 			<hr>
@@ -64,13 +64,16 @@
 		<h2 style="margin-top: 50px;">MOVIE</h2>
 		<div class="row" style="margin-top: 50px;">
 
-			<div th:each="result : ${movieEntity.movielist}" th:object="${result}">
-			<div class="content-box">
-			<form method="get" th:action="@{'/watcthMovie/' + *{movie_id}}" name="movieForm">
-			<input type="image" name="submit" width="300" height="200" th:src="'/thumbnail/' + *{thumbnail}" alt="送信">
-			<h3 th:text=*{movie_title}></h3>
-			</form>
-			</div>
+			<div th:each="result : ${movieEntity.movielist}"
+				th:object="${result}">
+				<div class="content-box">
+					<form method="get" th:action="@{'/watcthMovie/' + *{movie_id}}"
+						name="movieForm">
+						<input type="image" name="submit" width="300" height="200"
+							th:src="'/thumbnail/' + *{thumbnail}" alt="送信">
+						<h3 th:text=*{movie_title}></h3>
+					</form>
+				</div>
 			</div>
 		</div>
 
