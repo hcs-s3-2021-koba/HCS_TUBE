@@ -28,7 +28,7 @@ public class Ftp {
 	  /**
 	   * コンストラクタ
 	   *
-	   * @param hostName ホスト名(IPアドレス:127.0.0.1)
+	   * @param hostName ホスト名(IPアドレス:10.11.39.165)
 	   * @param port ポート番号(21)
 	   * @param userName ユーザー
 	   * @param password パスワード
@@ -38,17 +38,17 @@ public class Ftp {
 	   * @param localPath ローカル側パス
 	   * @param encoding エンコーディング(SJIS, MS932, EUC_JP など)
 	   */
-	  public Ftp(String hostName, int port, String userName, String password, boolean binaryTransfer, boolean usePassiveMode, String hostPath, String localPath, String encoding) {
+	  public Ftp(    String localPath ) {
 	    this.config = new FtpConfig();
-	    this.config.hostName = hostName;
-	    this.config.port = port;
-	    this.config.userName = userName;
-	    this.config.password = password;
-	    this.config.binaryTransfer = binaryTransfer;
-	    this.config.usePassiveMode = usePassiveMode;
-	    this.config.hostPath = hostPath;
+	    this.config.hostName = "10.11.39.165";
+	    this.config.port = 21;
+	    this.config.userName = "oracle";
+	    this.config.password = "oracle";
+	    this.config.binaryTransfer = true;
+	    this.config.usePassiveMode = true;
+	    this.config.hostPath = "/home/oracle/uploadMovie";
 	    this.config.localPath = localPath;
-	    this.config.encoding = encoding;
+	    this.config.encoding = "SJIS";
 	    this.isConnected = false;
 	  }
 

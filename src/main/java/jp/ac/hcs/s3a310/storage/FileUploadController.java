@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import jp.ac.hcs.s3a310.ftp.Ftp;
 import jp.ac.hcs.s3a310.movie.MovieEntity;
 import jp.ac.hcs.s3a310.movie.MovieService;
 
@@ -37,6 +38,7 @@ public class FileUploadController {
 	public String listUploadedFiles(Model model,Principal principal) throws IOException {
 		 String path = "/HCS_TUBE/src/main/resources/static/upload-dir";
 
+
 		 model.addAttribute("files",path);
 //		model.addAttribute("files",
 //				storageService.loadAll().map(
@@ -51,6 +53,8 @@ public class FileUploadController {
 	@ResponseBody
 	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
+
+
 		Resource file = storageService.loadAsResource(filename);
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
 				"attachment; filename=\"" + file.getFilename() + "\"").body(file);
@@ -59,7 +63,20 @@ public class FileUploadController {
 	@PostMapping("/files")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("movie_title") String title,@RequestParam("content") String content,
 			 Principal principal , Model model ) {
+		System.out.println("これがファイル名やで"+file.getOriginalFilename());
+		//TODO ファイルのローカルパスを取得できるようにする
+		 Ftp ftpp = new Ftp("C:\\Users\\s20193089\\Desktop\\test.mp4");
+		 try {
+			boolean flg =ftpp.connect();
+			flg=ftpp.put();
+			flg=ftpp.disconnect();
 
+			System.out.println(flg);
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+
+		}
 
 		storageService.store(file,model);
 		boolean flg =storageService.insertMovie(title, content, principal.getName() , file.getOriginalFilename());
