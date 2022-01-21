@@ -15,4 +15,5 @@ public class FtpConfig implements Serializable {
 	  public String hostPath;
 	  public String localPath;
 	  public String encoding;
+	  public String fileName;
 	}

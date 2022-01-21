@@ -9,11 +9,15 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
+
+
 public class Ftp {
 
 	  private FtpConfig config;
 	  private FTPClient client;
 	  private boolean isConnected;
+
+
 
 	  /**
 	   * コンストラクタ
@@ -35,21 +39,25 @@ public class Ftp {
 	   * @param binaryTransfer バイナリ転送モード(true: Yes, false: No)
 	   * @param usePassiveMode パッシブモード(true: Yes, false: No)
 	   * @param hostPath ホスト側パス
-	   * @param localPath ローカル側パス
+	   * @param Path ローカル側パス
 	   * @param encoding エンコーディング(SJIS, MS932, EUC_JP など)
+	   * @param fileName 該当ディレクトリ名
 	   */
-	  public Ftp(    String localPath ) {
+	  public Ftp(    String localPath ,String fileName ) {
 	    this.config = new FtpConfig();
+
 	    this.config.hostName = "10.11.39.165";
 	    this.config.port = 21;
 	    this.config.userName = "oracle";
 	    this.config.password = "oracle";
 	    this.config.binaryTransfer = true;
 	    this.config.usePassiveMode = true;
+	    //TODO 準備でき次第hostPathを変更する
 	    this.config.hostPath = "/home/oracle/uploadMovie";
 	    this.config.localPath = localPath;
 	    this.config.encoding = "SJIS";
 	    this.isConnected = false;
+	    this.config.fileName=fileName;
 	  }
 
 	  /**
@@ -93,6 +101,13 @@ public class Ftp {
 	      System.out.println("encoding Parameter Failed");
 	      success = false;
 	    }
+
+	    // 該当ファイル
+	    if ( isEmpty(this.config.fileName) ) {
+	      System.out.println("fileName Parameter Failed");
+	      success = false;
+	    }
+
 	    return success;
 	  }
 
@@ -155,6 +170,7 @@ public class Ftp {
 	   * @throws Exception
 	   */
 	  public boolean disconnect() throws Exception {
+
 	    if ( this.isConnected ) {
 	      client.logout();
 	      System.out.println(client.getReplyString());
@@ -165,23 +181,37 @@ public class Ftp {
 
 	  /**
 	   * 送信
+	 * @param file
 	   *
 	   * @return true: 正常, false: 異常
 	   * @throws Exception
 	   */
-	  public boolean put() throws Exception {
+	  public boolean put(File file) throws Exception {
 	    boolean success = true;
+
 	    if ( !this.isConnected )
 	      success = connect();
 	    if ( success ) {
 	      // ディレクトリ移動
-	      success = this.client.changeWorkingDirectory(this.config.hostPath);
+	      success = this.client.changeWorkingDirectory(this.config.hostPath+"/"+this.config.fileName);
+
+	      if(!success) {
+	    	  success=this.client.makeDirectory(this.config.hostPath+"/"+this.config.fileName);
+	    	  this.client.changeWorkingDirectory(this.config.hostPath+"/"+this.config.fileName);
+	      }
+
+
 	      if ( !success ) {
-	        System.out.println("Server Directory Failed");
+
+	        System.out.println("Server Directory Failed 1");
 	        this.client.disconnect();
 	        return false;
 	      }
-	      return putFiles(new File(this.config.localPath), this.config.hostPath + (this.config.hostPath.endsWith("/") ? "" : "/"));
+
+
+
+
+	      return putFiles(file, this.config.hostPath + (this.config.hostPath.endsWith("/") ? "" : "/"));
 	    }
 	    return success;
 	  }
@@ -199,8 +229,9 @@ public class Ftp {
 	      FileInputStream is = null;
 	      try {
 	        is = new FileInputStream(file);
+
 	        System.out.println("PUT File Name: "  + file.getName());
-	        this.client.storeFile(hostPath + file.getName(), is);
+	        this.client.storeFile(hostPath+"/"+this.config.fileName+"/" + file.getName(), is);
 	        is.close();
 	        System.out.println("FTP PUT Completed");
 	      } catch ( Exception e ) {
@@ -235,6 +266,7 @@ public class Ftp {
 	          }
 	    } else {
 	    }
+
 	    return success;
 	  }
 

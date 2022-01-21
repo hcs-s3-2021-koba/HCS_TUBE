@@ -89,7 +89,7 @@ public class FileSystemStorageService implements StorageService {
 	}
 	@Override
 	public Boolean delete(String filename){
-		Path p = Paths.get("/HCS_TUBE/upload-dir/"+filename);
+		Path p = Paths.get("/HCS_TUBE/up/"+filename);
 		boolean flg =false;
 		try{
 			  Files.delete(p);

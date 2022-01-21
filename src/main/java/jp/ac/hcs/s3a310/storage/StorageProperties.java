@@ -9,7 +9,7 @@ public class StorageProperties {
 	/**
 	 * locationにはファイルを格納したい場所を書く！
 	 */
-	private String location = "/HCS_TUBE/src/main/resources/up";
+	private String location = "/HCS_TUBE/up/" ;
 
 	public String getLocation() {
 

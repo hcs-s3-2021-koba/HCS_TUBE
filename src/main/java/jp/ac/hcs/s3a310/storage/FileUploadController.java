@@ -1,8 +1,10 @@
 package jp.ac.hcs.s3a310.storage;
 
+import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -36,15 +38,15 @@ public class FileUploadController {
 
 	@GetMapping("/files")
 	public String listUploadedFiles(Model model,Principal principal) throws IOException {
-		 String path = "/HCS_TUBE/src/main/resources/static/upload-dir";
+		String path = "/HCS_TUBE/up/";
 
 
-		 model.addAttribute("files",path);
-//		model.addAttribute("files",
-//				storageService.loadAll().map(
-//				path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
-//						"serveFile", path.getFileName().toString()).build().toUri().toString())
-//				.collect(Collectors.toList()));
+		model.addAttribute("files",path);
+		//		model.addAttribute("files",
+		//				storageService.loadAll().map(
+		//				path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
+		//						"serveFile", path.getFileName().toString()).build().toUri().toString())
+		//				.collect(Collectors.toList()));
 
 		return "movie/upload";
 	}
@@ -61,31 +63,35 @@ public class FileUploadController {
 	}
 
 	@PostMapping("/files")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("movie_title") String title,@RequestParam("content") String content,
-			 Principal principal , Model model ) {
-		System.out.println("これがファイル名やで"+file.getOriginalFilename());
-		//TODO ファイルのローカルパスを取得できるようにする
-		 Ftp ftpp = new Ftp("C:\\Users\\s20193089\\Desktop\\test.mp4");
-		 try {
-			boolean flg =ftpp.connect();
-			flg=ftpp.put();
-			flg=ftpp.disconnect();
+	public String handleFileUpload(@RequestParam("file") MultipartFile multiFile,@RequestParam("movie_title") String title,@RequestParam("content") String content,
+			Principal principal , Model model ) throws IOException {
 
-			System.out.println(flg);
-		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
 
-		}
 
-		storageService.store(file,model);
-		boolean flg =storageService.insertMovie(title, content, principal.getName() , file.getOriginalFilename());
+
+		storageService.store(multiFile,model);
+		boolean flg =storageService.insertMovie(title, content, principal.getName() , multiFile.getOriginalFilename());
 		if(flg) {
 			String msg="動画の投稿に成功しました";
 			model.addAttribute("msg",msg);
 		}else {
 			String errMsg="動画の投稿に失敗しました";
 			model.addAttribute("errMsg",errMsg);
+		}
+
+
+
+		//TODO 動画ファイルを採番する。
+		File file = new File("/HCS_TUBE/src/main/java/up",multiFile.getOriginalFilename());
+		FileUtils.writeByteArrayToFile(file, multiFile.getBytes());
+		//一時ファイルを作成し、名前を指定する。
+		Ftp ftpp = new Ftp("/HCS_TUBE/up/",multiFile.getOriginalFilename());
+		try {
+			flg =ftpp.connect();
+			flg=ftpp.put(file);
+			flg=ftpp.disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		MovieEntity movieEntity = movieService.selectAll();
