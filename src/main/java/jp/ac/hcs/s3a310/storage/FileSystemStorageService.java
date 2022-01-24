@@ -126,5 +126,17 @@ public class FileSystemStorageService implements StorageService {
 
 		return flg;
 	}
+	@Override
+	public int getMovieId() {
+
+		int movie_id=0;
+		try {
+			movie_id=storageRepository.getMovieId();
+		}catch(DataAccessException e) {
+
+		}
+
+		return movie_id;
+	}
 
 }

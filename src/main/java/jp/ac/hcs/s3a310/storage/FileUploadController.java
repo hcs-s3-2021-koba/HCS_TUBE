@@ -71,6 +71,9 @@ public class FileUploadController {
 
 		storageService.store(multiFile,model);
 		boolean flg =storageService.insertMovie(title, content, principal.getName() , multiFile.getOriginalFilename(),multiFile.getOriginalFilename());
+		int movie_id=storageService.getMovieId();
+		System.out.println(movie_id+"やあ");
+
 		if(flg) {
 			String msg="動画の投稿に成功しました";
 			model.addAttribute("msg",msg);
@@ -85,7 +88,7 @@ public class FileUploadController {
 		File file = new File("/HCS_TUBE/src/main/java/up",multiFile.getOriginalFilename());
 		FileUtils.writeByteArrayToFile(file, multiFile.getBytes());
 		//一時ファイルを作成し、名前を指定する。
-		Ftp ftpp = new Ftp("/HCS_TUBE/up/",multiFile.getOriginalFilename());
+		Ftp ftpp = new Ftp("/HCS_TUBE/up/",String.valueOf(movie_id));
 		try {
 			flg =ftpp.connect();
 			flg=ftpp.put(file);

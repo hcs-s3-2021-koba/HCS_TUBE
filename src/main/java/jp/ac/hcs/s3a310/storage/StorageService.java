@@ -32,4 +32,7 @@ public interface StorageService {
 	/** 動画ファイルの削除を行う。*/
 	void deleteAll();
 
+	/** 動画IDの取得を行う*/
+	int getMovieId();
+
 }

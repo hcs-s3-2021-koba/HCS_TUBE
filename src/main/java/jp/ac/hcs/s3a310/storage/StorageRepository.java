@@ -18,8 +18,11 @@ public class StorageRepository {
 	/** 動画テーブルに1件追加を行う*/
 	public final String SQL_INSERT_MOVIE ="INSERT INTO movies(movie_id , user_id , post_time , movie_title , movie_detail , file_name,thumbnail)VALUES(?,?,?,?,?,?,?) ";
 
+	/** 次に付加する動画IDを求める*/
+	public final String SQL_SELECT_MOVIE_ID_MAX_ONE ="SELECT MAX(movie_id+1) AS movie_id FROM MOVIES";
+
 	/** 動画IDの最大を求める*/
-	public final String SQL_SELECT_MOVIE_ID_MAX ="SELECT MAX(movie_id+1) AS movie_id FROM MOVIES";
+	public final String SQL_SELECT_MOVIE_ID_MAX ="SELECT MAX(movie_id) AS movie_id FROM MOVIES";
 
 
 
@@ -41,11 +44,11 @@ public class StorageRepository {
 		int rowNumber = 0;
 
 		try {
-			List<Map<String, Object>> resultList=jdbc.queryForList(SQL_SELECT_MOVIE_ID_MAX);
+			List<Map<String, Object>> resultList=jdbc.queryForList(SQL_SELECT_MOVIE_ID_MAX_ONE);
 
 			for(Map<String , Object> map : resultList) {
 				Object dammy=map.get("movie_id");
-				System.out.println(dammy);
+
 				movie_id =Integer.parseInt(dammy.toString());
 
 				rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content , fileName , thumbnail);
@@ -60,5 +63,19 @@ public class StorageRepository {
 
 		return rowNumber > 0;
 
+	}
+
+	public int getMovieId() {
+		int movie_id=0;
+		List<Map<String, Object>> resultList=jdbc.queryForList(SQL_SELECT_MOVIE_ID_MAX);
+
+		for(Map<String , Object> map : resultList) {
+			Object dammy=map.get("movie_id");
+
+			movie_id =Integer.parseInt(dammy.toString());
+
+
+		}
+		return movie_id;
 	}
 }
