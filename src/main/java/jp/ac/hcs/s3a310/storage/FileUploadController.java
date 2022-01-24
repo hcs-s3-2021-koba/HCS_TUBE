@@ -70,7 +70,7 @@ public class FileUploadController {
 
 
 		storageService.store(multiFile,model);
-		boolean flg =storageService.insertMovie(title, content, principal.getName() , multiFile.getOriginalFilename());
+		boolean flg =storageService.insertMovie(title, content, principal.getName() , multiFile.getOriginalFilename(),multiFile.getOriginalFilename());
 		if(flg) {
 			String msg="動画の投稿に成功しました";
 			model.addAttribute("msg",msg);

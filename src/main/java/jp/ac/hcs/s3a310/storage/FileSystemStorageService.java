@@ -112,11 +112,11 @@ public class FileSystemStorageService implements StorageService {
 	}
 
 	@Override
-	public Boolean insertMovie(String title , String content ,String user_id ,String fileName) {
-		String msg = "";
+	public Boolean insertMovie(String title , String content ,String user_id ,String fileName ,String thumbnail) {
+
 		boolean flg=true;
 		try {
-		flg = storageRepository.insertMovie(user_id, title, content , fileName);
+		flg = storageRepository.insertMovie(user_id, title, content , fileName,thumbnail);
 		}catch(DataAccessException e ) {
 			flg=false;
 

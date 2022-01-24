@@ -20,7 +20,7 @@ public interface StorageService {
 	Path load(String filename);
 
 	/** 動画情報を一件追加する*/
-	Boolean insertMovie(String title , String content , String user_id , String fileName);
+	Boolean insertMovie(String title , String content , String user_id , String fileName , String thumbnail);
 
 	/** 動画ファイルの読み込みを行う*/
 	Resource loadAsResource(String filename);
