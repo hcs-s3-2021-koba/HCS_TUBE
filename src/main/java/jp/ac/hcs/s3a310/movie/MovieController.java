@@ -42,9 +42,12 @@ public class MovieController {
 
 		// 投稿者かどうかの処理
 		boolean flg = false;
+		try {
 		if(principal.getName().equals(movieData.getUser_id())) {
-
 			flg = true;
+		}
+		}catch(Exception e) {
+
 		}
 
 		/** コメントデータ取得 */
