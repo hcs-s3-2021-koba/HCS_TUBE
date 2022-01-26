@@ -72,7 +72,6 @@ public class FileUploadController {
 		storageService.store(multiFile,model);
 		boolean flg =storageService.insertMovie(title, content, principal.getName() , multiFile.getOriginalFilename(),multiFile.getOriginalFilename());
 		int movie_id=storageService.getMovieId();
-		System.out.println(movie_id+"やあ");
 
 		if(flg) {
 			String msg="動画の投稿に成功しました";

@@ -52,7 +52,7 @@ public class Ftp {
 	    this.config.password = "oracle";
 	    this.config.binaryTransfer = true;
 	    this.config.usePassiveMode = true;
-	    //TODO 準備でき次第hostPathを変更する
+
 	    this.config.hostPath = "/home/oracle/uploadMovie";
 	    this.config.localPath = localPath;
 	    this.config.encoding = "SJIS";
@@ -180,6 +180,31 @@ public class Ftp {
 	  }
 
 	  /**
+	   *
+	   * @return
+	   * @throws Exception
+	   */
+	  public boolean deleteFile(String pathname) throws Exception{
+		  boolean flg =false;
+
+
+
+		  //TODO ffmpeg作成後に削除形式を決める。
+
+		  // /home/oracle/uploadMovie +"/"+/pathname
+		  this.client.deleteFile(this.config.hostPath+"/"+pathname);
+
+
+
+
+
+		  return flg;
+
+	  }
+
+
+
+	  /**
 	   * 送信
 	 * @param file
 	   *
@@ -247,6 +272,7 @@ public class Ftp {
 	      System.out.println("Make Directory: " + dirName);
 	      // ディレクトリがなければ作る
 	      success = this.client.makeDirectory(dirName);
+
 	      if ( success ) {
 	        success = this.client.changeWorkingDirectory(dirName);
 	      } else {

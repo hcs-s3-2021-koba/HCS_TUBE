@@ -1,13 +1,13 @@
 package jp.ac.hcs.s3a310.movie;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+
+import jp.ac.hcs.s3a310.ftp.Ftp;
 
 @Service
 public class MovieService {
@@ -50,8 +50,11 @@ public class MovieService {
 	public void deleteOne(String movie_id) {
 		/** 動画ファイルを取得する */
 		String fileName = movieRepository.getFileName(movie_id);
+
+		/** 動画IDを取得する*/
+
 		/** 動画ファイルを削除する */
-		String pa = "/HCS_TUBE/src/main/resources/static/upload-dir/" + fileName;
+		String pa = "/home/oracle/uploadMovie/" + movie_id;
 
 		Path p = Paths.get(pa);
 
@@ -60,11 +63,17 @@ public class MovieService {
 		/** 動画データを削除する */
 		movieRepository.deleteMovie(movie_id);
 		/** 動画ファイルを削除する */
-		try{
-			  Files.delete(p);
-			}catch(IOException e){
-			  System.out.println(e);
-			}
+		try {
+			  Ftp fftp =new Ftp("/HCS_TUBE/src/main/java/up",movie_id);
+			  boolean flg=fftp.connect();
+			  boolean flg2 =fftp.deleteFile(movie_id);
+			  fftp.disconnect();
+			  System.out.println(flg+"ここまできてる？"+flg2);
+
+		}catch(Exception e) {
+			System.out.println("ファイルの削除に失敗しました。");
+		}
+
 	}
 
 	/*
