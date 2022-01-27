@@ -25,7 +25,7 @@ public class CommentData {
 	/**
 	 * コメント
 	 */
-	private String comment;
+	private String comment_content;
 
 	/**
 	 * 	動画ID

@@ -89,7 +89,7 @@ a {
 					<div th:each="result : ${commentEntity.commentlist}"
 						th:object="${result}">
 						<a><b th:text=*{user_name}></b> : </a> <a th:text=*{post_time}></a><br>
-						<a th:text=*{comment} style="margin-left: 20px"></a>
+						<a th:text=*{comment_content} style="margin-left: 20px"></a>
 						<hr>
 					</div>
 				</div>
@@ -103,7 +103,7 @@ a {
 					th:action="@{/comment/insert}">
 					<input class="form-control mr-sm-2"
 						style="width: 85%; height: 25px;" type="text"
-						placeholder="コメントをする" aria-label="Search" name="comment">
+						placeholder="コメントをする" aria-label="Search" name="comment_content">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">送信</button>
 					<input type=hidden th:value=${movieData.movie_id} name=movie_id>
 				</form>
