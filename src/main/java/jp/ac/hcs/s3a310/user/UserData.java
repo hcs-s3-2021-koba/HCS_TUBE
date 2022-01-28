@@ -33,14 +33,15 @@ public class UserData {
 	 * ユーザ権限
 	* general：一般ユーザ
 	* admin：管理ユーザ
+	* guest：ゲストユーザ
 	 */
 	private String user_authority;
 
 	/**
 	 * ユーザ状態
 	 * - UserStatusクラスで定義
-	 * - true = 有効
-	 * - false = 無効
+	 * - 1 = 有効
+	 * - 0 = 無効
 	 */
 	private String user_status;
 

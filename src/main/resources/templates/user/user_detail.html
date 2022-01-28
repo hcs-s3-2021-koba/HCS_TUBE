@@ -44,8 +44,8 @@
 			<input type="hidden" name="user_name" th:value="*{user_name}">
 			<hr>
 			<h5 class="fw-bold text-center">
-				状態： <input type="radio" name="user_status" value=true th:field="*{user_status}" style="transform:scale(1.5);"> 有効
-					<input type="radio" name="user_status" value="false" th:field="*{user_status}" style="transform:scale(1.5);"> 無効
+				状態： <input type="radio" name="user_status" value=1 th:field="*{user_status}" style="transform:scale(1.5);"> 有効
+					<input type="radio" name="user_status" value=0 th:field="*{user_status}" style="transform:scale(1.5);"> 無効
 			</h5>
 			<button type="submit" class="btn btn-success" style="width: 90px; height: 40px">変更</button>
 		</form>

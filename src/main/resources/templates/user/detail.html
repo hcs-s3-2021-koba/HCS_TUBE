@@ -100,11 +100,11 @@
 					<div class="form-group input-box">
 						<div>
 							<input type="radio" name="user_status"
-								th:checked="*{user_status == true}" value=true>有効
+								th:checked="*{user_status == 1}" value=1>有効
 						</div>
 						<div>
 							<input type="radio" name="user_status"
-								th:checked="*{user_status == false}" value=false>無効
+								th:checked="*{user_status == 0}" value=0>無効
 						</div>
 					</div>
 

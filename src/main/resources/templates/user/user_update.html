@@ -39,8 +39,8 @@
 					<input type="text" class="form-control" name="user_name"
 						th:field="*{user_name}">
 				</div>
-				<br> <label for="user_status">ユーザ状態</label>
-				<div th:switch="*{user_status}">
+				<br> <label for="status_flg">ユーザ状態</label>
+				<div th:switch="${status_flg}">
 					<p th:case="true">有効</p>
 					<p th:case="false">無効</p>
 				</div>

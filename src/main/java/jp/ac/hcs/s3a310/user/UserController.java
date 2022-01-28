@@ -154,8 +154,6 @@ public class UserController {
 		// 検索するユーザーIDのチェック
 		if (user_id != null && user_id.length() > 0) {
 
-			log.info("[" + principal.getName() + "]ユーザ検索:" + user_id);
-
 			UserData data = userService.selectOne(user_id);
 
 			// データ表示準備(パスワードは暗号化済の為、表示しない)
@@ -163,6 +161,8 @@ public class UserController {
 			form.setUser_name(data.getUser_name());
 			form.setUser_authority(data.getUser_authority());
 			form.setUser_status(data.getUser_status());
+
+
 			model.addAttribute("userFormForUpdate", form);
 		}
 
@@ -241,7 +241,6 @@ public class UserController {
 	 */
 	@PostMapping("/user/delete")
 	public String getUserDelete(@RequestParam("user_id") String user_id, Principal principal, Model model) {
-		System.out.println(user_id);
 		boolean result = userService.deleteOne(user_id);
 		if(result) {
 			return getUserList(model);
@@ -265,7 +264,6 @@ public class UserController {
 		//エンティティクラスを作成
 		UserEntity userEntity = new UserEntity();
 		userEntity = userService.selectSearch(category,keyword);
-		System.out.println(userEntity);
 		model.addAttribute("userEntity" , userEntity);
 
 		return "/user/user_setting_home";
@@ -295,18 +293,24 @@ public class UserController {
 	@GetMapping("/user/user_update")
 	public String getUser_update(Model model,Principal principal) {
 
-		System.out.println(principal.getName());
-
 		UserFormForUpdate form = new UserFormForUpdate();
-
 		UserData data = userService.selectOne(principal.getName());
+		boolean status_flg = true;
 
 		// データ表示準備(パスワードは暗号化済の為、表示しない)
 		form.setUser_id(data.getUser_id());
 		form.setUser_name(data.getUser_name());
 		form.setUser_authority(data.getUser_authority());
 		form.setUser_status(data.getUser_status());
+
+		if (data.getUser_status() == "1") {
+			status_flg = true;
+		} else if (data.getUser_status() == "0") {
+			status_flg = false;
+		}
+
 		model.addAttribute("userFormForUpdate", form);
+		model.addAttribute("status_flg", status_flg);
 
 		return "user/user_update";
 	}
