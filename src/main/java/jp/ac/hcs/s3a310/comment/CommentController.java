@@ -38,10 +38,9 @@ public class CommentController {
 			Model model) {
 
 		CommentData data = new CommentData();
-		data.setComment(form.getComment());
+		data.setComment_content(form.getComment_content());
 		data.setUser_id(principal.getName());
 		data.setMovie_id(form.getMovie_id());
-
 		String movie_id = String.valueOf(form.getMovie_id());
 
 		boolean result = commentService.insertOne(data);

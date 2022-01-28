@@ -20,7 +20,7 @@ public class CommentForm {
 
 	/** コメント */
 //	@NotBlank(message = "{require_check}")
-	private String comment;
+	private String comment_content;
 
 //	/** 登録時間 */
 //	@NotBlank(message = "{require_check}")
