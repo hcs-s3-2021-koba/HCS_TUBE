@@ -26,8 +26,8 @@
 			<h2>LIVEを開始する</h2>
 			<br>
 			<div class="input-form">
-				<form method="post" th:action="@{/user/insert}"
-					th:object="${userForm}">
+				<form method="post" th:action="@{/live/insert}"
+					th:object="${LiveForm}">
 
 					<div class="row row-cols-1 row-cols-md-2 gy-3 mb-md-5">
 
@@ -36,27 +36,24 @@
 									<small class="text-danger text-center">※必須</small>
 								</div>
 						<div class="col-md-5 mb-1">
-							<input type="text" class="form-control" name="company_name" placeholder="タイトルを入力してください"
-								required id="company_name" value="">
+							<input type="text" class="form-control" name="live_name" placeholder="タイトルを入力してください"
+								required id="live_name" value="">
 								<small>タイトルを入力してください</small>
-								 <small
-								class="form-text input-group justify-content-md-start justify-content-center text-danger"
-								th:if="${#fields.hasErrors('company_name')}"
-								th:errors="*{company_name}"> エラーメッセージ </small>
+
 						</div>
 
 						<div class="col-md-5 mb-1" style="margin-top: 20px">
 									<h5 class="fw-bold text-center">概要</h5>
 								</div>
 						<div class="col-md-5 mb-1" style="margin-top: 20px">
-							<textarea class="form-control" name="content" style="max-width: 800px; max-height: 100px;" placeholder="動画の内容などを入力してください"
-								required id="content"></textarea>
+							<textarea class="form-control" name="live_detail" style="max-width: 800px; max-height: 100px;" placeholder="動画の内容などを入力してください"
+								required id="live_detail"></textarea>
 
 						</div>
 
 
 					</div>
-
+					<input type="hidden" id="live_flg" name="live_flg" value=1>
 					<button type="submit" class="btn btn-success">配信を開始</button>
 				</form>
 			</div>
