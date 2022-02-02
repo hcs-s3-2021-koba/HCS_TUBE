@@ -16,7 +16,7 @@
 	<name>hcs_tube</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>11.0.13</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -113,14 +113,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<version>12.2.0.1</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/ojdbc8.jar</systemPath>
-		</dependency>
-
-		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 		</dependency>
@@ -161,6 +153,14 @@
 			<version>3.8.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>12.2.0.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/ojdbc8.jar</systemPath>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -168,9 +168,29 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>jp.ac.hcs.s3a310.main</mainClass>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>net.rizworks.app.MyBatchApplication</mainClass>
+						</manifest>
+					</archive>
 				</configuration>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+
 			</plugin>
 		</plugins>
 	</build>
