@@ -25,6 +25,6 @@ public class StartUpController {
 		MovieEntity movieEntity = movieService.selectAll();
 		model.addAttribute("movieEntity", movieEntity);
 
-		return "/top";
+		return "top";
 	}
 }
