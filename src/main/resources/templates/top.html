@@ -1,131 +1,126 @@
-	<!DOCTYPE html>
-	<html xmlns:th="http://www.thymeleaf.org"
-		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-	<head>
+			<!DOCTYPE html>
+			<html xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+			<head>
 
-	<meta charset="UTF-8">
-	<title>Main</title>
+			<meta charset="UTF-8">
+			<title>Main</title>
 
-	<!-- モバイル設定 -->
-	<th:block th:insert="components/part::frag_mobile"></th:block>
-	<!-- アイコン設定 -->
-	<th:block th:insert="components/part::frag_icon"></th:block>
-	<!-- スタイル設定 -->
-	<th:block th:insert="components/part::frag_style"></th:block>
-
-<<<<<<< HEAD
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelementplayer.css" />
-
-</head>
-=======
-	</head>
->>>>>>> branch 'main' of https://github.com/hcs-s3-2021-koba/HCS_TUBE.git
-
-	<body th:classappend="${session.isDarkmode} ? 'mode-dark'">
-
-		<!-- 共通ヘッダ -->
-		<th:block th:replace="components/part::frag_header"></th:block>
-
-		<!-- コンテンツ -->
-
-		<div class="container">
+			<!-- モバイル設定 -->
+			<th:block th:insert="components/part::frag_mobile"></th:block>
+			<!-- アイコン設定 -->
+			<th:block th:insert="components/part::frag_icon"></th:block>
+			<!-- スタイル設定 -->
+			<th:block th:insert="components/part::frag_style"></th:block>
 
 
-		<div class="row">
-			<form method="post" class="form-inline" th:action="@{/movie/search}">
-				<input class="form-control mr-sm-2" style="width: 450px;"
-					name="keyword" type="search" placeholder="Search"
-					aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
+		<link rel="stylesheet"
+			href="//cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelementplayer.css" />
 
-		</div>
+		</head>
 
 
+			<body th:classappend="${session.isDarkmode} ? 'mode-dark'">
 
-			<h2 style="margin-top: 50px; color: red;">LIVE</h2>
-			<th:block th:if="${msg != null}">
-				<div class="alert alert-primary">
-					<span th:text="${msg}"></span>
+				<!-- 共通ヘッダ -->
+				<th:block th:replace="components/part::frag_header"></th:block>
+
+				<!-- コンテンツ -->
+
+				<div class="container">
+
+
+				<div class="row">
+					<form method="post" class="form-inline" th:action="@{/movie/search}">
+						<input class="form-control mr-sm-2" style="width: 450px;"
+							name="keyword" type="search" placeholder="Search"
+							aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					</form>
+
 				</div>
-			</th:block>
-
-			<th:block th:if="${errMsg != null}">
-				<div class="alert alert-danger">
-					<span th:text="${errMsg}"></span>
-				</div>
-			</th:block>
-			<th:block th:if="${msg == null}">
-				<div class="row" style="margin-top: 50px;">
 
 
-					<div class="content-box">
-						<div th:each="result : ${liveEntity.liveList}"
-							th:object="${result}"></div>
-						<form method="get" action="@{'/liveMovie/' + *{live_id}}">
-							<input type="image" name="submit" width="300" height="200"
-								th:src="" alt="送信">
-							<h3 th:text=*{live_name}></h3>
-						</form>
+
+					<h2 style="margin-top: 50px; color: red;">LIVE</h2>
+					<th:block th:if="${msg != null}">
+						<div class="alert alert-primary">
+							<span th:text="${msg}"></span>
+						</div>
+					</th:block>
+
+					<th:block th:if="${errMsg != null}">
+						<div class="alert alert-danger">
+							<span th:text="${errMsg}"></span>
+						</div>
+					</th:block>
+					<th:block th:if="${msg == null}">
+						<div class="row" style="margin-top: 50px;">
+
+
+							<div class="content-box">
+								<div th:each="result : ${liveEntity.liveList}"
+									th:object="${result}"></div>
+								<form method="get" action="@{'/liveMovie/' + *{live_id}}">
+									<input type="image" name="submit" width="300" height="200"
+										th:src="" alt="送信">
+									<h3 th:text=*{live_name}></h3>
+								</form>
+							</div>
+
+							<hr>
+
+						</div>
+					</th:block>
+
+
+			<img  src="http://10.11.39.164/var/www/html/Video/316/image_316.jpg" alt="出力できません">
+
+
+
+
+
+
+
+
+					<h2 style="margin-top: 50px;">MOVIE</h2>
+					<div class="row" style="margin-top: 50px;">
+
+						<div th:each="result : ${movieEntity.movielist}"
+							th:object="${result}">
+							<div class="content-box">
+								<form method="get" th:action="@{'/watcthMovie/' + *{movie_id}}"
+									name="movieForm">
+									<input type="image" name="submit" width="300" height="200"
+										th:src="'/var/www/html/Video/' +*{movie_id}+ *{thumbnail}" alt="送信">
+									<h3 th:text=*{movie_title}></h3>
+								</form>
+							</div>
+						</div>
 					</div>
 
-					<hr>
-
 				</div>
-			</th:block>
-
-
-	<img  src="http://10.11.39.164/var/www/html/Video/316/image_316.jpg" alt="出力できません">
 
 
 
 
+			<!-- 共通スクリプト -->
+			<th:block th:insert="components/part::frag_script"></th:block>
+
+			<script
+				src="//cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelement-and-player.js"></script>
+			<video id="player" width="640" height="360"></video>/
+		</body>
+
+		<script type="text/javascript">
+			var player = new MediaElementPlayer('player', {
+				success: function(mediaElement, originalNode) {
+				console.log("Player initialised");
+				}
+			});
+				player.setSrc("1/sample.m3u8");
+		</script>
+		</html>
 
 
 
-
-			<h2 style="margin-top: 50px;">MOVIE</h2>
-			<div class="row" style="margin-top: 50px;">
-
-				<div th:each="result : ${movieEntity.movielist}"
-					th:object="${result}">
-					<div class="content-box">
-						<form method="get" th:action="@{'/watcthMovie/' + *{movie_id}}"
-							name="movieForm">
-							<input type="image" name="submit" width="300" height="200"
-								th:src="'/var/www/html/Video/' +*{movie_id}+ *{thumbnail}" alt="送信">
-							<h3 th:text=*{movie_title}></h3>
-						</form>
-					</div>
-				</div>
-			</div>
-
-		</div>
-
-<<<<<<< HEAD
-	</div>
-
-	<!-- 共通スクリプト -->
-	<th:block th:insert="components/part::frag_script"></th:block>
-
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelement-and-player.js"></script>
-	<video id="player" width="640" height="360"></video>/
-</body>
-
-<script type="text/javascript">
-      var player = new MediaElementPlayer('player', {
-        success: function(mediaElement, originalNode) {
-          console.log("Player initialised");
-        }
-      });
-        player.setSrc("1/sample.m3u8");
-</script>
-</html>
-=======
-		<!-- 共通スクリプト -->
-		<th:block th:insert="components/part::frag_script"></th:block>
-	</body>
-	</html>
->>>>>>> branch 'main' of https://github.com/hcs-s3-2021-koba/HCS_TUBE.git
