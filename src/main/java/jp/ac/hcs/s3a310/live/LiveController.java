@@ -16,7 +16,7 @@ public class LiveController {
 
 	@RequestMapping("/liveMovie")
 	public String getLogin(Model model,Principal principal) {
-		return "movie/live_control";
+		return "movie/watch_live";
 	}
 
 	@RequestMapping("/live_start")

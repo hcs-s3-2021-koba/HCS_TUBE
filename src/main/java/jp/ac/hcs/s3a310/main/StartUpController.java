@@ -37,7 +37,7 @@ public class StartUpController {
 		if(entity.getLiveList().toString().equals("[]")) {
 			model.addAttribute("msg","現在ライブ配信はされていません。");
 		}else {
-		model.addAttribute("liveEntity", entity);
+			model.addAttribute("liveEntity", entity);
 		}
 
 
@@ -45,7 +45,7 @@ public class StartUpController {
 
 
 		return "/top";
+
+
 	}
-
-
 }
