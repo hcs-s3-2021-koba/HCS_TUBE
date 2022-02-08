@@ -7,117 +7,140 @@
 
 <!-- モバイル設定 -->
 <th:block th:fragment="frag_mobile">
-<meta id="viewport" name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="manifest" th:href="@{/css/manifest.json}"
-	crossorigin="use-credentials">
-<meta name="application-name" content="WebPortal">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="WebPortal">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta id="viewport" name="viewport"
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="manifest" th:href="@{/css/manifest.json}"
+		crossorigin="use-credentials">
+	<meta name="application-name" content="WebPortal">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="WebPortal">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 </th:block>
 
 <!-- アイコン設定 -->
 <th:block th:fragment="frag_icon">
-<link rel="icon" th:href="@{/img/P.ico}" sizes="192x192"
-	href="../static/img/P.ico">
-<link rel="shortcut icon" th:href="@{/img/P.ico}">
-<link rel="apple-touch-icon" th:href="@{/img/P.ico}">
-<link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="192x192">
-<link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="58x58">
+	<link rel="icon" th:href="@{/img/P.ico}" sizes="192x192"
+		href="../static/img/P.ico">
+	<link rel="shortcut icon" th:href="@{/img/P.ico}">
+	<link rel="apple-touch-icon" th:href="@{/img/P.ico}">
+	<link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="192x192">
+	<link rel="apple-touch-icon" th:href="@{/img/P.ico}" sizes="58x58">
 </th:block>
 
 <!-- スタイル設定 -->
 <th:block th:fragment="frag_style">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-<link rel="stylesheet" th:href="@{/css/ress.css}"
-	href="../../static/css/ress.css">
-<link rel="stylesheet" th:href="@{/css/home.css}"
-	href="../../static/css/home.css">
-	</th:block>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/ress.css}"
+		href="../../static/css/ress.css">
+	<link rel="stylesheet" th:href="@{/css/home.css}"
+		href="../../static/css/home.css">
+</th:block>
 
 </head>
 <body>
 
-<!-- 共通ヘッダ -->
-<th:block th:fragment="frag_header">
-<div style="position:static;  z-index: 2">
-<nav class="navbar navbar-dark bg-dark">
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarToggler" aria-controls="navbarToggler"
-			aria-expanded="false" aria-label="Toggle navigation" sec:authorize="${#authorization.expression('isAuthenticated()')}">
-			<span class="navbar-toggler-icon"></span>
-	</button>
+	<!-- 共通ヘッダ -->
+	<th:block th:fragment="frag_header">
+		<div style="position: static; z-index: 2">
+			<nav class="navbar navbar-dark bg-dark">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarToggler" aria-controls="navbarToggler"
+					aria-expanded="false" aria-label="Toggle navigation"
+					sec:authorize="${#authorization.expression('isAuthenticated()')}">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-	<nav class="navbar navbar-dark bg-dark justify-content-end">
-	<div sec:authorize="hasAuthority('admin') || hasAuthority('general')">
-	<a class="nav-link" th:href="@{/user/user_update}" style="margin-bottom: 10px">
-		<img class="config-img" th:src="@{/img/config.png}" src="../../static/img/config.png"></a>
-</div>
-	<h1>
-	<a class="navbar-brand title-font" th:href="@{/top}">
-		<font color="white"><b>HCSTube</b></font>
-		</a>
-	</h1>
-	</nav>
+				<nav class="navbar navbar-dark bg-dark justify-content-end">
+					<div
+						sec:authorize="hasAuthority('admin') || hasAuthority('general')">
+						<a class="nav-link" th:href="@{/user/user_update}"
+							style="margin-bottom: 10px"> <img class="config-img"
+							th:src="@{/img/config.png}" src="../../static/img/config.png"></a>
+					</div>
+					<h1>
+						<a class="navbar-brand title-font" th:href="@{/top}"> <font
+							color="white"><b>HCSTube</b></font>
+						</a>
+					</h1>
+				</nav>
 
-</nav>
-</div>
-<div style="position: absolute; z-index: 1; opacity: 0.95">
-<nav class="navbar navbar-dark bg-dark" style="width: 230px; margin-top: -20px">
-
-		<div class="collapse navbar-collapse" id="navbarToggler">
-		<div align="center">
-			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-				<li class="btn-margin" sec:authorize="hasAuthority('admin') || hasAuthority('general')">
-					<form class="my-2 my-lg-0" method="post" th:action="@{/live_start}">
-						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">LIVE</button>
-					</form>
-				</li>
-				<li class="btn-margin" sec:authorize="hasAuthority('admin') || hasAuthority('general')">
-					<form class="my-2 my-lg-0" method="get" th:action="@{/files}">
-						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">Upload</button>
-					</form>
-				</li>
-				<li class="btn-margin" sec:authorize="hasAuthority('admin')">
-					<form class="my-2 my-lg-0" method="get" th:action="@{/user_setting}">
-						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">User</button>
-					</form>
-				</li>
-				<li class="btn-margin">
-				<div th:if="${#authorization.expression('isAuthenticated()')}">
-					<form th:action="@{/logout}" method="post">
-						<button class="btn btn-outline-light" style="width: 210px; height:50px; border: none;font-size: 25px" type="submit">Logout</button>
-					</form>
-				</div>
-				</li>
-			</ul>
-			</div>
-			<br>
+			</nav>
 		</div>
-	</nav>
-	</div>
-</th:block>
+		<div style="position: absolute; z-index: 1; opacity: 0.95">
+			<nav class="navbar navbar-dark bg-dark"
+				style="width: 230px; margin-top: -20px">
+
+				<div class="collapse navbar-collapse" id="navbarToggler">
+					<div align="center">
+						<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+							<li class="btn-margin"
+								sec:authorize="hasAuthority('admin') || hasAuthority('general')">
+								<form class="my-2 my-lg-0" method="post"
+									th:action="@{/live_start}">
+									<button class="btn btn-outline-light"
+										style="width: 210px; height: 50px; border: none; font-size: 25px"
+										type="submit">LIVE</button>
+								</form>
+							</li>
+							<li class="btn-margin"
+								sec:authorize="hasAuthority('admin') || hasAuthority('general')">
+								<form class="my-2 my-lg-0" method="get" th:action="@{/files}">
+									<button class="btn btn-outline-light"
+										style="width: 210px; height: 50px; border: none; font-size: 25px"
+										type="submit">Upload</button>
+								</form>
+							</li>
+							<li class="btn-margin" sec:authorize="hasAuthority('admin')">
+								<form class="my-2 my-lg-0" method="get"
+									th:action="@{/user_setting}">
+									<button class="btn btn-outline-light"
+										style="width: 210px; height: 50px; border: none; font-size: 25px"
+										type="submit">User</button>
+								</form>
+							</li>
+							<li class="btn-margin"
+								sec:authorize="hasAuthority('admin') || hasAuthority('general')">
+								<form th:action="@{/logout}" method="post">
+									<button class="btn btn-outline-light"
+										style="width: 210px; height: 50px; border: none; font-size: 25px"
+										type="submit">Logout</button>
+								</form>
+							</li>
+							<li class="btn-margin" sec:authorize="hasAuthority('guest')">
+								<form class="my-2 my-lg-0" method="get"
+									th:action="@{/logout}">
+									<button class="btn btn-outline-light"
+										style="width: 210px; height: 50px; border: none; font-size: 25px"
+										type="submit">Login</button>
+								</form>
+							</li>
+						</ul>
+					</div>
+					<br>
+				</div>
+			</nav>
+		</div>
+	</th:block>
 
 
 	<!-- 共通スクリプト -->
 	<th:block th:fragment="frag_script">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
-		</th:block>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+	</th:block>
 
 </body>
 </html>
