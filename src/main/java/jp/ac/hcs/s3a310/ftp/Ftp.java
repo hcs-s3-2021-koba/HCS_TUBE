@@ -54,7 +54,7 @@ public class Ftp {
 		this.config.binaryTransfer = true;
 		this.config.usePassiveMode = true;
 
-		this.config.hostPath = "/home/oracle/uploadMovie";
+		this.config.hostPath = "/Video";
 		this.config.localPath = localPath;
 		this.config.encoding = "SJIS";
 		this.isConnected = false;
