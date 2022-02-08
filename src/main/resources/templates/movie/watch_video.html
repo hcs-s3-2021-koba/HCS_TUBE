@@ -14,8 +14,6 @@
 <!-- スタイル設定 -->
 <th:block th:insert="components/part::frag_style"></th:block>
 
-<script type="text/javascript">
-</script>
 
 <style>
 a {
@@ -92,13 +90,14 @@ a {
 
 			<div class="container" sec:authorize="hasAuthority('admin') || hasAuthority('general')">
 				<form method="post" class="form-inline"
-					th:action="@{/comment/insert}">
+					th:action="@{/comment/insert}" id="commentForm" target="sendMessage">
 					<input class="form-control mr-sm-2"
 						style="width: 85%; height: 25px;" type="text"
-						placeholder="コメントをする" aria-label="Search" name="comment_content">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">送信</button>
+						placeholder="コメントをする" aria-label="Search" name="comment_content" id="comment_content">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="button" id="commentSubmit">送信</button>
 					<input type=hidden th:value=${movieData.movie_id} name=movie_id>
 				</form>
+				<iframe name="sendMessage" style="width:0px;height:0px;border:0px;"></iframe>
 			</div>
 		</details>
 		</th:block>
@@ -110,5 +109,24 @@ a {
 
 	<!-- 共通スクリプト -->
 	<th:block th:insert="components/part::frag_script"></th:block>
+
+	<script type="text/javascript">
+	var $form = $('#commentForm'),
+		$trigger = $('#commentSubmit'),
+		$iframe = $('iframe[name="sendMessage"]');
+
+	$trigger.click(function() {
+ 		$form.submit();
+ 		$form[0].reset();
+ 		alert("以下の内容を送信しました。");
+	return false;
+	});
+
+	$form.submit(function() {
+		$iframe.unbind().bind('load', function() {
+        	// 結果が見たい場合はココで処理
+        	});
+		});
+</script>
 </body>
 </html>
