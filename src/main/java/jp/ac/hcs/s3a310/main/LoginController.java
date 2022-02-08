@@ -18,4 +18,9 @@ public class LoginController {
 	public String getLogin(Model model) {
 		return "user/login";
 	}
+
+	
 }
+
+
+

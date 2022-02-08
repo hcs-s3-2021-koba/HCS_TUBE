@@ -1,31 +1,36 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head>
+	<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head>
 
-<meta charset="UTF-8">
-<title>Main</title>
+	<meta charset="UTF-8">
+	<title>Main</title>
 
-<!-- モバイル設定 -->
-<th:block th:insert="components/part::frag_mobile"></th:block>
-<!-- アイコン設定 -->
-<th:block th:insert="components/part::frag_icon"></th:block>
-<!-- スタイル設定 -->
-<th:block th:insert="components/part::frag_style"></th:block>
+	<!-- モバイル設定 -->
+	<th:block th:insert="components/part::frag_mobile"></th:block>
+	<!-- アイコン設定 -->
+	<th:block th:insert="components/part::frag_icon"></th:block>
+	<!-- スタイル設定 -->
+	<th:block th:insert="components/part::frag_style"></th:block>
 
+<<<<<<< HEAD
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelementplayer.css" />
 
 </head>
+=======
+	</head>
+>>>>>>> branch 'main' of https://github.com/hcs-s3-2021-koba/HCS_TUBE.git
 
-<body th:classappend="${session.isDarkmode} ? 'mode-dark'">
+	<body th:classappend="${session.isDarkmode} ? 'mode-dark'">
 
-	<!-- 共通ヘッダ -->
-	<th:block th:replace="components/part::frag_header"></th:block>
+		<!-- 共通ヘッダ -->
+		<th:block th:replace="components/part::frag_header"></th:block>
 
-	<!-- コンテンツ -->
+		<!-- コンテンツ -->
 
-	<div class="container">
+		<div class="container">
+
 
 		<div class="row">
 			<form method="post" class="form-inline" th:action="@{/movie/search}">
@@ -37,49 +42,68 @@
 
 		</div>
 
-		<h2 style="margin-top: 50px; color: red;">LIVE</h2>
-		<th:block th:if="${msg != null}">
-			<div class="alert alert-primary">
-				<span th:text="${msg}"></span>
-			</div>
-		</th:block>
-
-		<th:block th:if="${errMsg != null}">
-			<div class="alert alert-danger">
-				<span th:text="${errMsg}"></span>
-			</div>
-		</th:block>
-		<div class="row" style="margin-top: 50px;">
 
 
-			<div class="content-box">
-				<form method="get" action="@{'/liveMovie'}">
-					<a href="/liveMovie"> <img width="300" height="200" src="">とべや
-					</a>
-					<h3>飛んでみた</h3>
-				</form>
-			</div>
+			<h2 style="margin-top: 50px; color: red;">LIVE</h2>
+			<th:block th:if="${msg != null}">
+				<div class="alert alert-primary">
+					<span th:text="${msg}"></span>
+				</div>
+			</th:block>
 
-			<hr>
+			<th:block th:if="${errMsg != null}">
+				<div class="alert alert-danger">
+					<span th:text="${errMsg}"></span>
+				</div>
+			</th:block>
+			<th:block th:if="${msg == null}">
+				<div class="row" style="margin-top: 50px;">
 
-		</div>
 
-		<h2 style="margin-top: 50px;">MOVIE</h2>
-		<div class="row" style="margin-top: 50px;">
+					<div class="content-box">
+						<div th:each="result : ${liveEntity.liveList}"
+							th:object="${result}"></div>
+						<form method="get" action="@{'/liveMovie/' + *{live_id}}">
+							<input type="image" name="submit" width="300" height="200"
+								th:src="" alt="送信">
+							<h3 th:text=*{live_name}></h3>
+						</form>
+					</div>
 
-			<div th:each="result : ${movieEntity.movielist}"
-				th:object="${result}">
-				<div class="content-box">
-					<form method="get" th:action="@{'/watcthMovie/' + *{movie_id}}"
-						name="movieForm">
-						<input type="image" name="submit" width="300" height="200"
-							th:src="'/thumbnail/' + *{thumbnail}" alt="送信">
-						<h3 th:text=*{movie_title}></h3>
-					</form>
+					<hr>
+
+				</div>
+			</th:block>
+
+
+	<img  src="http://10.11.39.164/var/www/html/Video/316/image_316.jpg" alt="出力できません">
+
+
+
+
+
+
+
+
+			<h2 style="margin-top: 50px;">MOVIE</h2>
+			<div class="row" style="margin-top: 50px;">
+
+				<div th:each="result : ${movieEntity.movielist}"
+					th:object="${result}">
+					<div class="content-box">
+						<form method="get" th:action="@{'/watcthMovie/' + *{movie_id}}"
+							name="movieForm">
+							<input type="image" name="submit" width="300" height="200"
+								th:src="'/thumbnail/' + *{thumbnail}" alt="送信">
+							<h3 th:text=*{movie_title}></h3>
+						</form>
+					</div>
 				</div>
 			</div>
+
 		</div>
 
+<<<<<<< HEAD
 	</div>
 
 	<!-- 共通スクリプト -->
@@ -99,3 +123,9 @@
         player.setSrc("1/sample.m3u8");
 </script>
 </html>
+=======
+		<!-- 共通スクリプト -->
+		<th:block th:insert="components/part::frag_script"></th:block>
+	</body>
+	</html>
+>>>>>>> branch 'main' of https://github.com/hcs-s3-2021-koba/HCS_TUBE.git

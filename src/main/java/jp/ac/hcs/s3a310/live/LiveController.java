@@ -16,7 +16,7 @@ public class LiveController {
 
 	@RequestMapping("/liveMovie")
 	public String getLogin(Model model,Principal principal) {
-		return "movie/live_control";
+		return "movie/watch_live";
 	}
 
 	@RequestMapping("/live_start")
@@ -30,8 +30,11 @@ public class LiveController {
 		boolean flg=liveService.insertLive(model, principal, liveForm);
 		}catch(Exception e) {
 			// ここにエラーメッセージ挿入
+			
 			return "movie/live_start";
 		}
+		model.addAttribute("live_name", liveForm.getLive_name());
+		model.addAttribute("live_detail", liveForm.getLive_detail());
 		return "movie/live_control";
 
 	}
