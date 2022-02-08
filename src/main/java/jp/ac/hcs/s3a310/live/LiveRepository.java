@@ -20,7 +20,9 @@ public class LiveRepository {
 	public static final String SQL_DELETE_LIVE ="delete lives where live_id=?";
 
 	//** ライブIDを取得する*/
-	public static final String SQL_SELECT_LIVE_ID="select MAX(live_id) from lives";
+	public static final String SQL_SELECT_LIVE_ID="select coalesce(MAX(live_id),0) live_id from lives";
+
+
 
 
 
@@ -34,32 +36,24 @@ public class LiveRepository {
 
 		try {
 			List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_LIVE_ID);
-			LiveEntity liveEntity = mappingSelectResult(resultList);
+
+			for (Map<String, Object> map : resultList) {
+				/** BigDecimal→String→int変換 */
+				String wk = map.get("live_id").toString();
+				live_id =Integer.valueOf(wk);
+			}
+
 
 		}catch(Exception e) {
-			live_id=0;
+
+
 		}
 
 
 		return live_id;
 	}
 
-	private LiveEntity mappingSelectResult(List<Map<String, Object>> liveList) {
-		LiveEntity entity = new LiveEntity();
 
-		for (Map<String, Object> map : liveList) {
-			/** BigDecimal→String→int変換 */
-			LiveData data = new LiveData();
-			data.setLive_id((int) map.get("live_id"));
-			data.setUser_id((String) map.get("user_id"));
-			data.setLive_name((String) map.get("live_name"));
-			data.setLive_flg((int)map.get("live_flg"));
-
-
-			entity.getLiveList().add(data);
-		}
-		return entity;
-	}
 
 
 	public boolean insertLive(LiveData data)throws DataAccessException{
@@ -97,6 +91,41 @@ public class LiveRepository {
 
 
 		return data;
+	}
+
+
+
+
+	public LiveEntity getLiveList() {
+		List<Map<String, Object>> resultList = jdbc.queryForList(SQL_SELECT_LIVE);
+		LiveEntity entity =new LiveEntity();
+		entity = mappingSelectResult(resultList);
+
+
+
+
+
+
+		return entity;
+	}
+
+
+
+
+	private LiveEntity mappingSelectResult(List<Map<String, Object>> resultList) {
+		LiveEntity entity =new LiveEntity();
+
+		LiveData data = new LiveData();
+		for (Map<String, Object> map : resultList) {
+		data.setLive_id((int)map.get("live_id"));
+		data.setLive_detail((String)map.get("live_detail"));
+		data.setLive_flg((int)map.get("live_flg"));
+		data.setLive_name((String)map.get("live_name"));
+		data.setUser_id((String)map.get("user_id"));
+		entity.getLiveList().add(data);
+		}
+
+		return entity;
 	}
 
 }

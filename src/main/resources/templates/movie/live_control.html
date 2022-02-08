@@ -31,8 +31,9 @@
 
 
 			<div class="content-box" style="width: 65%;">
+			<!-- ビデオタグの指定先をlive映像に変える -->
 				<video controls="controls" width="100%" height="85%" src="../../static/movie/sample_movie.mp4"></video>
-				<h3 align="left">飛んでみた</h3>
+				<h3 align="left" th:text="*{live_name}"></h3>
 			</div>
 
 			<hr>
@@ -40,15 +41,7 @@
 					<h3 style="font-size: 25px; text-align: left;">コメント</h3>
 						<div style="height: 90%; width: 100%; overflow-y: scroll;"
 							align="left">
-							<div style="background-color: #FFFFFF" id="scroll-inner">
-								あいうえお<br> かきくけこ<br> さしすせそ<br> たちつてと<br>
-								なにぬねの<br> はひふへほ<br> まみむめも<br> や ゆ よ<br>
-								らりるれろ<br> わ を<br> ん<br> かきくけこ<br> さしすせそ<br> たちつてと<br>
-								なにぬねの<br> はひふへほ<br> まみむめも<br> や ゆ よ<br>
-								らりるれろ<br> わ を<br> ん<br> かきくけこ<br> さしすせそ<br> たちつてと<br>
-								なにぬねの<br> はひふへほ<br> まみむめも<br> や ゆ よ<br>
-								らりるれろ<br> わ を<br> ん
-							</div>
+							<!-- コメントを入れる -->
 						</div>
 				</div>
 
@@ -58,7 +51,8 @@
 		<details>
 		<summary style="font-size: 25px; text-align: left;">概要</summary>
 		<div class="content-box">
-				<p>飛行機が飛んでいるだけでなんも面白くないですね～</p>
+				<p th:text="*{live_detail}"></p>
+
 			</div>
 		</details>
 		</div>

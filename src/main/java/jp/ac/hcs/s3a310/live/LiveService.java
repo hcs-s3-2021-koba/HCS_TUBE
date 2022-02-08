@@ -27,6 +27,12 @@ public class LiveService {
 		}
 		return flg;
 	}
+	public LiveEntity selectAll() {
+		LiveEntity entity = new LiveEntity();
+		entity=liveRepository.getLiveList();
+
+		return entity;
+	}
 
 
 }

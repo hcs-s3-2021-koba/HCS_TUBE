@@ -29,7 +29,7 @@ public class FileSystemStorageService implements StorageService {
 		this.rootLocation = Paths.get(properties.getLocation());
 	}
 
-	@Override
+	//@Override
 	public void store(MultipartFile file , Model model) {
 
 		try {
@@ -49,7 +49,7 @@ public class FileSystemStorageService implements StorageService {
 		}
 	}
 
-	@Override
+	//@Override
 	public Stream<Path> loadAll() {
 		try {
 			return Files.walk(this.rootLocation, 1)
@@ -61,7 +61,7 @@ public class FileSystemStorageService implements StorageService {
 
 	}
 
-	@Override
+	//@Override
 	public Path load(String filename) {
 		return rootLocation.resolve(filename);
 	}
