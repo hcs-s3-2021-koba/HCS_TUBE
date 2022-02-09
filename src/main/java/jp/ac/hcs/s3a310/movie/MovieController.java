@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.ac.hcs.s3a310.comment.CommentEntity;
 import jp.ac.hcs.s3a310.comment.CommentService;
+import jp.ac.hcs.s3a310.live.LiveEntity;
+import jp.ac.hcs.s3a310.live.LiveService;
 import jp.ac.hcs.s3a310.main.StartUpController;
 
 @Controller
@@ -22,6 +24,9 @@ public class MovieController {
 
 	@Autowired
 	MovieService movieService;
+
+	@Autowired
+	LiveService liveService;
 
 	@Autowired
 	CommentService commentService;
@@ -117,6 +122,15 @@ public class MovieController {
 		System.out.println(movieEntity);
 		model.addAttribute("movieEntity" , movieEntity);
 
-		return "/top";
+		//ライブ一覧を取得する
+		LiveEntity entity=liveService.selectAll();
+
+		if(entity.getLiveList().toString().equals("[]")) {
+			model.addAttribute("msg","現在ライブ配信はされていません。");
+		}else {
+			model.addAttribute("liveEntity", entity);
+		}
+
+		return "top";
 	}
 }
