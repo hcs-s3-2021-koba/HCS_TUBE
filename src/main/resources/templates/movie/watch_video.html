@@ -107,6 +107,11 @@ a {
 				<iframe name="sendMessage"
 					style="width: 0px; height: 0px; border: 0px;"></iframe>
 			</div>
+			<div class="container" sec:authorize="hasAuthority('guest')">
+			動画にコメントをする場合は <a th:href="@{/login}">アカウントログイン</a>を行ってください。
+			<br>
+			新規登録は<a th:href="@{/user/insert}"> こちら</a>
+			</div>
 			<input type=hidden th:value=${movieData.movie_id} name=movie_id id=movie_id>
 		</details>
 		</th:block>
