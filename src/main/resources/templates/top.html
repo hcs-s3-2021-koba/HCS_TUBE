@@ -78,7 +78,7 @@
 								<form method="get" th:action="@{'/watcthMovie/' + *{movie_id}}"
 									name="movieForm">
 									<input type="image" name="submit" width="300" height="200"
-										th:src="'/var/www/html/Video/'+*{movie_id}+'/'+ *{thumbnail}" alt="送信">
+										th:src="'http://10.11.32.248/Video/'+*{movie_id}+'/'+ *{thumbnail}" alt="送信">
 									<h3 th:text=*{movie_title}></h3>
 								</form>
 							</div>
