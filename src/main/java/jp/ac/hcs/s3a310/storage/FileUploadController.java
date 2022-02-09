@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import jp.ac.hcs.s3a310.ftp.Ftp;
-import jp.ac.hcs.s3a310.ftp.RemoteShellExecutor;
+import jp.ac.hcs.s3a310.ftp.Ssh;
 import jp.ac.hcs.s3a310.movie.MovieEntity;
 import jp.ac.hcs.s3a310.movie.MovieService;
 
@@ -84,17 +84,18 @@ public class FileUploadController {
 
 
 
-		//TODO 動画ファイルを採番する。
+
 		File file = new File("/HCS_TUBE/src/main/java/up",multiFile.getOriginalFilename());
 		FileUtils.writeByteArrayToFile(file, multiFile.getBytes());
 		//一時ファイルを作成し、名前を指定する。
 		Ftp ftpp = new Ftp("/HCS_TUBE/up/",String.valueOf(movie_id));
-		RemoteShellExecutor rse = new RemoteShellExecutor();
+		Ssh ss = new Ssh();
 		try {
 			flg =ftpp.connect();
 			flg=ftpp.put(file);
 			flg=ftpp.disconnect();
-			rse.execute(movie_id+" "+multiFile.getOriginalFilename());
+			ss.sh(movie_id+" "+multiFile.getOriginalFilename());
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
