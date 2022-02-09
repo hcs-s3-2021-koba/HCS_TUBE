@@ -4,7 +4,6 @@ package jp.ac.hcs.s3a310.ftp;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
@@ -61,8 +60,7 @@ public class Ssh {
                 }
                 bout.write(buf, 0, length);
             }
-            //標準出力
-            System.out.format("実行結果=%1$s", new String(bout.toByteArray(), StandardCharsets.UTF_8));
+
         }
         finally {
             if (bin != null) {
