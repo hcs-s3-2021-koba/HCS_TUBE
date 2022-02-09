@@ -102,11 +102,12 @@ a {
 						id="comment_content">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="button"
 						id="commentSubmit">送信</button>
-					<input type=hidden th:value=${movieData.movie_id} name=movie_id id=movie_id>
+					<input type=hidden th:value=${movieData.movie_id} name=movie_id>
 				</form>
 				<iframe name="sendMessage"
 					style="width: 0px; height: 0px; border: 0px;"></iframe>
 			</div>
+			<input type=hidden th:value=${movieData.movie_id} name=movie_id id=movie_id>
 		</details>
 		</th:block>
 		</th:block>
