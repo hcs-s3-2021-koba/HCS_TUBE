@@ -34,8 +34,6 @@ public class LoginController {
 	public String getLoginUser(Model model) {
 		return "user/user_login";
 	}
-
-
 }
 
 
