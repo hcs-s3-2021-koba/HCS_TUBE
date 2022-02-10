@@ -25,7 +25,7 @@ public class Ssh {
         String password = "oracle";
         //コマンド
 
-        String command = "sh /home/oracle/uploadMovie/a.sh ";
+        String command = "sh /Video/ffmpegshell.sh ";
         JSch jsch;
         Session session = null;
         ChannelExec channel = null;
