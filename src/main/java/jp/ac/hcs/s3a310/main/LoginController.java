@@ -27,10 +27,13 @@ public class LoginController {
 	 */
 	@GetMapping("/login")
 	public String getLogin(Model model) {
-		return "user/login";
+		return "user/user_guest_login";
 	}
 
-
+	@GetMapping("/user_login")
+	public String getLoginUser(Model model) {
+		return "user/user_login";
+	}
 }
 
 

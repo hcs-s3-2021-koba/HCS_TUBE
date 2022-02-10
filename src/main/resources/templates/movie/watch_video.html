@@ -108,7 +108,7 @@ a {
 					style="width: 0px; height: 0px; border: 0px;"></iframe>
 			</div>
 			<div class="container" sec:authorize="hasAuthority('guest')">
-			動画にコメントをする場合は <a th:href="@{/login}">アカウントログイン</a>を行ってください。
+			動画にコメントをする場合は <a th:href="@{/user_login}">アカウントログイン</a>を行ってください。
 			<br>
 			新規登録は<a th:href="@{/user/insert}"> こちら</a>
 			</div>
@@ -151,7 +151,7 @@ a {
 			console.log("Player initialised");
 		}
 	});
-	player.setSrc("http://10.11.32.248/Video/400/400.m3u8");
+	player.setSrc("http://10.11.39.164/Video/" + video_id.value + "/" + video_id.value + ".m3u8");
 </script>
 
 </html>
