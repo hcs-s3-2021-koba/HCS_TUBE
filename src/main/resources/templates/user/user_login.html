@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+
+<meta charset="UTF-8">
+<title>HCStube Main</title>
+
+<!-- モバイル設定 -->
+<th:block th:insert="components/part::frag_mobile"></th:block>
+<!-- アイコン設定 -->
+<th:block th:insert="components/part::frag_icon"></th:block>
+<!-- スタイル設定 -->
+<th:block th:insert="components/part::frag_style"></th:block>
+
+</head>
+
+<body th:classappend="${session.isDarkmode} ? 'mode-dark'">
+
+	<!-- ログインのみのヘッダ -->
+	<nav class="navbar navbar-dark bg-dark justify-content-end">
+
+
+	<nav class="navbar navbar-dark bg-dark justify-content-end">
+	<h1 class="navbar-brand title-font">
+		<font color="white"><b>HCSTube</b></font>
+	</h1>
+	</nav>
+
+</nav>
+
+	<!-- ログイン -->
+	<div class="container" style="text-align: center">
+		<h1 class="navbar-brand title-font">ログイン</h1>
+
+		<hr>
+		<div class="input-form">
+			<form method="post" th:action="@{/login}">
+				<label for="user_id">ユーザID(メールアドレス)</label> <input type="text"
+					class="form-control input-box" name="user_id" required="required"> <br> <label
+					for="password">パスワード</label> <input type="password"
+					class="form-control input-box" name="password" required="required">
+
+					<button type="submit" class="btn btn-primary" style="width: 170px;">ログイン</button>
+			</form>
+
+			<form method="post" th:action="@{/login}"><input type="hidden"
+					class="form-control input-box" name="user_id" value="guest@hcs.ac.jp"> <br> <input type="hidden"
+					class="form-control input-box" name="password" value="password">
+
+					<button type="submit" class="btn btn-secondary" style="width: 170px;">ゲストでログイン</button>
+			</form>
+
+
+			<br>
+			<br>
+
+			<div>
+
+				<form method="get" th:action="@{/user/insert}">
+					<button type="submit" class="btn btn-primary" style="width: 170px">新規登録</button>
+				</form>
+
+				<br>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+
+
+	<!-- 共通スクリプト -->
+	<th:block th:insert="components/part::frag_script"></th:block>
+</body>
+</html>

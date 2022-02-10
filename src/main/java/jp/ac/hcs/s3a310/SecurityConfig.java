@@ -38,7 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/css/**").permitAll() // cssへアクセス許可
 				.antMatchers("/img/**").permitAll() // imgへアクセス可能
 				.antMatchers("/login").permitAll() // ログインページは直リンクOK
-				.antMatchers("/top").permitAll() // ログインページは直リンクOK
+				.antMatchers("/user_login").permitAll() // ログインページは直リンクOK
+				.antMatchers("/user_guest_login").permitAll() // ログインページは直リンクOK
+				//.antMatchers("/top").permitAll() // ログインページは直リンクOK
 				.antMatchers("/upload-dir/**").permitAll()//動画視聴は直リンクOK
 				.antMatchers("/thumbnail/**").permitAll()//サムネイルは直リンクOK
 				.antMatchers("/user/insert").permitAll() // 新規ユーザー登録画面は直リンクOK
@@ -58,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//ログアウト処理
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutUrl("/logout") //ログアウト処理のパス
-				.logoutSuccessUrl("/login"); //ログアウト成功後の遷移先
+				.logoutSuccessUrl("/user_login"); //ログアウト成功後の遷移先
 		// (開発用)CSRF対策 無効設定
 		// XXX h2-console使用時は有効にする.
 		http.csrf().disable();
