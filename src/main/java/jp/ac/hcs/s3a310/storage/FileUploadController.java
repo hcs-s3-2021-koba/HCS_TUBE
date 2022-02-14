@@ -84,11 +84,12 @@ public class FileUploadController {
 
 
 
-
+try {
 		File file = new File(multiFile.getOriginalFilename());
-		FileUtils.writeByteArrayToFile(file, multiFile.getBytes());
+		FileUtils.writeByteArrayToFile(file.getAbsoluteFile(), multiFile.getBytes());
+
 		//一時ファイルを作成し、名前を指定する。
-		Ftp ftpp = new Ftp(file.getPath(),String.valueOf(movie_id));
+		Ftp ftpp = new Ftp(file.getAbsolutePath(),String.valueOf(movie_id));
 		Ssh ss = new Ssh();
 		try {
 			flg =ftpp.connect();
@@ -97,9 +98,12 @@ public class FileUploadController {
 			ss.sh(movie_id+" "+multiFile.getOriginalFilename());
 
 		} catch (Exception e) {
+			model.addAttribute("msg","ばかがよ");
 			e.printStackTrace();
 		}
-
+}catch(Exception e) {
+	model.addAttribute("msg","あほがよ");
+}
 		MovieEntity movieEntity = movieService.selectAll();
 		model.addAttribute("movieEntity", movieEntity);
 		return "/top";
