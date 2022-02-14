@@ -47,14 +47,13 @@ public class Ftp {
 	public Ftp(    String localPath ,String fileName ) {
 		this.config = new FtpConfig();
 
-		this.config.hostName = "10.11.39.164";
+		this.config.hostName = "10.11.39.166";
 		this.config.port = 21;
-		this.config.userName = "oracle";
-		this.config.password = "oracle";
+		this.config.userName = "tuber06";
+		this.config.password = "tube06";
 		this.config.binaryTransfer = true;
 		this.config.usePassiveMode = true;
-
-		this.config.hostPath = "http://10.11.39.164/Video";
+		this.config.hostPath = "/Video";
 		this.config.localPath = localPath;
 		this.config.encoding = "SJIS";
 		this.isConnected = false;

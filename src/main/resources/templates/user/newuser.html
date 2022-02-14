@@ -45,18 +45,18 @@
 						<h5 class="fw-bold text-center">ユーザID</h5>
 						<small class="text-danger text-center">※必須</small>
 					</div>
-					<div class="col-md-5 mb-1">
+					<div class="col-md-5 mb-5">
 						<input type="text" name="user_id" required id="user_id"
 							class="form-control" th:field="*{user_id}"> <span class="text-danger"
 							th:if="${#fields.hasErrors('user_id')}"
-							th:errors="*{user_id}">パスワードは〇文字以上で入力してください。</span><br> <small>メールアドレスを入力してください</small>
+							th:errors="*{user_id}">パスワードは〇文字以上で入力してください。</span><small>メールアドレスを入力してください</small>
 					</div>
 
 					<div class="col-md-5 mb-1">
 						<h5 class="fw-bold text-center">ニックネーム</h5>
 						<small class="text-danger text-center">※必須</small>
 					</div>
-					<div class="col-md-5 mb-1">
+					<div class="col-md-5 mb-5">
 						<input type="text" class="form-control" name="user_name" required
 							id="user_name" th:field="*{user_name}"> <small>作成後変更が可能です</small>
 					</div>

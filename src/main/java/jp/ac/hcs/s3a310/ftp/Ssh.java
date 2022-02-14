@@ -15,17 +15,17 @@ public class Ssh {
 
     public void sh(String commandAgument) throws JSchException, SftpException, FileNotFoundException, IOException {
 
-        //サーバ
-        String host = "10.11.39.164";
+
+        String host = "10.11.39.166";
         //ポート
         int port = 22;
         //ユーザ
-        String user = "oracle";
+        String user = "tuber06";
         //パスワード
-        String password = "oracle";
+        String password = "tube06";
         //コマンド
 
-        String command = "sh http://10.11.39.164/Video/a.sh ";
+        String command = "sh /Video/ffmpeg.sh ";
         JSch jsch;
         Session session = null;
         ChannelExec channel = null;
