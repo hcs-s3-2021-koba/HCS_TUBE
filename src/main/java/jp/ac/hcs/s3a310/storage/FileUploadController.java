@@ -85,10 +85,10 @@ public class FileUploadController {
 
 
 
-		File file = new File("/HCS_TUBE/src/main/java/up",multiFile.getOriginalFilename());
+		File file = new File(multiFile.getOriginalFilename());
 		FileUtils.writeByteArrayToFile(file, multiFile.getBytes());
 		//一時ファイルを作成し、名前を指定する。
-		Ftp ftpp = new Ftp("/HCS_TUBE/up/",String.valueOf(movie_id));
+		Ftp ftpp = new Ftp(file.getPath(),String.valueOf(movie_id));
 		Ssh ss = new Ssh();
 		try {
 			flg =ftpp.connect();
