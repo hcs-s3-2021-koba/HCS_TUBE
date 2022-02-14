@@ -97,13 +97,15 @@ try {
 			flg=ftpp.put(file);
 			flg=ftpp.disconnect();
 			ss.sh(movie_id+" "+multiFile.getOriginalFilename());
-
+			file.delete();
 		} catch (Exception e) {
 			model.addAttribute("msg","ばかがよ");
+			model.addAttribute("errMsg","こっちにいるのかい？" );
 			e.printStackTrace();
 		}
 }catch(Exception e) {
 	model.addAttribute("msg","あほがよ");
+	model.addAttribute("errMsg",file.getAbsolutePath() );
 }
 		MovieEntity movieEntity = movieService.selectAll();
 		model.addAttribute("movieEntity", movieEntity);
