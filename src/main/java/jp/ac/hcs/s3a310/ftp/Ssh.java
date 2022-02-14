@@ -16,7 +16,7 @@ public class Ssh {
     public void sh(String commandAgument) throws JSchException, SftpException, FileNotFoundException, IOException {
 
         //サーバ
-        String host = "10.11.39.165";
+        String host = "10.11.39.164";
         //ポート
         int port = 22;
         //ユーザ
@@ -25,7 +25,7 @@ public class Ssh {
         String password = "oracle";
         //コマンド
 
-        String command = "sh /home/oracle/uploadMovie/a.sh ";
+        String command = "sh http://10.11.39.164/Video/a.sh ";
         JSch jsch;
         Session session = null;
         ChannelExec channel = null;

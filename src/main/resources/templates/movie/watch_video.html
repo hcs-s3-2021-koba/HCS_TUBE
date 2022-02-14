@@ -46,9 +46,8 @@ a {
 		<div class="container">
 			<div class="content-moviebox">
 
-				<script
-					src="//cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelement-and-player.js"></script>
-				<video  id="player" width="100%" height="700"></video>
+			<iframe id="playerField" src="http:10.11.39.164/player2.html" width="75%" height= "100%"></iframe>
+
 			</div>
 			<h3 th:text="*{movie_title}" align="left"></h3>
 			<div th:text="*{post_time}" style="font-size: 15px;" align="left"></div>
@@ -125,33 +124,13 @@ a {
 	<th:block th:insert="components/part::frag_script"></th:block>
 
 </body>
-
-
-
-<script type="text/javascript">
-	var $form = $('#commentForm'), $trigger = $('#commentSubmit'), $iframe = $('iframe[name="sendMessage"]');
-
-	$trigger.click(function() {
-		$form.submit();
-		$form[0].reset();
-		alert("以下の内容を送信しました。");
-		return false;
-	});
-
-	$form.submit(function() {
-		$iframe.unbind().bind('load', function() {
-			// 結果が見たい場合はココで処理
-		});
-	});
-
+	<script>
+	var url = 'http://10.11.39.164/player2.html';
 	var video_id = document.getElementById('movie_id');
 
-	var player = new MediaElementPlayer('player', {
-		success : function(mediaElement, originalNode) {
-			console.log("Player initialised");
-		}
-	});
-	player.setSrc("http://10.11.39.164/Video/" + video_id.value + "/" + video_id.value + ".m3u8");
-</script>
+	url = url + "&video_id=" + video_id.value;
+
+	console.log("url:" + url);
+	</script>
 
 </html>
