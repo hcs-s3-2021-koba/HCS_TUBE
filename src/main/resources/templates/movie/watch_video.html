@@ -25,7 +25,11 @@ a {
 	href="//cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelementplayer.css" />
 </head>
 
+
+
 <body>
+
+
 
 	<!-- 共通ヘッダ -->
 	<th:block th:replace="components/part::frag_header"></th:block>
@@ -124,13 +128,14 @@ a {
 	<th:block th:insert="components/part::frag_script"></th:block>
 
 </body>
-	<script>
-	var url = 'http://10.11.39.164/player2.html';
+<script>
 	var video_id = document.getElementById('movie_id');
 
-	url = url + "&video_id=" + video_id.value;
+	sessionStorage.setItem('id', video_id.value);
 
-	console.log("url:" + url);
-	</script>
+	console.log(video_id);
+	console.log(id);
+
+</script>
 
 </html>

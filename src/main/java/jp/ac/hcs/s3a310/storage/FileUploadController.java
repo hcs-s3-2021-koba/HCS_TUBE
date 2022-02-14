@@ -88,7 +88,6 @@ try {
 		File file = new File(multiFile.getOriginalFilename());
 		FileUtils.writeByteArrayToFile(file.getAbsoluteFile(), multiFile.getBytes());
 
-
 		//一時ファイルを作成し、名前を指定する。
 		Ftp ftpp = new Ftp(file.getAbsolutePath(),String.valueOf(movie_id));
 		Ssh ss = new Ssh();
