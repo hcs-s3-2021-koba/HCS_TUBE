@@ -81,12 +81,31 @@ public class FileUploadController {
 			String errMsg="動画の投稿に失敗しました";
 			model.addAttribute("errMsg",errMsg);
 		}
+try {
+	File file = new File("/home/tuber04/up/",multiFile.getOriginalFilename());
+	model.addAttribute("errMsg",file.getAbsolutePath() );
+}catch(Exception e) {
+	model.addAttribute("errMsg","こっちにいるのかい？0" );
+}
+
+try {
+	File file = new File("file:/home/tuber04/up"+multiFile.getOriginalFilename());
+	model.addAttribute("errMsg",file.getAbsolutePath() );
+}catch(Exception e) {
+	model.addAttribute("errMsg","こっちにいるのかい？1" );
+}
+try {
+	File file = new File("file:/home/tuber04/up");
+	model.addAttribute("errMsg",file.getAbsolutePath() );
+}catch(Exception e) {
+	model.addAttribute("errMsg","こっちにいるのかい？2" );
+}
 
 
 
 try {
-		File file = new File(multiFile.getOriginalFilename());
-		FileUtils.writeByteArrayToFile(file.getAbsoluteFile(), multiFile.getBytes());
+		File file = new File("/home/tuber04/up/",multiFile.getOriginalFilename());
+		FileUtils.writeByteArrayToFile(file, multiFile.getBytes());
 		model.addAttribute("errMsg",file.getAbsolutePath() );
 		//一時ファイルを作成し、名前を指定する。
 		Ftp ftpp = new Ftp(file.getAbsolutePath(),String.valueOf(movie_id));
