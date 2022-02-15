@@ -81,7 +81,12 @@ public class FileUploadController {
 			String errMsg="動画の投稿に失敗しました";
 			model.addAttribute("errMsg",errMsg);
 		}
-
+try {
+	File file = new File("/home/tuber04/up/",multiFile.getOriginalFilename());
+	model.addAttribute("errMsg",file.getAbsolutePath() );
+}catch(Exception e) {
+	model.addAttribute("errMsg","こっちにいるのかい？" );
+}
 
 
 try {
