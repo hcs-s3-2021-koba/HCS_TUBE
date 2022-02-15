@@ -85,8 +85,22 @@ try {
 	File file = new File("/home/tuber04/up/",multiFile.getOriginalFilename());
 	model.addAttribute("errMsg",file.getAbsolutePath() );
 }catch(Exception e) {
-	model.addAttribute("errMsg","こっちにいるのかい？" );
+	model.addAttribute("errMsg","こっちにいるのかい？0" );
 }
+
+try {
+	File file = new File("file:/home/tuber04/up"+multiFile.getOriginalFilename());
+	model.addAttribute("errMsg",file.getAbsolutePath() );
+}catch(Exception e) {
+	model.addAttribute("errMsg","こっちにいるのかい？1" );
+}
+try {
+	File file = new File("file:/home/tuber04/up");
+	model.addAttribute("errMsg",file.getAbsolutePath() );
+}catch(Exception e) {
+	model.addAttribute("errMsg","こっちにいるのかい？2" );
+}
+
 
 
 try {
