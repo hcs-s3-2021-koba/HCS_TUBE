@@ -85,8 +85,8 @@ public class FileUploadController {
 
 
 try {
-		File file = new File(multiFile.getOriginalFilename());
-		FileUtils.writeByteArrayToFile(file.getAbsoluteFile(), multiFile.getBytes());
+		File file = new File("/home/tuber04/up/",multiFile.getOriginalFilename());
+		FileUtils.writeByteArrayToFile(file, multiFile.getBytes());
 		model.addAttribute("errMsg",file.getAbsolutePath() );
 		//一時ファイルを作成し、名前を指定する。
 		Ftp ftpp = new Ftp(file.getAbsolutePath(),String.valueOf(movie_id));
