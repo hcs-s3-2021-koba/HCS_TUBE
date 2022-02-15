@@ -23,6 +23,9 @@ a {
 
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.9/mediaelementplayer.css" />
+
+
+
 </head>
 
 
@@ -128,13 +131,17 @@ a {
 	<th:block th:insert="components/part::frag_script"></th:block>
 
 </body>
+
 <script>
 	var video_id = document.getElementById('movie_id');
+    console.log("varのほう" + video_id.value);
 
-	sessionStorage.setItem('id', video_id.value);
+	localStorage.setItem('id', video_id.value);
+	console.log("id:" + localStorage.getItem('id'));
 
-	console.log(video_id);
-	console.log(id);
+	var video_id_session = localStorage.getItem('id');
+	console.log("valueあり:" + video_id_session.value);
+	console.log("valueなし:" + video_id_session);
 
 </script>
 
