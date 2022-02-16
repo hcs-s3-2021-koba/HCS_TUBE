@@ -5,7 +5,7 @@
 
 body {
 	text-align: center;
-	background-color: #DDDDDD;
+	background-color: rgb(243, 243, 243);
 }
 
 h1 {
@@ -40,10 +40,9 @@ h2{
 	max-width: 370px;
 	min-width :370px;
 	margin: 5px;
-	padding: 10px;
-	border-radius: 3px;
+	padding: 7px;
+	border-radius: 20px 20px 20px 20px / 20px 20px 20px 20px;
 	background-color: #FFFFFF;
-
 
 }
 
