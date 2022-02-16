@@ -51,7 +51,7 @@ public class StorageRepository {
 
 				movie_id =Integer.parseInt(dammy.toString());
 
-				rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content , fileName , thumbnail);
+				rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content , fileName , movie_id+"jpg");
 
 			}
 		}catch(Exception e) {

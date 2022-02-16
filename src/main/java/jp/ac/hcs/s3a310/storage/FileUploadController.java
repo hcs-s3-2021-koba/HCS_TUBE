@@ -81,50 +81,31 @@ public class FileUploadController {
 			String errMsg="動画の投稿に失敗しました";
 			model.addAttribute("errMsg",errMsg);
 		}
-try {
-	File file = new File("/home/tuber04/up/",multiFile.getOriginalFilename());
-	model.addAttribute("errMsg",file.getAbsolutePath() );
-}catch(Exception e) {
-	model.addAttribute("errMsg","こっちにいるのかい？0" );
-}
-
-try {
-	File file = new File("file:/home/tuber04/up"+multiFile.getOriginalFilename());
-	model.addAttribute("errMsg",file.getAbsolutePath() );
-}catch(Exception e) {
-	model.addAttribute("errMsg","こっちにいるのかい？1" );
-}
-try {
-	File file = new File("file:/home/tuber04/up");
-	model.addAttribute("errMsg",file.getAbsolutePath() );
-}catch(Exception e) {
-	model.addAttribute("errMsg","こっちにいるのかい？2" );
-}
 
 
 
-try {
-		File file = new File("/home/tuber04/up/",multiFile.getOriginalFilename());
-		FileUtils.writeByteArrayToFile(file, multiFile.getBytes());
-		model.addAttribute("errMsg",file.getAbsolutePath() );
-		//一時ファイルを作成し、名前を指定する。
-		Ftp ftpp = new Ftp(file.getAbsolutePath(),String.valueOf(movie_id));
-		Ssh ss = new Ssh();
+
+
 		try {
-			flg =ftpp.connect();
-			flg=ftpp.put(file);
-			flg=ftpp.disconnect();
-			ss.sh(movie_id+" "+multiFile.getOriginalFilename());
-			file.delete();
-		} catch (Exception e) {
-			model.addAttribute("msg","ばかがよ");
-			model.addAttribute("errMsg","こっちにいるのかい？" );
-			e.printStackTrace();
-		}
-}catch(Exception e) {
-	model.addAttribute("msg","あほがよ");
 
-}
+			File file = new File("/tmp",multiFile.getOriginalFilename());
+			FileUtils.writeByteArrayToFile(file , multiFile.getBytes());
+			//一時ファイルを作成し、名前を指定する。
+			Ftp ftpp = new Ftp(file.getAbsolutePath(),String.valueOf(movie_id));
+			Ssh ss = new Ssh();
+			try {
+				flg =ftpp.connect();
+				flg=ftpp.put(file);
+				flg=ftpp.disconnect();
+				ss.sh(movie_id+" "+multiFile.getOriginalFilename());
+				file.delete();
+			} catch (Exception e) {
+
+			}
+		}catch(Exception e) {
+
+
+		}
 		MovieEntity movieEntity = movieService.selectAll();
 		model.addAttribute("movieEntity", movieEntity);
 		return "/top";
