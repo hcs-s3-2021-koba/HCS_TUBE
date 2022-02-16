@@ -35,6 +35,7 @@ h2{
 .content-moviebox {
 	min-width :400px;
 }
+
 .content-moviebox_top {
 	max-width: 370px;
 	min-width :370px;
@@ -42,6 +43,12 @@ h2{
 	padding: 10px;
 	border-radius: 3px;
 	background-color: #FFFFFF;
+
+
+}
+
+.movie_font{
+	font-size: 23px;
 }
 
 .kensaku-box {

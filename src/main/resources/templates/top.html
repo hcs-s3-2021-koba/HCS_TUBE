@@ -77,9 +77,9 @@
 							<div class="content-moviebox_top">
 								<form method="get" th:action="@{'/watcthMovie/' + *{movie_id}}"
 									name="movieForm">
-									<input type="image" name="submit" width="300" height="200"
+									<input type="image" name="submit" width="350" height="200"
 										th:src="'http://10.11.39.164/Video/'+*{movie_id}+'/'+ *{thumbnail}" alt="送信">
-									<h3 th:text=*{movie_title}></h3>
+									<h3 class="movie_font" th:text=*{movie_title}></h3>
 								</form>
 							</div>
 						</div>
