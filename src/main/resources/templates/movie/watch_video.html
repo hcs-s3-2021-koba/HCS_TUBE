@@ -140,8 +140,25 @@ function sleep(waitMsec) {
   while (new Date() - startMsec < waitMsec);
 }
 
+	var $form = $('#commentForm'), $trigger = $('#commentSubmit'), $iframe = $('iframe[name="sendMessage"]');
+
+	$trigger.click(function() {
+		$form.submit();
+		$form[0].reset();
+		alert("以下の内容を送信しました。反映まで時間がかかる場合があります。");
+		return false;
+	});
+
+	$form.submit(function() {
+		$iframe.unbind().bind('load', function() {
+			// 結果が見たい場合はココで処理
+		});
+	});
+
+
+	//iframeへの値送信確認用
 	var video_id = document.getElementById('movie_id');
-    console.log("varのほう" + video_id.value);
+	console.log("varのほう" + video_id.value);
 
 	localStorage.setItem('id', video_id.value);
 	console.log("id:" + localStorage.getItem('id'));

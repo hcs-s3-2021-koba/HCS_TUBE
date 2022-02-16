@@ -86,6 +86,7 @@ public class FileUploadController {
 
 
 
+
 		try {
 
 			File file = new File("/tmp",multiFile.getOriginalFilename());
@@ -96,6 +97,7 @@ public class FileUploadController {
 			try {
 				flg =ftpp.connect();
 				flg=ftpp.put(file);
+
 				flg=ftpp.disconnect();
 				ss.sh(movie_id+" "+multiFile.getOriginalFilename());
 				file.delete();

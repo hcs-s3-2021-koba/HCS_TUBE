@@ -40,7 +40,7 @@ public class StorageRepository {
 		Date dateObj = new Date();
 
 
-		int movie_id =1;
+		int movie_id =400;
 		int rowNumber = 0;
 
 		try {
@@ -51,12 +51,12 @@ public class StorageRepository {
 
 				movie_id =Integer.parseInt(dammy.toString());
 
-				rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content , fileName , movie_id+"jpg");
+				rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content , fileName , movie_id+".jpg");
 
 			}
 		}catch(Exception e) {
 			/** 動画IDが存在しない（1つ目の動画投稿）の場合に遷移*/
-			rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content , fileName , thumbnail);
+			rowNumber=jdbc.update(SQL_INSERT_MOVIE,movie_id , user_id , dateObj , movie_title , content , fileName , "400.jpg");
 
 
 		}
