@@ -1,5 +1,7 @@
 package jp.ac.hcs.s3a310;
 
+import java.util.Arrays;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -26,6 +31,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String USER_SQL = "SELECT user_id, encrypted_password as password, user_status FROM users WHERE user_id = ?";
 	/** ユーザーIDと権限を取得するSQL */
 	private static final String ROLE_SQL = "SELECT user_id, user_authority FROM users WHERE user_id = ?";
+
+	@Bean
+	public CorsConfigurationSource corsFilter() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowCredentials(true);        // CORSリクエストでcookie情報の取得を許可するか
+		configuration.setAllowedOrigins(Arrays.asList("*"));   // CORSリクエストを許可するドメイン
+		configuration.setAllowedHeaders(Arrays.asList(  // CORSリクエストで受信を許可するヘッダー情報(以下は例です)
+				"Access-Control-Allow-Headers",
+				"Access-Control-Allow-Origin",
+				"Access-Control-Request-Method",
+				"Access-Control-Request-Headers",
+				"Cache-Control",
+				"Content-Type",
+				"Accept-Language"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST"));  // CORSリクエストを許可するHTTPメソッド
+
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/cors", configuration); // CORSリクエストを許可するURLの形式(特に決まりがなければ「/**」でもOK)
+
+		return source;
+	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
