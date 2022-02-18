@@ -31,7 +31,7 @@ a {
 
 
 <body>
-
+<input type="hidden" th:value=${movieData.movie_id} name="movie_id" id="movie_id">
 
 
 	<!-- 共通ヘッダ -->
@@ -118,7 +118,6 @@ a {
 			<br>
 			新規登録は<a th:href="@{/user/insert}"> こちら</a>
 			</div>
-			<input type=hidden th:value=${movieData.movie_id} name=movie_id id=movie_id>
 		</details>
 		</th:block>
 		</th:block>
@@ -133,6 +132,13 @@ a {
 </body>
 
 <script>
+//ビジーwaitを使う方法
+function sleep(waitMsec) {
+  var startMsec = new Date();
+
+  // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+  while (new Date() - startMsec < waitMsec);
+}
 
 	var $form = $('#commentForm'), $trigger = $('#commentSubmit'), $iframe = $('iframe[name="sendMessage"]');
 
@@ -160,6 +166,8 @@ a {
 	var video_id_session = localStorage.getItem('id');
 	console.log("valueあり:" + video_id_session.value);
 	console.log("valueなし:" + video_id_session);
+	sleep(1000);
+	document.getElementById("playerField").contentWindow.postMessage(video_id.value, '*');
 </script>
 
 </html>
